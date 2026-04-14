@@ -13,25 +13,6 @@ A partir disso, nasceu o interesse  de compartilhar mais sobre o tema.
 
 ---
 
-## 🎯 Objetivo
-
-- Informar sobre animais de assistência emocional  
-- Compartilhar conteúdos em formato de blog  
-- Criar interação com o usuário através de um quiz  
-- Permitir cadastro e login de usuários  
-
----
-
-## ⚙️ Funcionalidades
-
-- 📝 Blog com conteúdos informativos  
-- 🧠 Quiz interativo sobre o tema  
-- 👤 Sistema de cadastro de usuários  
-- 🔐 Sistema de login  
-- 📊 Possível personalização de experiência do usuário (forum)
-
----
-
 ## 💻 Tecnologias Utilizadas
 
 - HTML  
