@@ -106,6 +106,10 @@ input {
     background-color: #fffbfa;
     font-size: 16px;
 }
+input::placeholder{
+    color: #e3d5d3;
+    display: flex;
+}
 
 .btn-login {
     width: 100%;

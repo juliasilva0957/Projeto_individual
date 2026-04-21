@@ -125,7 +125,6 @@ input {
 input::placeholder{
     color: #e3d5d3;
     display: flex;
-    padding: 92px;
 }
 
 .password-wrapper {
