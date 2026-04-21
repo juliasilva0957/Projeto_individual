@@ -1,0 +1,192 @@
+@import url('https://fonts.cdnfonts.com/css/lazy-dog');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    background-color: #fff9f6;
+    font-family: 'Poppins', sans-serif;
+}
+
+
+.main-container {
+    display: flex;
+    flex-direction: row;
+    height: 100vh;
+    width: 100%;
+    overflow: hidden;
+}
+
+section .form-box{
+    justify-content: left;
+}
+
+section .banner-side{
+    justify-content: right;
+}
+
+.form-side {
+    width: 50%;
+    flex: 0 0 50%;
+    background-color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 6% 40px; 
+    overflow-y: auto;
+}
+
+.form-box {
+    width: 100%;
+    max-width: 420px;
+    z-index: 9999;
+    background-color: white;
+}
+
+.subtitle {
+    color: #4a1d00;
+    font-size: 16px;
+    margin-bottom: 30px;
+}
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 25px;
+}
+
+.logo img{
+    width: 200px;
+}
+
+.input-group {
+    margin-bottom: 18px; 
+}
+
+.input-group label {
+    display: block;
+    font-size: 14px;
+    font-weight: 700;
+    color: #333;
+    margin-bottom: 8px;
+}
+
+input {
+    width: 100%;
+    padding: 14px;
+    border: 1px solid #4a1d00;
+    border-radius: 10px;
+    background-color:#fff9f6;
+    font-size: 16px;
+    transition: 0.3s;
+}
+
+.password-wrapper {
+    position: relative;
+    display: flex;
+    align-items: center;
+}
+
+.password-wrapper .toggle-password {
+    position: absolute;
+    right: 15px;
+    color: #ffebdf;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+.btn-primary {
+    width: 100%;
+    padding: 16px;
+    background-color: #ff1251;
+    color: #ffebdf;
+    border: none;
+    border-radius: 25px;
+    font-size: 18px;
+    font-weight: 700;
+    margin-top: 25px;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 12px;
+    transition: 0.3s;
+}
+
+.btn-primary:hover {
+    background-color: #ff5b87;
+}
+
+.signup-text {
+    margin-top: 25px;
+    text-align: center;
+    color: #ffebdf;
+    font-size: 14px;
+}
+
+.signup-text a {
+    color: #4a1d00;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.banner-side {
+    width: 100%;
+    /* flex: 0 0 500%; */
+    /* background-image: url('/public/assets/img/4.png'); */
+    /* background-size: cover; */
+    background-color: #e6a2ad;
+    /* background-position: center; */
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: center; 
+    padding: 5%;
+    color: #ffebdf;
+    border-radius: 50px 0 0 50px;
+}
+
+.banner-side img{
+    position: absolute;
+    width: 100%;
+    left: 0;
+    z-index: 9998;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 25px;
+}
+
+.logo-img {
+    width: 120px;
+    height: auto;
+}
+
+.logo span {
+    font-size: 40px; 
+    font-weight: 900;
+    color: white;
+    font-family: 'Poppins', sans-serif;
+}
+
+.banner-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 38px; 
+    font-weight: 800;
+    line-height: 1.1;
+    margin-bottom: 20px;
+}
+
+.banner-content p {
+    font-size: 18px;
+    line-height: 1.6;
+    color: #4a1d00; 
+    max-width: 480px;
+}

@@ -1,0 +1,133 @@
+@import url('https://fonts.cdnfonts.com/css/lazy-dog');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #fff9f6;
+    font-family: 'Poppins', Arial, Helvetica, sans-serif;
+}
+
+.hero {
+    background-color: #e6a2ad;
+    width: 100%;
+    height: 500px;
+    background-image: url('../assets/img/gato1.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    align-items: flex-end;
+}
+
+.hero h2 {
+    color: #fff9f6;
+    font-size: 70px;
+    font-weight: 700;
+    line-height: 0.9;
+    margin-left: 20px;
+
+}
+
+.sobre {
+    position: relative;
+    padding: 80px 60px 60px 300px;
+}
+
+.estrela-conheca {
+    position: absolute;
+    right: -60px;
+    top: -180px;
+    width: 500px;
+    z-index: 1;
+}
+
+.sobre-conteudo {
+    position: relative;
+    z-index: 2;
+    max-width: 100%;
+    font-size: 20px;
+    line-height: 1.8;
+    margin: 0 100px;
+    margin: 0;
+}
+
+.conteiner .sobre .primeira-parte{
+    display: flex;
+    position: absolute;
+    left: 0;
+    width: 75%;
+    flex-direction: column;
+}
+
+
+.conteiner .sobre .primeira-parte .oque {
+  width: 840px;
+  position: absolute;
+  left: -240px;
+}
+
+.conteiner .sobre .primeira-parte p{
+    position: absolute;
+    padding-top: 12px;
+    top: 96px;
+    text-align: justify;
+}
+
+.treinamento {
+    position: absolute;
+    right: -500px;
+    top: -180px;
+    width: 1200px;
+    z-index: 1;
+}
+.auxilio {
+  position: absolute;
+  left: -680px;
+  top: -450px;
+  width: 1200px;
+  z-index: 1;
+}
+
+/* ── BLOCO 2: "PRECISA DE TREINAMENTO?" ─────────── */
+.sobre-conteudo.treinamento-bloco {
+    display: grid;
+    grid-template-columns: 1fr 320px;
+    grid-template-rows: auto auto;
+    column-gap: 40px;
+    padding: 20px 40px 40px 60px;
+    position: relative;
+    z-index: 2;
+}
+
+.sobre-conteudo.treinamento-bloco p {
+    position: static;
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 24px;
+    line-height: 1.8;
+    margin-top: 200px;
+    text-align: justify;
+    z-index: 2;
+} 
+ 
+/* ── BLOCO 3: "EM QUAIS OCASIÕES PODEM AUXILIAR?" ── */
+ 
+.sobre-conteudo.auxilio-bloco p {
+    position: static;
+    grid-column: 1;
+    grid-row: 2;
+    font-size: 24px;
+    line-height: 1.8;
+    margin-top: 20px;
+    max-width: 320px;
+    color: #4a1d00;
+    text-align: justify;
+    z-index: 2;
+} 
+ 

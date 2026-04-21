@@ -88,8 +88,10 @@ header {
     font-weight: 700;
     line-height: 0.9;
     margin-left: 20px;
+    align-items: center;
 
 }
+
 
 .sobre {
   position: relative;
@@ -122,7 +124,7 @@ header {
 
     background-color:#ff1251;
     color: #fff9f6;
-    border-radius: 20px;
+    border-radius: 35px;
 
     padding: 18px 40px;
     align-items: center;
@@ -175,19 +177,53 @@ header {
   line-height: 1.6;
   font-weight: bold;
 }
+.card-valor h3{
+  font-size: 28px;
+  line-height: 1.8;
+  font-family: 'Lazydog';
+  text-align: justify;
+}
 footer {
   display: flex;
-  flex-direction: row;
-    background-color: #4a1d00;
-    color: #fff9f6;
-    align-items: flex-end;
-    text-align: end;
-    border-radius: 25px;
-  
+  justify-content: space-between;
+  align-items: center;
+  gap: 120px;
+  background-color: #4a1d00;
+  color: #fff9f6;
+  border-radius: 55px 55px 0 0;
+  padding: 40px 60px;
 }
 
-footer img{
-  width: 500px;
-  padding: 0px;
- margin-left: 60px;
+.logo-footer {
+    width: 500px;
+    padding: 0px;
+    margin-left: 60px;
+}
+
+footer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-footer {
+  width: 60px;
+  margin: 12px 0 8px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 30px;
+  text-align: justify;
+}
+
+footer .social-media{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
 }
