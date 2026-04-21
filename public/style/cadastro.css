@@ -132,6 +132,11 @@ input::placeholder{
     display: flex;
     align-items: center;
 }
+
+.btn-proximo{
+    text-decoration: none;
+}
+
 .btn-primary {
     width: 100%;
     padding: 16px;
@@ -154,26 +159,9 @@ input::placeholder{
     background-color: #ff5b87;
 }
 
-.signup-text {
-    margin-top: 25px;
-    text-align: center;
-    color: #ffebdf;
-    font-size: 14px;
-}
-
-.signup-text a {
-    color: #4a1d00;
-    text-decoration: none;
-    font-weight: 700;
-}
-
 .banner-side {
     width: 100%;
-    /* flex: 0 0 500%; */
-    /* background-image: url('/public/assets/img/4.png'); */
-    /* background-size: cover; */
     background-color: #e6a2ad;
-    /* background-position: center; */
     display: flex;
     flex-direction: column-reverse;
     align-items: center;
