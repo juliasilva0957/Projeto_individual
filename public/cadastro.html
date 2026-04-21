@@ -1,25 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulPaws - Cadastro</title>
     <link rel="stylesheet" href="">
-     <link rel="icon" href="assets/logo/Soul (1).png">
-     <link rel="stylesheet" href="/public/style/cadastro.css">
+    <link rel="icon" href="assets/logo/Soul (1).png">
+    <link rel="stylesheet" href="/public/style/cadastro.css">
 </head>
 </head>
+
 <body>
-<div class="main-container reversed">
-        
+    <div class="main-container reversed">
+
         <section class="form-side">
             <div class="form-box">
+                <div class="logo">
+                    <a href="index.html">
+                        <img src="/public/assets/logo/Soul (1).png" alt="">
+                    </a>
+                </div>
                 <p class="subtitle">Informe os seus dados abaixo</p>
 
                 <form>
                     <div class="input-group">
                         <label>Nome Completo</label>
-                        <input type="text" id= "ipt_nome" placeholder="Nome">
+                        <input type="text" id="ipt_nome" placeholder="Nome completo">
                     </div>
 
                     <div class="input-group">
@@ -29,27 +36,28 @@
 
                     <div class="input-group">
                         <label>CPF</label>
-                        <input type="text" id="ipt_estufa" placeholder="Ex:999999999-70">
+                        <input type="text" id="ipt_estufa" placeholder="ex:999999999-70">
                     </div>
 
                     <div class="input-group">
                         <label>Senha</label>
-                        
-                            <input type="password" id="ipt_senha" placeholder="Mínimo 8 caracteres">
-                        
+
+                        <input type="password" id="ipt_senha" placeholder="*************">
+
                     </div>
 
                     <div class="input-group">
                         <label>Confirmar Senha</label>
                         <div class="password-wrapper">
-                            <input type="password" id="ipt_senhaDnv" placeholder="Repita a senha">
+                            <input type="password" id="ipt_senhaDnv" placeholder="*********">
                         </div>
                     </div>
-
-                    <button type="submit" class="btn-primary" onclick="fVerificar()">
-                        <img src="./assets/icons/folha-branca.svg" alt="" width="20">
-                        Criar Conta
-                    </button>
+                    <a href="formCadastro.html">
+                        <button type="submit" class="btn-primary" onclick="fVerificar()">
+                            Proximo
+                            <img src="/public/assets/icons/seta.png" alt="" width="20">
+                        </button>
+                    </a>
                 </form>
             </div>
         </section>
@@ -60,7 +68,8 @@
                 <h1><b>Será um prazer te <br> ter em nossa <br> <span style="color: #ff1251;">comunidade</h1>
             </div>
         </section>
-        
+
     </div>
 </body>
+
 </html>

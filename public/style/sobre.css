@@ -13,6 +13,65 @@ body {
     font-family: 'Poppins', Arial, Helvetica, sans-serif;
 }
 
+.logo{
+    background-color: #fff9f6 ;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.logo img{
+    width: 5%;
+}
+
+header {
+    background-color:#4a1d00;
+    padding: 18px 16px;
+}
+
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    margin: 0 40px;
+    align-items: center;
+    background-color: #4a1d00;
+}
+
+.navbar .left a{
+    padding-right: 40px;
+}
+
+.navbar .right a{
+    padding: 0 10px;
+}
+
+.navbar a, .navbar .right, .navbar .left{
+    color: #fff9f6;
+    text-decoration: none;
+}
+
+.navbar a .button-entrar{
+
+    background-color:#ff1251;
+    color: #fff9f6;
+    border-radius: 20px;
+
+    padding: 10px 30px;
+
+    font-size: smaller;
+    border: none;
+
+    cursor: pointer;
+
+}
+
+.navbar a .button-entrar:hover{
+    transform: scale(1.1); /*da movimento ao botao*/
+    transition: .5s all ease; /*tempo que ele demora para fazer a animaçãp*/
+    background-color: #e5003d;
+}
+
 .hero {
     background-color: #e6a2ad;
     width: 100%;
@@ -33,101 +92,129 @@ body {
     margin-left: 20px;
 
 }
-
-.sobre {
-    position: relative;
-    padding: 80px 60px 60px 300px;
-}
-
-.estrela-conheca {
-    position: absolute;
-    right: -60px;
-    top: -180px;
-    width: 500px;
-    z-index: 1;
-}
-
-.sobre-conteudo {
-    position: relative;
-    z-index: 2;
-    max-width: 100%;
-    font-size: 20px;
-    line-height: 1.8;
-    margin: 0 100px;
-    margin: 0;
-}
-
-.conteiner .sobre .primeira-parte{
+.conteiner .content {
+    width: 100%;
     display: flex;
-    position: absolute;
-    left: 0;
-    width: 75%;
     flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    padding: 50px 5px;
+    overflow: hidden;
 }
 
-
-.conteiner .sobre .primeira-parte .oque {
-  width: 840px;
-  position: absolute;
-  left: -240px;
+.conteiner .content .content-oque {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 40px;
+    overflow: hidden;
 }
 
-.conteiner .sobre .primeira-parte p{
-    position: absolute;
-    padding-top: 12px;
-    top: 96px;
+.conteiner .content .content-oque img.oque {
+    width: 90%;
+    max-width: none;
+    height: auto;
+    margin-left: -50%;
+}
+
+.conteiner .content .content-oque p {
     text-align: justify;
-}
-
-.treinamento {
-    position: absolute;
-    right: -500px;
-    top: -180px;
-    width: 1200px;
-    z-index: 1;
-}
-.auxilio {
-  position: absolute;
-  left: -680px;
-  top: -450px;
-  width: 1200px;
-  z-index: 1;
-}
-
-/* ── BLOCO 2: "PRECISA DE TREINAMENTO?" ─────────── */
-.sobre-conteudo.treinamento-bloco {
-    display: grid;
-    grid-template-columns: 1fr 320px;
-    grid-template-rows: auto auto;
-    column-gap: 40px;
-    padding: 20px 40px 40px 60px;
-    position: relative;
-    z-index: 2;
-}
-
-.sobre-conteudo.treinamento-bloco p {
-    position: static;
-    grid-column: 2;
-    grid-row: 1;
+    font-weight: bold;
+    line-height: 1.6;
     font-size: 24px;
-    line-height: 1.8;
-    margin-top: 200px;
-    text-align: justify;
-    z-index: 2;
-} 
- 
-/* ── BLOCO 3: "EM QUAIS OCASIÕES PODEM AUXILIAR?" ── */
- 
-.sobre-conteudo.auxilio-bloco p {
-    position: static;
-    grid-column: 1;
-    grid-row: 2;
+}
+
+.conteiner .content .content-treinamento {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 30px;
+    margin-bottom: 40px;
+    overflow: hidden;
+    align-self: flex-end;
+}
+
+.conteiner .content .content-treinamento img.treinamento {
+    width: 90%;
+    max-width: none;
+    height: auto;
+    margin-right: -30%;
+}
+
+.conteiner .content .content-treinamento p {
+    text-align: right;
+    font-weight: bold;
+    line-height: 1.6;
     font-size: 24px;
-    line-height: 1.8;
-    margin-top: 20px;
-    max-width: 320px;
-    color: #4a1d00;
+}
+
+.conteiner .content .content-auxilio {
+    max-width: 50%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 30px;
+    margin-bottom: 40px;
+    overflow: hidden;
+}
+
+.conteiner .content .content-auxilio img.auxilio {
+    width: 90%;
+    max-width: none;
+    height: auto;
+    margin-left: -50%;
+}
+
+.conteiner .content .content-auxilio p {
     text-align: justify;
-    z-index: 2;
-} 
- 
+    font-weight: bold;
+    line-height: 1.6;
+    font-size: 24px;
+}
+footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 120px;
+  background-color: #4a1d00;
+  color: #fff9f6;
+  border-radius: 55px 55px 0 0;
+  padding: 40px 60px;
+}
+
+.logo-footer {
+    width: 500px;
+    padding: 0px;
+    margin-left: 60px;
+}
+
+footer div {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+}
+
+.icon-footer {
+  width: 60px;
+  margin: 12px 0 8px;
+}
+
+footer p {
+  margin: 0;
+  font-size: 30px;
+  text-align: justify;
+}
+
+footer .social-media{
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  gap: 10px;
+}

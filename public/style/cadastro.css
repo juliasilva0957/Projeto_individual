@@ -20,7 +20,36 @@ body {
     width: 100%;
     overflow: hidden;
 }
+.banner-side {
+    width: 50%;
+    background-image: url('../assets/img/7\ Sem\ Título_20260417194918.png');
+    background-size: cover;
+    background-position: center;
+    display: flex;
+    align-items: flex-end; 
+    padding: 5%;
+    color: #ffebdf;
+    border-radius: 0 50px 50px 0;
+}
+.brand-name {
+    font-family:'Poppins',sans-serif; 
+    font-size: 28px;
+    font-weight: 700;
+}
 
+.banner-content{
+  height: 80vh;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.banner-content h1 {
+    font-family: 'Poppins', sans-serif;
+    font-size: 95px; 
+    font-weight: 7000;
+    color: #ffebdf;
+}
 section .form-box{
     justify-content: left;
 }
@@ -32,7 +61,7 @@ section .banner-side{
 .form-side {
     width: 50%;
     flex: 0 0 50%;
-    background-color: white;
+    background-color: #fff9f6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -44,12 +73,19 @@ section .banner-side{
     width: 100%;
     max-width: 420px;
     z-index: 9999;
-    background-color: white;
+    background-color: #fff9f6;
+}
+.logo{
+    background-color: #fff9f6 ;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .subtitle {
     color: #4a1d00;
-    font-size: 16px;
+    font-size: 25px;
     margin-bottom: 30px;
 }
 .logo {
@@ -60,7 +96,8 @@ section .banner-side{
 }
 
 .logo img{
-    width: 200px;
+    width: 120px;
+    margin-right: -560px;
 }
 
 .input-group {
@@ -71,8 +108,9 @@ section .banner-side{
     display: block;
     font-size: 14px;
     font-weight: 700;
-    color: #333;
+    color: #4a1d00;
     margin-bottom: 8px;
+    
 }
 
 input {
@@ -82,7 +120,12 @@ input {
     border-radius: 10px;
     background-color:#fff9f6;
     font-size: 16px;
-    transition: 0.3s;
+}
+
+input::placeholder{
+    color: #e3d5d3;
+    display: flex;
+    padding: 92px;
 }
 
 .password-wrapper {
@@ -90,15 +133,6 @@ input {
     display: flex;
     align-items: center;
 }
-
-.password-wrapper .toggle-password {
-    position: absolute;
-    right: 15px;
-    color: #ffebdf;
-    cursor: pointer;
-    font-size: 18px;
-}
-
 .btn-primary {
     width: 100%;
     padding: 16px;
