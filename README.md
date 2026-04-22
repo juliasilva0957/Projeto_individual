@@ -13,14 +13,6 @@ A partir disso, nasceu o interesse  de compartilhar mais sobre o tema.
 
 ---
 
-## 💻 Tecnologias Utilizadas
-
-- HTML  
-- CSS  
-- JavaScript  
-- Node.js
-- MySQL
----
 
 ## 🚧 Status do Projeto
 
@@ -31,12 +23,6 @@ A partir disso, nasceu o interesse  de compartilhar mais sobre o tema.
 ## 📌 Observações
 
 Este é um **projeto acadêmico e pessoal**, desenvolvido **sem fins lucrativos**, com foco em aprendizado e aplicação prática dos conhecimentos adquiridos em aula.
-
----
-
-## 💜 Inspiração
-
-Este projeto foi inspirado em vivências pessoais e tem como objetivo mostrar como os animais podem ter um papel essencial no bem-estar emocional das pessoas.
 
 ---
 
