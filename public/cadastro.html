@@ -8,7 +8,6 @@
     <link rel="icon" href="assets/logo/Soul (1).png">
     <link rel="stylesheet" href="/public/style/cadastro.css">
 </head>
-</head>
 
 <body>
     <div class="main-container reversed">
@@ -25,7 +24,7 @@
                 <form action="formCadastro.html">
                     <div class="input-group">
                         <label>Nome Completo</label>
-                        <input type="text" id="ipt_nome" placeholder="Nome completo" oninput="dadosVazios()">
+                        <input type="text" id="ipt_nome" placeholder="Nome completo">
                     </div>
 
                     <div class="input-group">
@@ -35,12 +34,11 @@
 
                     <div class="input-group">
                         <label>CPF</label>
-                        <input type="text" id="ipt_cpf" placeholder="ex:999999999-70">
+                        <input type="number" id="ipt_cpf" placeholder="ex:999999999-70">
                     </div>
 
                     <div class="input-group">
                         <label>Senha</label>
-
                         <input type="password" id="ipt_senha" placeholder="*************">
 
                     </div>
@@ -51,11 +49,10 @@
                             <input type="password" id="ipt_senhaDnv" placeholder="*********" oninput="confirmar()">
                         </div>
                     </div>
-                    <button type="submit" class="btn-primary">
-                        Proximo
-                        <img src="/public/assets/icons/seta.png" alt="" width="20">
-                    </button>
-                    
+                        <button class="btn-primary" onclick="dadosVazios()">
+                            Proximo
+                            <img src="/public/assets/icons/seta.png" alt="" width="20">
+                        </button>                    
                 </form>
                 <div id="div_erro" ></div>
             </div>
@@ -70,12 +67,11 @@
     </div>
 </body>
 
-</html>
 <script>
     function confirmar(){
         let senha = ipt_senha.value;
         let confirmarSenha = ipt_senhaDnv.value;
-        mensagem = ""
+        let mensagem = ""
 
         if(senha === confirmarSenha){
            mensagem += `<span style="color: green;">As senhas coincidem</span>` 
@@ -90,8 +86,9 @@
         let nomeCompleto = ipt_nome.value;
         let cpf = ipt_cpf.value;
 
-        if(email == null || nomeCompleto == null || cpf == null){
+        if(email == "" || nomeCompleto == "" || cpf == ""){
             alert("Preencha os campos corretamente")
         }
     }
 </script>
+</html>

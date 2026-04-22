@@ -162,15 +162,16 @@ header {
   width: 325px;
   min-height: 400px;
 
-  padding: 25px;
+  padding: 0 25px;
   border-radius: 50px;
 
   text-align: justify;
 
   display: flex;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
+  gap: 24px;
 }
 .card-valor p {
   font-size: 20px;
@@ -178,9 +179,9 @@ header {
   font-weight: bold;
 }
 .card-valor h3{
-  font-size: 28px;
+  font-size: 42px;
   line-height: 1.8;
-  font-family: 'Lazydog';
+  font-family: 'Lazy Dog Upright', cursive;
   text-align: justify;
 }
 footer {

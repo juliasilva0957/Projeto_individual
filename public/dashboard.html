@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulPaws - Dashboard</title>
+    <link rel="stylesheet" href="/public/style/dashboard.css">
+    <link rel="icon" href="assets/logo/Soul (1).png">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/4.4.1/chart.umd.min.js"></script>
+</head>
+<body>
+    <div class="logo">
+        <a href="/public/index.html">
+            <img src="/public/assets/logo/Soul.png" alt="Logo SoulPaws">
+        </a>
+    </div>
+    <header>
+        <nav class="navbar">
+            <div class="left">
+                <a href="forum.html">FORUM</a>
+                <a href="diarioEmocoes.html">EMOÇÕES</a>
+                <a href="quiz.html">QUIZES</a>
+                <a href="perfil.html">PERFIL</a>
+                <a href="dashboard.html">DASHBOARD</a>
+
+            </div>
+        </nav>
+    </header>
+    <div class="dashboard">
+ 
+
+    <div class="col-left">
+      <div class="card line-card">
+        <div class="card-title">Seu nível de atividade no fórum durante os meses</div>
+        <div class="chart-wrapper">
+          <canvas id="lineChart"></canvas>
+        </div>
+      </div>
+    </div>
+ 
+
+    <div class="col-right-top">
+ 
+      <div class="stats-row">
+        <div class="stat-card pink">
+          <span class="stat-label">Total de posts que você fez</span>
+          <span class="stat-value">75 posts</span>
+        </div>
+        <div class="stat-card orange">
+          <span class="stat-label">Total de dias consecutivos que você interagiu no fórum</span>
+          <span class="stat-value">5 dias</span>
+        </div>
+      </div>
+ 
+
+      <div class="card donut-card">
+        <div class="card-title">Quantidade de quizzes que você realizou</div>
+        <div class="donut-wrapper">
+          <canvas id="donutChart"></canvas>
+          <div class="donut-label">67%</div>
+        </div>
+        <div class="donut-legend">
+          <div><span class="dot filled"></span>Você completou 67% dos quizzes disponíveis!</div>
+          <div><span class="dot empty"></span>Os outros 33% estão incompletos ou ainda não foram feitos!</div>
+        </div>
+      </div>
+    </div>
+ 
+    <div class="card bar-card">
+      <div class="card-title">Emoções que você mais relatou</div>
+      <div class="bar-wrapper">
+        <canvas id="barChart"></canvas>
+      </div>
+    </div>
+ 
+  </div>
+ 
+  <script>
+    const pink = '#ff1251';
+    const pinkPale = '#ffd6df';
+    const orange = '#ff7a00';
+ 
+
+    new Chart(document.getElementById('lineChart'), {
+      type: 'line',
+      data: {
+        labels: ['Janeiro','Fevereiro','Março','Abril','Maio'],
+        datasets: [
+          {
+            label: 'Post',
+            data: [12, 14, 15, 18, 24],
+            borderColor: orange,
+            backgroundColor: 'transparent',
+            borderWidth: 3,
+            pointBackgroundColor: orange,
+            pointRadius: 5,
+            tension: 0.35
+          },
+          {
+            label: 'Comentários',
+            data: [10, 12, 16, 17, 20],
+            borderColor: pink,
+            backgroundColor: 'transparent',
+            borderWidth: 3,
+            pointBackgroundColor: pink,
+            pointRadius: 5,
+            tension: 0.35
+          }
+        ]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: {
+          legend: {
+            position: 'top',
+            labels: { usePointStyle: true, pointStyleWidth: 10, font: { family: 'Poppins', size: 12 } }
+          }
+        },
+        scales: {
+          x: {
+            title: { display: true, text: 'meses', font: { family: 'Poppins', size: 11 }, color: '#9e7a7a' },
+            grid: { display: false },
+            ticks: { font: { family: 'Poppins', size: 11 } }
+          },
+          y: {
+            title: { display: true, text: 'quantidade', font: { family: 'Poppins', size: 11 }, color: '#9e7a7a' },
+            min: 0, max: 30,
+            ticks: { stepSize: 5, font: { family: 'Poppins', size: 11 } },
+            grid: { color: '#f0e0e4' }
+          }
+        }
+      }
+    });
+ 
+    new Chart(document.getElementById('donutChart'), {
+      type: 'doughnut',
+      data: {
+        datasets: [{
+          data: [67, 33],
+          backgroundColor: [pink, pinkPale],
+          borderWidth: 0,
+          hoverOffset: 4
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        cutout: '72%',
+        plugins: { legend: { display: false }, tooltip: { enabled: false } }
+      }
+    });
+ 
+    new Chart(document.getElementById('barChart'), {
+      type: 'bar',
+      data: {
+        labels: ['Feliz', 'Triste', 'Ansioso', 'Raiva'],
+        datasets: [{
+          data: [105, 48, 30, 8],
+          backgroundColor: pink,
+          borderRadius: 8,
+          borderSkipped: false
+        }]
+      },
+      options: {
+        responsive: true,
+        maintainAspectRatio: false,
+        plugins: { legend: { display: false } },
+        scales: {
+          x: {
+            grid: { display: false },
+            ticks: { font: { family: 'Poppins', size: 12 } }
+          },
+          y: {
+            min: 0, max: 120,
+            ticks: { stepSize: 20, font: { family: 'Poppins', size: 11 } },
+            grid: { color: '#f0e0e4' }
+          }
+        }
+      }
+    });
+  </script>
+ 
+</body>
+</html>
