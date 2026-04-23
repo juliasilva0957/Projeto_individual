@@ -21,6 +21,14 @@ body {
     justify-content: center;
 }
 
+.logo a{
+    display: flex;
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
 .logo img{
     width: 5%;
 }
@@ -113,7 +121,7 @@ header {
 }
 
 .conteiner .content .content-oque img.oque {
-    width: 90%;
+    width: 110%;
     max-width: none;
     height: auto;
     margin-left: -50%;
@@ -121,9 +129,10 @@ header {
 
 .conteiner .content .content-oque p {
     text-align: justify;
-    font-weight: bold;
     line-height: 1.6;
     font-size: 24px;
+    color: #4a1d00;
+
 }
 
 .conteiner .content .content-treinamento {
@@ -138,7 +147,7 @@ header {
 }
 
 .conteiner .content .content-treinamento img.treinamento {
-    width: 90%;
+    width: 110%;
     max-width: none;
     height: auto;
     margin-right: -30%;
@@ -146,9 +155,10 @@ header {
 
 .conteiner .content .content-treinamento p {
     text-align: right;
-    font-weight: bold;
     line-height: 1.6;
     font-size: 24px;
+    color: #4a1d00;
+
 }
 
 .conteiner .content .content-auxilio {
@@ -162,17 +172,18 @@ header {
 }
 
 .conteiner .content .content-auxilio img.auxilio {
-    width: 90%;
+    width: 110%;
     max-width: none;
     height: auto;
-    margin-left: -50%;
+    margin-left: -15%;
+    margin: 2;
 }
 
 .conteiner .content .content-auxilio p {
     text-align: justify;
-    font-weight: bold;
     line-height: 1.6;
     font-size: 24px;
+    color: #4a1d00;
 }
 footer {
   display: flex;

@@ -12,7 +12,7 @@ CPF CHAR(11) UNIQUE
 CREATE TABLE formCadastro (
 idForm INT PRIMARY KEY AUTO_INCREMENT ,
 transtornoMental BOOLEAN,
-momentosDificei BOOLEAN,
+momentosDificeis BOOLEAN,
 comoAjudou VARCHAR(255),
 especie BOOLEAN,
 raça VARCHAR(50),
@@ -28,6 +28,7 @@ CONSTRAINT chUsuario
 FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
 titulo VARCHAR (255),
 post VARCHAR(255),
+dtPostagem DATETIME DEFAULT CURRENT_TIMESTAMP,
 fkComentario INT,
 CONSTRAINT chFkComentario
 FOREIGN KEY (fkComentario) REFERENCES postagem(idPostagem)

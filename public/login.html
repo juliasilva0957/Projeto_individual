@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="stylesheet" href="/public/style/login.css">
     <link rel="icon" href="assets/logo/Soul (1).png">
 </head>
+
 <body>
-   <div class="main-container">
+    <div class="main-container">
         <section class="banner-side">
             <div class="banner-content">
                 <h1>Seja bem-vindo(a) <br> de volta!</h1>
@@ -19,25 +21,23 @@
             <div class="form-box">
                 <a href="index.html">
                     <div class="logo">
-                      <img src="/public/assets/logo/Soul (1).png" alt="">
+                        <img src="/public/assets/logo/Soul (1).png" alt="">
                     </div>
                 </a>
                 <h2>Estamos felizes em <br>ter você por aqui!</h2>
                 <form>
                     <div class="input-group">
                         <label>Email</label>
-                        <input type="email" id="input_email" placeholder="Insira seu email">
+                        <input type="email" id="ipt_email" placeholder="Insira seu email">
                     </div>
 
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" id="input_senha" placeholder="*******">
+                        <input type="password" id="ipt_senha" placeholder="*******">
                     </div>
 
                     <p class="signup-text">Esqueceu a senha?</p>
-                    <a href="/public/dashboard.html">
-                        <button type="button" class="btn-login" onclick="login()">Entrar</button>
-                    </a>
+                    <button type="button" class="btn-login" onclick="login()">Entrar</button>
                 </form>
 
             </div>
@@ -45,7 +45,32 @@
     </div>
 
 </body>
-</html>
-    
-</body>
+<script>
+    function login() {
+        let email = ipt_email.value;
+        let senha = ipt_senha.value;
+
+        let dados = {
+            email: email,
+            senha: senha
+        }
+
+        fetch('http://localhost:3333/usuarios/login', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.setItem("idUsuario", data[0].idUsuario)
+                alert(`Olá ${data[0].nomeUsuario}`)
+                window.location.href = "/public/dashboard.html"
+            })
+            .catch(error => console.error('Erro:', error));
+    }
+
+</script>
+
 </html>

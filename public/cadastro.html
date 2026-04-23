@@ -21,7 +21,7 @@
                 </div>
                 <p class="subtitle">Informe os seus dados abaixo</p>
 
-                <form action="formCadastro.html">
+                <div action="formCadastro.html">
                     <div class="input-group">
                         <label>Nome Completo</label>
                         <input type="text" id="ipt_nome" placeholder="Nome completo">
@@ -49,12 +49,12 @@
                             <input type="password" id="ipt_senhaDnv" placeholder="*********" oninput="confirmar()">
                         </div>
                     </div>
-                        <button class="btn-primary" onclick="dadosVazios()">
-                            Proximo
-                            <img src="/public/assets/icons/seta.png" alt="" width="20">
-                        </button>                    
-                </form>
-                <div id="div_erro" ></div>
+                    <button class="btn-primary" onclick="dadosVazios()">
+                        Proximo
+                        <img src="/public/assets/icons/seta.png" alt="" width="20">
+                    </button>
+                </div>
+                <div id="div_erro"></div>
             </div>
         </section>
 
@@ -68,27 +68,50 @@
 </body>
 
 <script>
-    function confirmar(){
+    function confirmar() {
         let senha = ipt_senha.value;
         let confirmarSenha = ipt_senhaDnv.value;
         let mensagem = ""
 
-        if(senha === confirmarSenha){
-           mensagem += `<span style="color: green;">As senhas coincidem</span>` 
-        }else{
-            mensagem +=`<span style="color: orangered;">As senhas não coincidem</span>`
+        if (senha === confirmarSenha) {
+            mensagem += `<span style="color: green;">As senhas coincidem</span>`
+        } else {
+            mensagem += `<span style="color: orangered;">As senhas não coincidem</span>`
         }
         div_erro.innerHTML = mensagem
     }
 
-    function dadosVazios(){
+    function dadosVazios() {
         let email = ipt_email.value;
         let nomeCompleto = ipt_nome.value;
         let cpf = ipt_cpf.value;
+        let senha = ipt_senha.value;
 
-        if(email == "" || nomeCompleto == "" || cpf == ""){
+        if (email == "" || nomeCompleto == "" || cpf == "") {
             alert("Preencha os campos corretamente")
+        } else {
+            let dados = {
+                nome: nomeCompleto,
+                email: email,
+                cpf: cpf,
+                senha: senha
+            }
+
+            fetch('http://localhost:3333/usuarios/cadastrar', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
+            })
+                .then(res => {
+                    if(res.ok){
+                        window.location.href = "/public/formCadastro.html"
+                    }
+                })
+                .catch(error => console.error('Erro:', error));
         }
     }
 </script>
+
 </html>
