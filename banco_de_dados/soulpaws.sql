@@ -5,8 +5,8 @@ CREATE TABLE usuario (
 idUsuario INT PRIMARY KEY AUTO_INCREMENT,
 nome VARCHAR(50),
 email VARCHAR(45) UNIQUE,
-CPF CHAR(11) UNIQUE,
-senha VARCHAR(255)
+senha VARCHAR(255),
+CPF CHAR(11) UNIQUE
 );
 
 CREATE TABLE formCadastro (
@@ -31,4 +31,13 @@ post VARCHAR(255),
 fkComentario INT,
 CONSTRAINT chFkComentario
 FOREIGN KEY (fkComentario) REFERENCES postagem(idPostagem)
+);
+
+CREATE TABLE emocao(
+idEmocao INT PRIMARY KEY AUTO_INCREMENT,
+emocao VARCHAR(45),
+descricao VARCHAR(255),
+fkUsuario INT,
+CONSTRAINT fkUsuario
+FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario) 
 );
