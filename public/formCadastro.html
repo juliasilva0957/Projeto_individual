@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,8 +8,9 @@
     <link rel="icon" href="assets/logo/Soul (1).png">
     <link rel="stylesheet" href="/public/style/formCadastro.css">
 </head>
+
 <body>
-     <div class="main-container">
+    <div class="main-container">
         <section class="banner-side">
             <div class="banner-content">
                 <h1>Nos conte mais sobre <span style="color: #ff1251;">você!</span></h1>
@@ -25,7 +27,7 @@
                 <form>
                     <div class="input-group">
                         <label>Você tem ou já teve algum transtorno mental?</label>
-                        <select name="" id="">
+                        <select name="" id="select_teve">
                             <option value="#">Selecione uma das opções</option>
                             <option value="0">Sim</option>
                             <option value="1">Não</option>
@@ -34,7 +36,7 @@
 
                     <div class="input-group">
                         <label>Se sim, qual?</label>
-                        <select name="" id="">
+                        <select name="" id="select_transtorno">
                             <option value="#">Selecione uma das opções</option>
                             <option value="Ansiedade">Ansiedade</option>
                             <option value="Depressão">Depressão</option>
@@ -44,8 +46,8 @@
                         </select>
                     </div>
                     <div>
-                        <label>Você sentre que ele te ajudou a passar por crises ou momentos dificeis?</label>
-                        <select name="" id="">
+                        <label>Você sente que ele te ajudou a passar por crises ou momentos dificeis?</label>
+                        <select name="" id="select_sente">
                             <option value="#">Selecione uma das opções</option>
                             <option value="0">Sim</option>
                             <option value="1">Não</option>
@@ -56,10 +58,10 @@
                         <label>Se sim, como ele te ajudou?</label>
                         <input type="text" id="ipt_descricao" placeholder="Responda aqui!">
                     </div>
-                    
+
                     <div>
                         <label>Qual a espécie do seu pet?</label>
-                        <select name="" id="">
+                        <select name="" id="especie" onchange="filtrarRaça()">
                             <option value="#">Selecione uma das opções</option>
                             <option value="0">Cachorro</option>
                             <option value="1">Gato</option>
@@ -68,17 +70,71 @@
 
                     <div>
                         <label>Qual a raça do seu pet?</label>
-                        <select name="" id="">
-                        <option value="">Selecione uma das opções</option>
+                        <select name="" id="select_raca">
+                            <option value="">Selecione uma das opções</option>
                         </select>
                     </div>
 
-                    <a href="dashboard.html">
-                        <button type="button" class="btn-login">Cadastrar</button>
-                    </a>
+
+                    <button type="button" class="btn-login" onclick="cadastrar()">Cadastrar</button>
                 </form>
             </div>
         </section>
     </div>
 </body>
+
 </html>
+<script>
+    let animais = {
+        "0": ["GoldenRetriver", "Labrador", "Poodle", "Beagle", "Yorkshire", "Shihtzu", "Outros"],
+        "1": ["Ragdoll", "MaineCoon", "Persa", "Siamês", "AmericanBobtail", "BritishShorthair", "Outros"]
+    }
+
+    function filtrarRaça() {
+        let tipo = document.getElementById("especie").value;
+        let raca = document.getElementById("select_raca");
+
+        raca.innerHTML = '<option value="">Selecione uma das opções</option>'
+
+        if (tipo !== "") {
+            for (let i = 0; i < animais[tipo].length; i++) {
+                let item = animais[tipo][i];
+                raca.innerHTML += `<option value="${item}">${item}</option>`
+            }
+        }
+    }
+
+    function cadastrar() {
+        let tipo = document.getElementById("especie").value;
+        let raca = select_raca.value;
+        let descricao = document.getElementById("ipt_descricao").value;
+        let teve = select_teve.value
+        let tipoTranstorno = select_transtorno.value
+        let senteAjudou = select_sente.value
+
+
+        let dados = {
+            senteAjudou: senteAjudou,
+            tipoTranstorno: tipoTranstorno,
+            teve: teve,
+            descricao: descricao,
+            tipo: tipo,
+            raca: raca,
+            fkUsuario: localStorage.getItem("fkUsuario")
+        }
+
+        fetch('http://localhost:3333/form/cadastrar', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+            .then(res => res.json())
+            .then(data => {
+                localStorage.removeItem("fkUsuario")
+                window.location.href = "/public/index.html"
+            })
+            .catch(error => console.error('Erro:', error));
+    }
+</script>

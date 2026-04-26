@@ -100,6 +100,14 @@ header {
     margin-left: 20px;
 
 }
+
+.estrela-conheca {
+    position: absolute;
+    right: -140px;
+    top:10px ;
+    width: 500px;
+    z-index: 1;
+}
 .conteiner .content {
     width: 100%;
     display: flex;

@@ -87,7 +87,7 @@
         let cpf = ipt_cpf.value;
         let senha = ipt_senha.value;
 
-        if (email == "" || nomeCompleto == "" || cpf == "") {
+        if (email == "" || nomeCompleto == "" || cpf == "" || senha == "") {
             alert("Preencha os campos corretamente")
         } else {
             let dados = {
@@ -105,9 +105,12 @@
                 body: JSON.stringify(dados)
             })
                 .then(res => {
-                    if(res.ok){
-                        window.location.href = "/public/formCadastro.html"
-                    }
+                    if(res.ok)
+                        return res.json()
+                }).then(resultado => {
+                    console.log(resultado)
+                    localStorage.setItem("fkUsuario", resultado.insertId)
+                    window.location.href = "/public/formCadastro.html"
                 })
                 .catch(error => console.error('Erro:', error));
         }
