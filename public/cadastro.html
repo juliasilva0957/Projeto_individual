@@ -39,22 +39,30 @@
 
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" id="ipt_senha" placeholder="*************">
+                        <input type="password" id="ipt_senha" oninput="validar()">
+                        <span onclick="visualizar()" style="cursor: pointer;">
+                            <img id="olho" src="/public/assets/icons/eye.png"></span>
+                        <p style="color: tomato;" id="caractereEspecial">Não possui caractere especial</p>
+                        <p style="color: tomato;" id="letraMaiuscula">Não possui letra maiúscula</p>
+                        <p style="color: tomato;" id="letraMinuscula">Não possui letra minúscula</p>
+                        <p style="color: tomato;" id="tamanho">Não possui mais de 8 caracteres</p>
 
                     </div>
 
                     <div class="input-group">
                         <label>Confirmar Senha</label>
                         <div class="password-wrapper">
-                            <input type="password" id="ipt_senhaDnv" placeholder="*********" oninput="confirmar()">
-                        </div>
+                            <input type="password" id="ipt_senhaDnv" oninput="confirmar()">
+                            <span onclick="visualizarDnv()" style="cursor: pointer;">
+                                <img id="olhoDnv" src="/public/assets/icons/eye.png"></span> 
+                            </div>
+                            <div id="div_erro"></div>
                     </div>
                     <button class="btn-primary" onclick="dadosVazios()">
                         Proximo
                         <img src="/public/assets/icons/seta.png" alt="" width="20">
                     </button>
                 </div>
-                <div id="div_erro"></div>
             </div>
         </section>
 
@@ -76,45 +84,135 @@
         if (senha === confirmarSenha) {
             mensagem += `<span style="color: green;">As senhas coincidem</span>`
         } else {
-            mensagem += `<span style="color: orangered;">As senhas não coincidem</span>`
+            mensagem += `<span style="color: tomato;">As senhas não coincidem</span>`
         }
         div_erro.innerHTML = mensagem
     }
 
-    function dadosVazios() {
-        let email = ipt_email.value;
-        let nomeCompleto = ipt_nome.value;
-        let cpf = ipt_cpf.value;
-        let senha = ipt_senha.value;
+    function visualizar() {
+    if (ipt_senha.type == 'password') {
+        ipt_senha.type = 'text'
+        olho.src = "/public/assets/icons/hidden (1).png"
+    } else {
+        ipt_senha.type = 'password'
+        olho.src = "/public/assets/icons/eye.png"
+    }
+}
 
-        if (email == "" || nomeCompleto == "" || cpf == "" || senha == "") {
-            alert("Preencha os campos corretamente")
-        } else {
-            let dados = {
-                nome: nomeCompleto,
-                email: email,
-                cpf: cpf,
-                senha: senha
+function visualizarDnv() {
+
+    if (ipt_senhaDnv.type == 'password') {
+        ipt_senhaDnv.type = 'text'
+        olhoDnv.src = "/public/assets/icons/hidden (1).png"
+    } else {
+        ipt_senhaDnv.type = 'password'
+        olhoDnv.src = "/public/assets/icons/eye.png"
+    }
+}
+
+
+        function validar() {
+            let senha = ipt_senha.value;
+
+            let especiais = ["!", "@", "#", "$", "%", "&", "*"];
+
+            let temEspecial = false;
+            let temMaiuscula = false;
+            let temMinuscula = false;
+
+            for (let i = 0; i < senha.length; i++) {
+                let letra = senha[i];
+
+                if (letra >= 'A' && letra <= 'Z') {
+                    temMaiuscula = true;
+                }
+
+                if (letra >= 'a' && letra <= 'z') {
+                    temMinuscula = true;
+                }
+
+                for (let j = 0; j < especiais.length; j++) {
+                    if (letra == especiais[j]) {
+                        temEspecial = true;
+                    }
+                }
             }
 
-            fetch('http://localhost:3333/usuarios/cadastrar', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                body: JSON.stringify(dados)
-            })
-                .then(res => {
-                    if(res.ok)
-                        return res.json()
-                }).then(resultado => {
-                    console.log(resultado)
-                    localStorage.setItem("fkUsuario", resultado.insertId)
-                    window.location.href = "/public/formCadastro.html"
-                })
-                .catch(error => console.error('Erro:', error));
+            if (senha.length > 8) {
+                tamanho.innerHTML = "Possui mais de 8 caracteres";
+                tamanho.style.color = "yellowgreen";
+            } else {
+                tamanho.innerHTML = "Não possui mais de 8 caracteres";
+                tamanho.style.color = "tomato";
+            }
+
+            if (temEspecial) {
+                caractereEspecial.innerHTML = "Possui caractere especial";
+                caractereEspecial.style.color = "yellowgreen";
+            } else {
+                caractereEspecial.innerHTML = "Não possui caractere especial";
+                caractereEspecial.style.color = "tomato";
+            }
+
+            if (temMaiuscula) {
+                letraMaiuscula.innerHTML = "Possui letra maiúscula";
+                letraMaiuscula.style.color = "yellowgreen";
+            } else {
+                letraMaiuscula.innerHTML = "Não possui letra maiúscula";
+                letraMaiuscula.style.color = "tomato";
+            }
+
+            if (temMinuscula) {
+                letraMinuscula.innerHTML = "Possui letra minúscula";
+                letraMinuscula.style.color = "yellowgreen";
+            } else {
+                letraMinuscula.innerHTML = "Não possui letra minúscula";
+                letraMinuscula.style.color = "tomato";
+            }
         }
-    }
+
+        if (senha.length > 8) {
+            tamanho.innerHTML = `Possui mais de 8 caracteres`;
+            tamanho.style.color = "yellowgreen";
+        } else {
+            tamanho.innerHTML = `Não possui mais de 8 caracteres`;
+            tamanho.style.color = "tomato";
+        }
+
+        function dadosVazios() {
+            let email = ipt_email.value;
+            let nomeCompleto = ipt_nome.value;
+            let cpf = ipt_cpf.value;
+            let senha = ipt_senha.value;
+
+            if (email == "" || nomeCompleto == "" || cpf == "" || senha == "") {
+                alert("Preencha os campos corretamente")
+            } else {
+                let dados = {
+                    nome: nomeCompleto,
+                    email: email,
+                    cpf: cpf,
+                    senha: senha
+                }
+
+                fetch('http://localhost:3333/usuarios/cadastrar', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify(dados)
+                })
+                    .then(res => {
+                        if (res.ok)
+                            return res.json()
+                    }).then(resultado => {
+                        console.log(resultado)
+                        localStorage.setItem("fkUsuario", resultado.insertId)
+                        window.location.href = "/public/formCadastro.html"
+                    })
+                    .catch(error => console.error('Erro:', error));
+            }
+        }
 </script>
 
 </html>

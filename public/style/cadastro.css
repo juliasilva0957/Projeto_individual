@@ -128,9 +128,9 @@ input::placeholder{
 }
 
 .password-wrapper {
-    position: relative;
     display: flex;
     align-items: center;
+    gap: 8px;
 }
 
 .btn-proximo{
@@ -202,12 +202,4 @@ input::placeholder{
     font-size: 38px; 
     font-weight: 800;
     line-height: 1.1;
-    margin-bottom: 20px;
-}
-
-.banner-content p {
-    font-size: 18px;
-    line-height: 1.6;
-    color: #4a1d00; 
-    max-width: 480px;
 }

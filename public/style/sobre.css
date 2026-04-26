@@ -101,98 +101,186 @@ header {
 
 }
 
-.estrela-conheca {
-    position: absolute;
-    right: -140px;
-    top:10px ;
-    width: 500px;
-    z-index: 1;
+.content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
 }
-.conteiner .content {
+
+.content .top{
     width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    justify-content: flex-start;
-    padding: 50px 5px;
-    overflow: hidden;
+    flex-direction: row-reverse;
+    align-items: center;
+    justify-content: space-evenly; /* voce pode alterar tanto o margin-right da linha 139 pra posicionar, ou colocar aqui um "flex-end" e ajustar com margin-left */
+    position: relative;
+    overflow: visible;
 }
 
-.conteiner .content .content-oque {
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    margin-bottom: 40px;
-    overflow: hidden;
+.content .top .estrela-conheca{
+    width: 480px;
+    z-index: 10;
+    pointer-events: none;
+    position: absolute;
+    right: -160px;
+    top: 20px;
 }
 
-.conteiner .content .content-oque img.oque {
-    width: 110%;
-    max-width: none;
-    height: auto;
-    margin-left: -50%;
+.content .top .content-oque{
+    width: 480px;
+    padding: 30px 30px;
+    color: #4a1d00;
+    text-transform: uppercase;
+    font-family: 'Lazy Dog Upright', cursive;
+    /* margin-right: 140px; se voce quiser que o conteudo fique mais para a esquerda, usa essa linha e vai alterando os valores, ele ficou no meio assim, achon que ta legal */
 }
 
-.conteiner .content .content-oque p {
+.content .top .content-oque .oque-title{
+    padding: 30px 30px;
+    background-color: #ffb400;
+    width: 480px;
+    text-align: center;
+    border-radius: 50px;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Lazy Dog Upright', cursive;
+}
+
+.content .top .content-oque p{
+    width: inherit;
     text-align: justify;
-    line-height: 1.6;
-    font-size: 24px;
+    line-height: 1.2;
+    font-size: 20px;
     color: #4a1d00;
-
+    padding: 20px 20px;
+    font-family: 'Poppins', cursive;
 }
 
-.conteiner .content .content-treinamento {
-    max-width: 50%;
+.content .bottom{
+    width: 100%;
     display: flex;
-    flex-direction: column;
-    align-items: flex-end;
-    gap: 30px;
-    margin-bottom: 40px;
-    overflow: hidden;
-    align-self: flex-end;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
 }
 
-.conteiner .content .content-treinamento img.treinamento {
-    width: 110%;
-    max-width: none;
-    height: auto;
-    margin-right: -30%;
-}
-
-.conteiner .content .content-treinamento p {
-    text-align: right;
-    line-height: 1.6;
-    font-size: 24px;
+.content .bottom .content-auxilio{
+    width: 480px;
+    padding: 30px 30px;
     color: #4a1d00;
-
+    text-transform: uppercase;
+    font-family: 'Lazy Dog Upright', cursive;
 }
 
-.conteiner .content .content-auxilio {
-    max-width: 50%;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 30px;
-    margin-bottom: 40px;
-    overflow: hidden;
+.content .bottom .content-auxilio .auxilio-title{
+    padding: 30px 30px;
+    background-color: #ff7e01;
+    width: 480px;
+    text-align: center;
+    border-radius: 50px;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Lazy Dog Upright', cursive;
 }
 
-.conteiner .content .content-auxilio img.auxilio {
-    width: 110%;
-    max-width: none;
-    height: auto;
-    margin-left: -15%;
-    margin: 2;
-}
-
-.conteiner .content .content-auxilio p {
+.content .bottom .content-auxilio p{
+    width: inherit;
     text-align: justify;
-    line-height: 1.6;
-    font-size: 24px;
+    line-height: 1.2;
+    font-size: 20px;
     color: #4a1d00;
+    padding: 20px 20px;
+    font-family: 'Poppins', cursive;
 }
+
+.content .bottom .content-treinamento{
+    width: 480px;
+    padding: 30px 30px;
+    color: #4a1d00;
+    text-align: justify;
+    text-transform: uppercase;
+    font-family: 'Poppins', cursive;
+}
+
+.content .bottom .content-treinamento .treinamento-title{
+    padding: 30px 30px;
+    background-color: #ff1251;
+    width: 480px;
+    text-align: center;
+    border-radius: 50px;
+    color: white;
+    text-transform: uppercase;
+    font-family: 'Lazy Dog Upright', cursive;
+}
+
+.content .bottom .content-treinamento p{
+    width: inherit;
+    text-align: justify;
+    line-height: 1.2;
+    font-size: 20px;
+    color: #4a1d00;
+    padding: 20px 20px;
+}
+
+.conteiner .content-animal{
+    margin-top: 10%;
+    margin-left: 35px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-evenly;
+    margin-bottom: 5%;
+}
+
+.conteiner .content-animal .gato{
+    width: 480px;
+    background-color: #fff1d1;
+    border-radius: 50px 50px 20px 20px;
+
+} 
+
+.conteiner .content-animal .cachorro{
+    width: 480px;
+    background-color: #fff1d1;
+    border-radius: 50px 50px 20px 20px;
+}
+
+.conteiner .content-animal .gato h1{
+    background-color: #ffb400;
+    font-size: 24px;
+    color: #ffebdf;
+    text-align: justify;
+    padding: 30px;
+    font-family: 'Poppins';
+    border-radius: 50px;
+}
+
+.conteiner .content-animal .gato p{
+    text-align: justify;
+    color: #4a1d00;
+    padding: 20px;
+}
+
+.conteiner .content-animal .cachorro p{
+    text-align: justify;
+    color: #4a1d00;
+    padding: 20px;
+}
+
+.conteiner .content-animal .cachorro h1{
+    background-color: #ffb400;
+    font-size: 24px;
+    color: #ffebdf;
+    text-align: justify;
+    padding: 30px;
+    font-family: 'Poppins';
+    border-radius: 50px;
+}
+
 footer {
   display: flex;
   justify-content: space-between;
