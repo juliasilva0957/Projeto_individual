@@ -11,7 +11,7 @@ CPF CHAR(11) UNIQUE
 
 CREATE TABLE formCadastro (
 idForm INT PRIMARY KEY AUTO_INCREMENT ,
-transtornoMental BOOLEAN,
+transtornoMental VARCHAR(40),
 momentosDificeis BOOLEAN,
 comoAjudou VARCHAR(255),
 especie BOOLEAN,
@@ -42,3 +42,13 @@ fkUsuario INT,
 CONSTRAINT fkUsuario
 FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario) 
 );
+
+SELECT * FROM usuario;
+
+desc formCadastro;
+
+SELECT * FROM formCadastro;
+SELECT * FROM usuario;
+
+
+

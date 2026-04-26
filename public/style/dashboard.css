@@ -1,6 +1,15 @@
 @import url('https://fonts.cdnfonts.com/css/lazy-dog');
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 @import url('https://fonts.googleapis.com/css2?family=League+Spartan:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Sora:wght@100..800&display=swap');
+@font-face {
+  font-family: 'Gilker';
+  src: url('/public/assets/fonts/gliker-regular.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+
+
 * {
   margin: 0;
   padding: 0;
@@ -47,17 +56,7 @@ header {
   text-decoration: none;
 }
 
-.navbar a .button-entrar {
 
-  background-color: #ff1251;
-  color: #fff9f6;
-  border-radius: 20px;
-  padding: 10px 30px;
-  font-size: smaller;
-  border: none;
-  cursor: pointer;
-
-}
 
 
 .dashboard {
@@ -121,7 +120,7 @@ header {
 }
 
 .stat-card .stat-label {
-  font-family: 'Sora';
+  font-family: 'Poppins';
   font-size: 0.75rem;
   font-weight: 600;
   opacity: 0.9;
@@ -129,9 +128,8 @@ header {
 }
 
 .stat-card .stat-value {
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Gilker', sans-serif;
   font-size: 2.2rem;
-  font-weight: 900;
   line-height: 1;
 }
 
@@ -161,9 +159,8 @@ header {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  font-family: 'Nunito', sans-serif;
+  font-family: 'Gilker', sans-serif;
   font-size: 1.6rem;
-  font-weight: 900;
   color: #2d1a0e;
 }
 

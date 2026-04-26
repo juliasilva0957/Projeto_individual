@@ -33,7 +33,9 @@
 
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" id="ipt_senha" placeholder="*******">
+                        <input type="password" id="ipt_senha" >
+                        <span onclick="visualizar()" style="cursor: pointer;">
+                                <img id="olhoDnv" src="/public/assets/icons/eye.png"></span> 
                     </div>
 
                     <p class="signup-text">Esqueceu a senha?</p>
@@ -46,6 +48,15 @@
 
 </body>
 <script>
+    function visualizar() {
+        if (ipt_senha.type == 'password') {
+            ipt_senha.type = 'text'
+            olho.src = "/public/assets/icons/hidden (1).png"
+        } else {
+            ipt_senha.type = 'password'
+            olho.src = "/public/assets/icons/eye.png"
+        }
+    }
     function login() {
         let email = ipt_email.value;
         let senha = ipt_senha.value;
