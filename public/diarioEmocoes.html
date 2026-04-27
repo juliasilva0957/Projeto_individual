@@ -9,7 +9,7 @@
     <link rel="icon" href="/public/assets/logo/Soul (1).png">
 </head>
 
-<body>
+<body onload="iniciar()">
     <div class="logo">
         <img src="/public/assets/logo/Soul.png" alt="Logo SoulPaws">
     </div>
@@ -26,10 +26,10 @@
         </nav>
     </header>
     <main class="principal-emocoes">
-        <h2 class="titulo-emocoes">Como você está se sentindo hoje, [nome usuário?]</h2>
+        <h2 class="titulo-emocoes" id="h2_saudacao"></h2>
         <div class="linha-botoes-emocoes">
-            <select class="selecionar-emocao">
-                <option value="" disabled selected>SELECIONE A EMOÇÃO AQUI</option>
+            <select class="selecionar-emocao" id="select_emocoes">
+                <option value="" selected>SELECIONE A EMOÇÃO AQUI</option>
                 <option value="feliz">Feliz</option>
                 <option value="triste">Triste</option>
                 <option value="ansioso">Ansioso</option>
@@ -39,18 +39,63 @@
                 <option value="solitario">Solitário</option>
                 <option value="animado">Animado</option>
             </select>
-            <div class="campo-data">
-                <div class="rotulo-data">FILTRAR REGISTROS ANTERIORES</div>
-                <input class="entrada-data" type="date">
-            </div>
+            <button onclick="publicar()" class="botao-registro">+ REGISTRAR EMOÇÃO</button>
         </div>
-
         <div class="campo-emocao">
-            <div class="rotulo-emocao">Descreva como está se sentindo</div>
-            <div class="area-emocao"></div>
+            <div class="rotulo-emocao" id="descricao">Descreva como está se sentindo</div>
+            <textarea class="area-emocao" id="txt_emocao"></textarea>
         </div>
 
     </main>
 </body>
 
 </html>
+<script>
+    function iniciar() {
+        let idUsuario = localStorage.getItem("idUsuario")
+        fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+            
+        })
+            .then(res => res.json())
+            .then(data => {
+                h2_saudacao.innerHTML = `Como você está se sentindo hoje, ${data[0].nome}?`
+            })
+            .catch(error => console.error('Erro:', error));
+
+
+
+
+
+    }
+    function publicar() {
+        let selectEmocoes = select_emocoes.value;
+        let descrevaEmocao = txt_emocao.value
+        let idUsuario = localStorage.getItem("idUsuario")
+
+
+        let dados = {
+            descricao: descrevaEmocao,
+            selecionar: selectEmocoes
+        }
+
+        fetch(`http://localhost:3333/diario/publicar/${idUsuario}`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify(dados)
+        })
+            .then(res => res.json())
+            .then(data => {
+                // localStorage.setItem("idUsuario", data[0].idUsuario)
+                // alert(`Olá ${data[0].nomeUsuario}`)
+                // window.location.href = "/public/dashboard.html"
+            })
+            .catch(error => console.error('Erro:', error));
+
+    }
+</script>

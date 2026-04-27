@@ -13,11 +13,11 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
 }
 
 body {
     background-color: #fdfaf8;
-    font-family: 'Poppins', sans-serif;
 }
 
 .logo {
@@ -78,7 +78,7 @@ header {
 
 .selecionar-emocao {
     background-color: #ffb400;
-    color:#ffebdf;
+    color:#fff9f6;
     border: none;
     border-radius: 30px;
     padding: 14px 32px;
@@ -98,7 +98,16 @@ header {
     color: #fff9f6;
     font-weight: 500;
 }
-
+.botao-registro{
+    background-color:#e8336d ;
+    color: #fff9f6;
+    border-radius: 30px;
+    border: none;
+    padding: 14px 32px;
+    cursor: pointer;
+    letter-spacing: 0.6px;
+    font-weight: 700;
+}
 .campo-data {
     display: flex;
     flex-direction: column;
