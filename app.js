@@ -19,7 +19,7 @@ var indexRouter = require("./src/routes/index");
 var usuarioRouter = require("./src/routes/usuarios");
 var diarioRouter = require("./src/routes/diario");
 var formRouter = require("./src/routes/form");
-var aquariosRouter = require("./src/routes/aquarios");
+var forumRouter = require("./src/routes/forum");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -31,7 +31,7 @@ app.use("/", indexRouter);
 app.use("/usuarios", usuarioRouter);
 app.use("/diario", diarioRouter);
 app.use("/form", formRouter);
-app.use("/aquarios", aquariosRouter);
+app.use("/forum", forumRouter);
 
 app.listen(PORTA_APP, function () {
     console.log(`

@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulPaws - Forum</title>
-    <link rel="stylesheet" href="/public/style/forum.css">
-    <link rel="icon" href="/public/assets/logo/Soul (1).png">
+    <link rel="stylesheet" href="style/forum.css">
+    <link rel="icon" href="assets/logo/Soul (1).png">
 </head>
 
-<body>
+<body onload="carregarNome() ; carregarPosts()">
     <div class="logo">
-        <img src="/public/assets/logo/Soul.png" alt="Logo SoulPaws">
+        <img src="assets/logo/Soul.png" alt="Logo SoulPaws">
     </div>
     <header>
         <nav class="navbar">
@@ -27,10 +27,10 @@
     </header>
 
     <main class="principal">
-        <p class="saudacao">Olá,[nome do usuário]!</p>
+        <p class="saudacao" id="p_saudacao">Olá,[nome do usuário]!</p>
         <div class="linha-subtitulo">
             <h2 class="subtitulo">O que gostaria de compartilhar hoje?</h2>
-            <a href="/public/novoPost.html">
+            <a href="novoPost.html">
                 <button class="botao-novo-post">+ Novo post</button>
             </a>
         </div>
@@ -68,5 +68,45 @@
 
     </main>
 </body>
+<script>
+    function carregarNome() {
+        let idUsuario = localStorage.getItem("idUsuario")
+        fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                p_saudacao.innerHTML = `Olá, ${data[0].nome}!`
+            })
+            .catch(error => console.error('Erro:', error));
+    }
+
+    function carregarPosts() {
+        let idUsuario = localStorage.getItem("idUsuario")
+        fetch(`http://localhost:3333/forum/${idUsuario}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+            .then(posts => {
+                let container = document.querySelector('.container-postagens')
+                container.innerHTML = ''
+
+                posts.forEach(post => {
+                    container.innerHTML += `
+        <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
+          <div class="avatar-postagem"></div>
+          <span class="titulo-postagem">${post.titulo}</span>
+        </a>
+      `
+                })
+            })
+            .catch(error => console.error('Erro:', error))
+    }
+</script>
 
 </html>
