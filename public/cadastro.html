@@ -24,7 +24,8 @@
                 <div action="formCadastro.html">
                     <div class="input-group">
                         <label>Nome Completo</label>
-                        <input type="text" id="ipt_nome" placeholder="Nome completo">
+                        <input oninput="tamanhoNome()" type="text" id="ipt_nome" placeholder="Nome completo">
+                        <div id="div_nome"></div>
                     </div>
 
                     <div class="input-group">
@@ -34,7 +35,8 @@
 
                     <div class="input-group">
                         <label>CPF</label>
-                        <input type="number" id="ipt_cpf" placeholder="ex:999999999-70">
+                        <input oninput="tamanhoCpf()" type="number" id="ipt_cpf" placeholder="ex:999999999-70">
+                        <div id="div_cpf"></div>
                     </div>
 
                     <div class="input-group">
@@ -179,6 +181,27 @@ function visualizarDnv() {
             tamanho.style.color = "tomato";
         }
 
+        function tamanhoNome(){
+            let nome = ipt_nome.value;
+            let mensagem = ""
+
+            if(nome.length > 1){
+                mensagem += `  <span style="color: tomato;">Nome invalido</span>`
+            }
+            div_nome.innerHTML = mensagem
+            
+        }
+
+        function tamanhoCpf(){
+            let cpf = ipt_cpf.value;
+            let mensagem = ""
+
+            if(cpf.length < 11){
+                mensagem += `  <span style="color: tomato;">CPF inválido</span>`
+            }
+            div_cpf.innerHTML = mensagem
+        }
+
         function dadosVazios() {
             let email = ipt_email.value;
             let nomeCompleto = ipt_nome.value;
@@ -208,7 +231,7 @@ function visualizarDnv() {
                     }).then(resultado => {
                         console.log(resultado)
                         localStorage.setItem("fkUsuario", resultado.insertId)
-                        window.location.href = "/public/formCadastro.html"
+                        window.location.href = "formCadastro.html"
                     })
                     .catch(error => console.error('Erro:', error));
             }
