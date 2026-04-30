@@ -4,17 +4,17 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>SoulPaws - Novo post</title>
-    <link rel="stylesheet" href="/public/style/novoPost.css">
-    <link rel="icon" href="/public/assets/logo/Soul (1).png">
+    <link rel="stylesheet" href="/style/novoPost.css">
+    <link rel="icon" href="/assets/logo/Soul (1).png">
 </head>
 <body>
           <div class="logo">
-        <img src="/public/assets/logo/Soul.png" alt="Logo SoulPaws">
+        <img src="/assets/logo/Soul.png" alt="Logo SoulPaws">
     </div>
   <header>
     <nav class="navbar">
       <div class="left">
-        <a href="forum.html">FORUM</a>
+        <a href="forum.html" class="ativo" >FORUM</a>
         <a href="diarioEmocoes.html">EMOÇÕES</a>
         <a href="perfil.html">PERFIL</a>
         <a href="dashboard.html">DASHBOARD</a>
@@ -31,20 +31,46 @@
  
             <div class="campo">
                 <label class="rotulo">Titulo da postagem</label>
-                <textarea type="text" class="entrada-texto"></textarea> 
+                <textarea type="text" class="entrada-texto" id="titulo" ></textarea> 
             </div>
  
             <div class="campo">
                 <label class="rotulo">Descrição da postagem</label>
-                <textarea class="area-texto"></textarea>
+                <textarea class="area-texto" id="post" ></textarea>
             </div>
  
         </div>
  
-        <button class="botao-postar">POSTAR</button>
+        <button class="botao-postar" onclick="criarPost()">POSTAR</button>
  
     </div>
  
 </main>
 </body>
+<script>
+  function criarPost() {
+    let url = window.location.search;
+    let idPost = url.split('=')[1];
+    let idUsuario = localStorage.getItem("idUsuario");
+    let titulo = document.getElementById('titulo').value;
+    let post = document.getElementById('post').value;
+
+    fetch('http://localhost:3333/novoPost', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            titulo: titulo,
+            post: post,
+            fkUsuario: idUsuario,
+            fkComentario: idPost
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert("Post criado com sucesso!");
+        window.location.href = idPost ? `postagem.html?id=${idPost}` : `forum.html`;
+    })
+    .catch(error => console.error('Erro:', error));
+}
+</script>
 </html>

@@ -3,7 +3,7 @@ var router = express.Router();
 
 var forumController = require("../controllers/forumController");
 
-router.get("/:idUsuario", function (req, res) {
+router.get("/", function (req, res) {
   forumController.buscarForuns(req, res);
 });
 router.get("/:idUsuario/:idPost",function (req, res) {

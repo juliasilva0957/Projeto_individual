@@ -4,7 +4,7 @@
 
 @font-face {
     font-family: 'Gilker';
-    src: url('/public/assets/fonts/gliker-regular.ttf') format('truetype');
+    src: url('/assets/fonts/gliker-regular.ttf') format('truetype');
     font-weight: normal;
     font-style: normal;
 }
@@ -53,6 +53,14 @@ header {
 .navbar .left {
     color: #fff9f6;
     text-decoration: none;
+}
+.navbar .left a:hover {
+  color: #ffb380;
+}
+
+.navbar .left a.ativo {
+  color: #ff7a00;
+  font-weight: 600;
 }
 
 .principal-postagem {
@@ -138,4 +146,9 @@ header {
     height: 32px;
     border-radius: 50%;
     background-color: #ff1251;
+}
+.container-comentarios {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
 }

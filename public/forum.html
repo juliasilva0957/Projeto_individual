@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar">
             <div class="left">
-                <a href="forum.html">FORUM</a>
+                <a href="forum.html" class="ativo" >FORUM</a>
                 <a href="diarioEmocoes.html">EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
@@ -27,7 +27,7 @@
     </header>
 
     <main class="principal">
-        <p class="saudacao" id="p_saudacao">Olá,[nome do usuário]!</p>
+        <p class="saudacao" id="p_saudacao"></p>
         <div class="linha-subtitulo">
             <h2 class="subtitulo">O que gostaria de compartilhar hoje?</h2>
             <a href="novoPost.html">
@@ -39,7 +39,7 @@
             <input type="date" class="botao-filtro">FILTRAR POSTAGENS</input>
         </div>
 
-        <div class="container-postagens">
+        <div class="container-postagens" id="container-postagens">
             <a class="item-postagem" href="postagem.html">
                 <div class="avatar-postagem"></div>
                 <span class="titulo-postagem carregando"></span>
@@ -86,14 +86,14 @@
     }
 
     function carregarPosts() {
-        let idUsuario = localStorage.getItem("idUsuario")
-        fetch(`http://localhost:3333/forum/${idUsuario}`, {
+        let idUsuario = localStorage.getItem("idUsuario") 
+        fetch(`http://localhost:3333/forum`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
             .then(res => res.json())
             .then(posts => {
-                let container = document.querySelector('.container-postagens')
+                let container = document.getElementById('container-postagens');
                 container.innerHTML = ''
 
                 posts.forEach(post => {

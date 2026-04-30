@@ -185,7 +185,7 @@ function visualizarDnv() {
             let nome = ipt_nome.value;
             let mensagem = ""
 
-            if(nome.length > 1){
+            if(nome.length < 1){
                 mensagem += `  <span style="color: tomato;">Nome invalido</span>`
             }
             div_nome.innerHTML = mensagem

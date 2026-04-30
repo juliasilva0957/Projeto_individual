@@ -1,15 +1,15 @@
 var database = require("../database/config");
 
-function buscarForuns(idUsuario) {
+function buscarForuns() {
 
-  var instrucaoSql = `SELECT * FROM postagem WHERE fkUsuario = ${idUsuario}`;
+  var instrucaoSql = `SELECT * FROM postagem WHERE fkComentario IS NULL LIMIT 10`;
 
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }
 
 function buscarPost(idPost) {
-  var instrucaoSql = `SELECT * FROM postagem WHERE idPostagem = ${idPost}`
+  var instrucaoSql = `SELECT * FROM postagem WHERE idPostagem = ${idPost};`
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

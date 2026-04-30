@@ -1,9 +1,8 @@
-var forumoModel = require("../models/forumModel");
+var forumModel = require("../models/forumModel");
 
 function buscarForuns(req, res) {
-  var idUsuario = req.params.idUsuario;
 
-  forumModel.buscarForuns(idUsuario).then((resultado) => {
+  forumModel.buscarForuns().then((resultado) => {
     if (resultado.length > 0) {
       res.status(200).json(resultado);
     } else {
@@ -31,7 +30,6 @@ function buscarPost(req, res){
     res.status(500).json(erro.sqlMessage)
   });
 }
-
 module.exports = {
   buscarForuns,
   buscarPost

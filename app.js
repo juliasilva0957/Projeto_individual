@@ -20,6 +20,9 @@ var usuarioRouter = require("./src/routes/usuarios");
 var diarioRouter = require("./src/routes/diario");
 var formRouter = require("./src/routes/form");
 var forumRouter = require("./src/routes/forum");
+var perfilRouter = require("./src/routes/perfil");
+var novoPostRouter = require("./src/routes/novoPost");
+var postagemRouter = require("./src/routes/postagem");
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -32,6 +35,10 @@ app.use("/usuarios", usuarioRouter);
 app.use("/diario", diarioRouter);
 app.use("/form", formRouter);
 app.use("/forum", forumRouter);
+app.use("/perfil", perfilRouter);
+app.use("/novoPost", novoPostRouter);
+app.use("/postagem", postagemRouter);
+
 
 app.listen(PORTA_APP, function () {
     console.log(`

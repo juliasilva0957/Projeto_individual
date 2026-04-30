@@ -9,14 +9,14 @@
     <link rel="icon" href="assets/logo/Soul (1).png">
 </head>
 
-<body>
+<body onload="carregarPostagem()">
     <div class="logo">
         <img src="assets/logo/Soul.png" alt="Logo SoulPaws">
     </div>
     <header>
         <nav class="navbar">
             <div class="left">
-                <a href="forum.html">FORUM</a>
+                <a href="forum.html" class="ativo">FORUM</a>
                 <a href="diarioEmocoes.html">EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
@@ -31,37 +31,76 @@
         <div class="container-postagem">
             <div class="campo-postagem">
                 <label class="rotulo-postagem">Titulo da postagem</label>
-                <textarea class="caixa-titulo"></textarea>
+                <input class="caixa-titulo" id="titulo"></input>
             </div>
 
             <div class="campo-postagem">
                 <label class="rotulo-postagem">Descrição da postagem</label>
-                <textarea class="caixa-descricao"></textarea>
+                <input class="caixa-descricao" id="descricao"></input>
             </div>
 
             <div class="linha-comentarios">
                 <label class="rotulo-postagem">Comentarios</label>
-                <a href="novoPost.html">
-                    <button class="botao-comentario">POSTAR COMENTARIO</button>
-                </a>
+                    <button id="comentario" class="botao-comentario">POSTAR COMENTARIO</button>
             </div>
 
-            <div class="item-comentario">
-                <div class="avatar-comentario"></div>
-            </div>
-            <div class="item-comentario">
-                <div class="avatar-comentario"></div>
-            </div>
-            <div class="item-comentario">
-                <div class="avatar-comentario"></div>
-            </div>
-            <div class="item-comentario">
-                <div class="avatar-comentario"></div>
-            </div>
+            <div id="container-comentarios">
+        </div>
 
         </div>
 
     </main>
 </body>
+<script>
+function carregarPostagem() {
+    let url = window.location.search;
+    let idPost = url.split('=')[1];
 
+    fetch(`http://localhost:3333/postagem/${idPost}`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then(res => {
+            if (res.status === 204) return null;
+            return res.json();
+        })
+        .then(post => {
+            if (post) {
+        let titulo = document.getElementById('titulo');
+        let descricao = document.getElementById('descricao');
+        let botao = document.getElementById('botao-comentario');
+
+        titulo.value = post.titulo;
+        descricao.value = post.post;
+        botao.onclick = function() {
+            window.location.href = `novoPost.html?idPost=${idPost}`;
+        }
+    }
+})
+        .catch(error => console.error('Erro:', error));
+
+    fetch(`http://localhost:3333/postagem/${idPost}/comentarios`, {
+        method: 'GET',
+        headers: { 'Content-Type': 'application/json' }
+    })
+        .then(res => {
+            if (res.status === 204) return [];
+            return res.json();
+        })
+        .then(comentarios => {
+            let container = document.getElementById('container-comentarios');
+            container.innerHTML = '';
+
+            comentarios.forEach(comentario => {
+                container.innerHTML += `
+                    <div class="item-comentario">
+                        <div class="avatar-comentario"></div>
+                        <span>${comentario.post}</span>
+                    </div>
+                `;
+            });
+        })
+        .catch(error => console.error('Erro:', error));
+}
+</script>
 </html>
