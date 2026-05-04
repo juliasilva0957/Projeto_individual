@@ -95,6 +95,7 @@ header {
     padding: 14px 20px;
     min-height: 48px;
     background-color: #fff;
+    font-family: 'Poppins';
 }
 
 
@@ -104,6 +105,7 @@ header {
     padding: 16px 20px;
     min-height: 140px;
     background-color: #fff;
+    font-family: 'Poppins';
 }
 
 .linha-comentarios {

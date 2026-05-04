@@ -72,13 +72,20 @@ header {
   padding: 1.5rem 2rem 3rem;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  grid-template-rows: auto auto;
-  gap: 5px;
+  gap: 16px;
+}
+
+.saudacao {
+  grid-column: 1 / 3;
+  font-size: 42px;
+  font-family: 'Gilker';
+  color: #4a1d00;
+  font-weight: 600;
 }
 
 .card-title {
   font-family: 'Sora';
-  font-size: 15px;
+  font-size: 20px;
   font-weight: 700;
   font-family: 'Poppins';
   color: #2d1a0e;
@@ -88,7 +95,8 @@ header {
 }
 
 .col-left {
-  grid-row: 1 / 3;
+  grid-column: 1;
+  grid-row: 2 / 4;
   display: flex;
   flex-direction: column;
   gap: 6px;
@@ -105,6 +113,8 @@ header {
 
 
 .col-right-top {
+  grid-column: 2;
+  grid-row: 2;
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 1.2rem;
@@ -168,13 +178,13 @@ header {
   left: 50%;
   transform: translate(-50%, -50%);
   font-family: 'Gilker', sans-serif;
-  font-size: 1.6rem;
+  font-size: 32px;
   color: #2d1a0e;
 }
 
 .donut-legend {
-  font-size: 0.72rem;
-  color: #9e7a7a;
+  font-size: 16px;
+  color: #4a1d00;
   line-height: 1.6;
 }
 
@@ -196,6 +206,7 @@ header {
 }
 
 .bar-card {
+  grid-row: 3;
   grid-column: 2;
 }
 

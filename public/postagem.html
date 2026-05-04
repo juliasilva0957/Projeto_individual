@@ -61,14 +61,14 @@ function carregarPostagem() {
         headers: { 'Content-Type': 'application/json' }
     })
         .then(res => {
-            if (res.status === 204) return null;
+            if (res.status === 204);
             return res.json();
         })
         .then(post => {
             if (post) {
         let titulo = document.getElementById('titulo');
         let descricao = document.getElementById('descricao');
-        let botao = document.getElementById('botao-comentario');
+        let botao = document.getElementById('comentario');
 
         titulo.value = post.titulo;
         descricao.value = post.post;

@@ -10,7 +10,7 @@
   <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 
-<body>
+<body onload="carregarDashboard()">
   <div class="logo">
     <img src="assets/logo/Soul.png" alt="Logo SoulPaws">
   </div>
@@ -27,8 +27,7 @@
     </nav>
   </header>
   <div class="dashboard">
-
-
+    <p class="saudacao" id="p_saudacao"></p>
     <div class="col-left">
       <div class="line-card">
         <div class="card-title">Seu nível de atividade no fórum durante os meses</div>
@@ -43,24 +42,24 @@
 
       <div class="stats-row">
         <div class="stat-card pink">
-          <span class="stat-label">Total de posts que você fez</span>
-          <span class="stat-value">75 posts</span>
+          <span class="stat-label">Total de posts que você fez no mês</span>
+          <span class="stat-value" id="totalPost">75 posts</span>
         </div>
         <div class="stat-card orange">
           <span class="stat-label">Total de dias consecutivos que você interagiu no fórum</span>
-          <span class="stat-value">5 dias</span>
+          <span class="stat-value" id="diasConsecutivos">5 dias</span>
         </div>
       </div>
 
 
       <div class="card donut-card">
-        <div class="card-title">Porcentagem de usuário que também
+        <div class="card-title" id="tituloRaca">Porcentagem de usuário que também
           possuem [raça do animal] como pet!</div>
         <div class="donut-wrapper">
           <canvas id="donutChart"></canvas>
-          <div class="donut-label">67%</div>
+          <div class="donut-label" id="donutPorcentagem">67%</div>
         </div>
-        <div class="donut-legend">
+        <div class="donut-legend" id="donutLegenda">
           <div><span class="dot filled"></span>Cerca de 67% dos usuário
             possuem [raça do animal]</div>
           <div><span class="dot empty"></span>Os outros 33% dos usuários possuem raças diferentes de [especie do
@@ -79,109 +78,172 @@
   </div>
 
   <script>
-    const pink = '#ff1251';
-    const pinkPale = '#ffd6df';
-    const orange = '#ff7a00';
+    var lineChart;
+    var donutChart;
+    var barChart;
 
+    function carregarDashboard() {
+      carregarNome();
+      carregarKpis();
+      carregarAtividadeForum();
+      carregarPorcentagemRaca();
+      carregarEmocoes();
+    }
 
-    new Chart(document.getElementById('lineChart'), {
-      type: 'line',
-      data: {
-        labels: ['Janeiro', 'Fevereiro', 'Março', 'Abril', 'Maio'],
-        datasets: [
-          {
-            label: 'Post',
-            data: [12, 14, 15, 18, 24],
-            borderColor: orange,
-            backgroundColor: 'transparent',
-            borderWidth: 3,
-            pointBackgroundColor: orange,
-            pointRadius: 5,
-            tension: 0.35
-          },
-          {
-            label: 'Comentários',
-            data: [10, 12, 16, 17, 20],
-            borderColor: pink,
-            backgroundColor: 'transparent',
-            borderWidth: 3,
-            pointBackgroundColor: pink,
-            pointRadius: 5,
-            tension: 0.35
-          }
-        ]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: {
-          legend: {
-            position: 'top',
-            labels: { usePointStyle: true, pointStyleWidth: 10, font: { family: 'Poppins', size: 12 } }
-          }
-        },
-        scales: {
-          x: {
-            title: { display: true, text: 'meses', font: { family: 'Poppins', size: 11 }, color: '#9e7a7a' },
-            grid: { display: false },
-            ticks: { font: { family: 'Poppins', size: 11 } }
-          },
-          y: {
-            title: { display: true, text: 'quantidade', font: { family: 'Poppins', size: 11 }, color: '#9e7a7a' },
-            min: 0, max: 30,
-            ticks: { stepSize: 5, font: { family: 'Poppins', size: 11 } },
-            grid: { color: '#f0e0e4' }
-          }
-        }
-      }
-    });
+    function carregarNome() {
+      let idUsuario = localStorage.getItem("idUsuario");
 
-    new Chart(document.getElementById('donutChart'), {
-      type: 'doughnut',
-      data: {
-        datasets: [{
-          data: [67, 33],
-          backgroundColor: [pink, pinkPale],
-          borderWidth: 0,
-          hoverOffset: 4
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        cutout: '72%',
-        plugins: { legend: { display: false }, tooltip: { enabled: false } }
-      }
-    });
+      fetch(`/diario/listar/${idUsuario}`)
+        .then(res => res.json())
+        .then(data => {
+          p_saudacao.innerHTML = `Olá, ${data[0].nome}!`;
+        })
+        .catch(erro => console.error(erro));
+    }
 
-    new Chart(document.getElementById('barChart'), {
-      type: 'bar',
-      data: {
-        labels: ['Feliz', 'Triste', 'Ansioso', 'Raiva'],
-        datasets: [{
-          data: [105, 48, 30, 8],
-          backgroundColor: pink,
-          borderRadius: 8,
-          borderSkipped: false
-        }]
-      },
-      options: {
-        responsive: true,
-        maintainAspectRatio: false,
-        plugins: { legend: { display: false } },
-        scales: {
-          x: {
-            grid: { display: false },
-            ticks: { font: { family: 'Poppins', size: 12 } }
-          },
-          y: {
-            min: 0, max: 120,
-            ticks: { stepSize: 20, font: { family: 'Poppins', size: 11 } },
-            grid: { color: '#f0e0e4' }
+    function carregarKpis() {
+      let idUsuario = localStorage.getItem("idUsuario");
+
+      fetch(`/dashboard/kpis/${idUsuario}`)
+        .then(res => res.json())
+        .then(data => {
+          document.getElementById("totalPost").innerHTML = `${data.totalPostsMes} posts`;
+          document.getElementById("diasConsecutivos").innerHTML = `${data.diasInteragidos} dias`;
+        })
+        .catch(erro => console.error(erro));
+    }
+
+    function carregarAtividadeForum() {
+      let idUsuario = localStorage.getItem("idUsuario");
+
+      fetch(`/dashboard/atividade/${idUsuario}`)
+        .then(res => res.json())
+        .then(data => {
+          let meses = [];
+          let posts = [];
+          let comentarios = [];
+
+          for (let i = 0; i < data.length; i++) {
+            meses.push(data[i].mes);
+            posts.push(data[i].posts);
+            comentarios.push(data[i].comentarios);
           }
-        }
-      }
-    });
+
+          lineChart = new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: {
+              labels: meses,
+              datasets: [
+                {
+                  label: 'Post',
+                  data: posts,
+                  borderColor: '#ff7a00',
+                  backgroundColor: 'transparent',
+                  borderWidth: 3,
+                  pointBackgroundColor: '#ff7a00',
+                  pointRadius: 5,
+                  tension: 0.35
+                },
+                {
+                  label: 'Comentários',
+                  data: comentarios,
+                  borderColor: '#ff1251',
+                  backgroundColor: 'transparent',
+                  borderWidth: 3,
+                  pointBackgroundColor: '#ff1251',
+                  pointRadius: 5,
+                  tension: 0.35
+                }
+              ]
+            }
+          });
+        })
+        .catch(erro => console.error(erro));
+    }
+
+    function carregarPorcentagemRaca() {
+      let idUsuario = localStorage.getItem("idUsuario");
+
+      fetch(`/dashboard/raca/${idUsuario}`)
+        .then(res => res.json())
+        .then(data => {
+          let porcentagem = Number(data.porcentagem);
+          let restante = 100 - porcentagem;
+
+          document.getElementById("donutPorcentagem").innerHTML = `${porcentagem}%`;
+
+          document.getElementById('donutLegenda').innerHTML = `
+          <div><span class="dot filled"></span>Cerca de ${porcentagem}% dos usuários possuem ${data.racaUsuario}</div>
+          <div><span class="dot empty"></span>Os outros ${restante}% possuem raças diferentes</div>
+        `;
+          document.getElementById('tituloRaca').innerHTML = `Porcentagem de usuários que também possuem ${data.racaUsuario} como pet!`;
+          donutChart = new Chart(document.getElementById('donutChart'), {
+            type: 'doughnut',
+            data: {
+              datasets: [{
+                data: [porcentagem, restante],
+                backgroundColor: ['#ff1251', '#ffd6df'],
+                borderWidth: 0,
+                hoverOffset: 4
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              cutout: '72%',
+              plugins: {
+                legend: { display: false },
+                tooltip: { enabled: false }
+              }
+            }
+          });
+        })
+        .catch(erro => console.error(erro));
+    }
+
+    function carregarEmocoes() {
+      let idUsuario = localStorage.getItem("idUsuario");
+
+      fetch(`/dashboard/emocoes/${idUsuario}`)
+        .then(res => res.json())
+        .then(data => {
+          let emocoes = [];
+          let quantidades = [];
+
+          for (let i = 0; i < data.length; i++) {
+            emocoes.push(data[i].nomeEmocao);
+            quantidades.push(data[i].quantidade);
+          }
+
+          barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: {
+              labels: emocoes,
+              datasets: [{
+                data: quantidades,
+                backgroundColor: '#ff1251',
+                borderRadius: 8,
+                borderSkipped: false
+              }]
+            },
+            options: {
+              responsive: true,
+              maintainAspectRatio: false,
+              plugins: { legend: { display: false } },
+              scales: {
+                x: { grid: { display: false } },
+                y: {
+                  beginAtZero: true,
+                  ticks: {
+                    stepSize: 1
+                  }
+                }
+              }
+            }
+          });
+        })
+        .catch(erro => console.error(erro));
+    }
   </script>
 
 </body>

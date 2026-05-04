@@ -1,27 +1,82 @@
 var database = require("../database/config");
 
-function buscarPorId(id) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE id = '${id}'`;
+function buscarKpis(idUsuario) {
+    var instrucaoSql = `
+        SELECT 
+            COUNT(CASE 
+                WHEN fkComentario IS NULL 
+                AND MONTH(dtPostagem) = MONTH(CURRENT_DATE())
+                AND YEAR(dtPostagem) = YEAR(CURRENT_DATE())
+                THEN 1 
+            END) AS totalPostsMes,
 
-  return database.executar(instrucaoSql);
+            COUNT(DISTINCT DATE(dtPostagem)) AS diasInteragidos
+        FROM postagem
+        WHERE fkUsuario = ${idUsuario};
+    `;
+
+    console.log(instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
-function listar() {
-  var instrucaoSql = `SELECT id, razao_social, cnpj, codigo_ativacao FROM empresa`;
+function buscarAtividade(idUsuario) {
+    var instrucaoSql = `
+        SELECT 
+        MONTHNAME(dtPostagem) AS mes,
+        SUM(CASE WHEN fkComentario IS NULL THEN 1 ELSE 0 END) AS posts,
+        SUM(CASE WHEN fkComentario IS NOT NULL THEN 1 ELSE 0 END) AS comentarios
+    FROM postagem
+    WHERE fkUsuario = ${idUsuario}
+    GROUP BY MONTH(dtPostagem), MONTHNAME(dtPostagem)
+    ORDER BY MONTH(dtPostagem)
+    `;
 
-  return database.executar(instrucaoSql);
+    console.log(instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
-function buscarPorCnpj(cnpj) {
-  var instrucaoSql = `SELECT * FROM empresa WHERE cnpj = '${cnpj}'`;
+function buscarRaca(idUsuario) {
+    var instrucaoSql = `
+        SELECT 
+            fc.raça AS racaUsuario,
+            ROUND(
+                (
+                    SELECT COUNT(*) 
+                    FROM formCadastro 
+                    WHERE raça = (
+                        SELECT raça 
+                        FROM formCadastro 
+                        WHERE fkUsuario = ${idUsuario}
+                    )
+                ) * 100 /
+                (SELECT COUNT(*) FROM formCadastro)
+            ) AS porcentagem
+        FROM formCadastro fc
+        WHERE fc.fkUsuario = ${idUsuario};
+    `;
 
-  return database.executar(instrucaoSql);
+    console.log(instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
-function cadastrar(razaoSocial, cnpj) {
-  var instrucaoSql = `INSERT INTO empresa (razao_social, cnpj) VALUES ('${razaoSocial}', '${cnpj}')`;
+function buscarEmocoes(idUsuario) {
+    var instrucaoSql = `
+        SELECT 
+            emocao AS nomeEmocao,
+            COUNT(*) AS quantidade
+        FROM emocao
+        WHERE fkUsuario = ${idUsuario}
+        GROUP BY emocao
+        ORDER BY quantidade DESC;
+    `;
 
-  return database.executar(instrucaoSql);
+    console.log(instrucaoSql);
+    return database.executar(instrucaoSql);
 }
 
-module.exports = { buscarPorCnpj, buscarPorId, cadastrar, listar };
+module.exports = {
+    buscarKpis,
+    buscarAtividade,
+    buscarRaca,
+    buscarEmocoes
+};

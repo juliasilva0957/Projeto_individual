@@ -1,47 +1,55 @@
-var empresaModel = require("../models/empresaModel");
+var dashboardModel = require("../models/dashboardModel");
 
-function buscarPorCnpj(req, res) {
-  var cnpj = req.query.cnpj;
+function buscarKpis(req, res) {
+  var idUsuario = req.params.idUsuario;
 
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-    res.status(200).json(resultado);
+  dashboardModel.buscarKpis(idUsuario)
+    .then(function (resultado) {
+    res.status(200).json(resultado[0]);
+  }).catch(function (erro) {
+    console.log(erro);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
-function listar(req, res) {
-  empresaModel.listar().then((resultado) => {
+function buscarAtividade(req, res) {
+  var idUsuario = req.params.idUsuario;
+
+  dashboardModel.buscarAtividade(idUsuario)
+    .then(function (resultado) {
     res.status(200).json(resultado);
+  }).catch(function (erro) {
+    console.log(erro);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
-function buscarPorId(req, res) {
-  var id = req.params.id;
+function buscarRaca(req, res) {
+  var idUsuario = req.params.idUsuario;
 
-  empresaModel.buscarPorId(id).then((resultado) => {
-    res.status(200).json(resultado);
+  dashboardModel.buscarRaca(idUsuario)
+    .then(function (resultado) {
+    res.status(200).json(resultado[0]);
+  }).catch(function (erro) {
+    console.log(erro);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
-function cadastrar(req, res) {
-  var cnpj = req.body.cnpj;
-  var razaoSocial = req.body.razaoSocial;
+function buscarEmocoes(req, res) {
+  var idUsuario = req.params.idUsuario;
 
-  empresaModel.buscarPorCnpj(cnpj).then((resultado) => {
-    if (resultado.length > 0) {
-      res
-        .status(401)
-        .json({ mensagem: `a empresa com o cnpj ${cnpj} já existe` });
-    } else {
-      empresaModel.cadastrar(razaoSocial, cnpj).then((resultado) => {
-        res.status(201).json(resultado);
-      });
-    }
+  dashboardModel.buscarEmocoes(idUsuario).then(function (resultado) {
+    res.status(200).json(resultado);
+  }).catch(function (erro) {
+    console.log(erro);
+    res.status(500).json(erro.sqlMessage);
   });
 }
 
 module.exports = {
-  buscarPorCnpj,
-  buscarPorId,
-  cadastrar,
-  listar,
+  buscarKpis,
+  buscarAtividade,
+  buscarRaca,
+  buscarEmocoes
 };
