@@ -76,7 +76,24 @@ header {
     font-family: 'Poppins', sans-serif;
     line-height: 1.35;
 }
-
+.botao {
+    background-color: #ff4375;
+    color: #ffece0;
+    border: none;
+    border-radius: 10px;
+    padding: 10px 15px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    font-family: 'Poppins', sans-serif;
+    cursor: pointer;
+    text-decoration: none;
+}
+ 
+.botao:hover {
+    background-color: #c4295a;
+    transform: scale(1.1);
+    transition: .2s all ease;
+}
 
 .linha-cards {
     display: flex;

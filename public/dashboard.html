@@ -21,7 +21,8 @@
         <a href="diarioEmocoes.html">EMOÇÕES</a>
         <a href="perfil.html">PERFIL</a>
         <a href="dashboard.html" class="ativo">DASHBOARD</a>
-        <a href="index.html">SAIR</a>
+        <a href="index.html">
+          <button class="botao">SAIR</button></a>
 
       </div>
     </nav>
@@ -43,27 +44,24 @@
       <div class="stats-row">
         <div class="stat-card pink">
           <span class="stat-label">Total de posts que você fez no mês</span>
-          <span class="stat-value" id="totalPost">75 posts</span>
+          <span class="stat-value" id="totalPost"></span>
         </div>
         <div class="stat-card orange">
           <span class="stat-label">Total de dias consecutivos que você interagiu no fórum</span>
-          <span class="stat-value" id="diasConsecutivos">5 dias</span>
+          <span class="stat-value" id="diasConsecutivos"></span>
         </div>
       </div>
 
 
       <div class="card donut-card">
-        <div class="card-title" id="tituloRaca">Porcentagem de usuário que também
-          possuem [raça do animal] como pet!</div>
+        <div class="card-title" id="tituloRaca"></div>
         <div class="donut-wrapper">
           <canvas id="donutChart"></canvas>
-          <div class="donut-label" id="donutPorcentagem">67%</div>
+          <div class="donut-label" id="donutPorcentagem"></div>
         </div>
         <div class="donut-legend" id="donutLegenda">
-          <div><span class="dot filled"></span>Cerca de 67% dos usuário
-            possuem [raça do animal]</div>
-          <div><span class="dot empty"></span>Os outros 33% dos usuários possuem raças diferentes de [especie do
-            animal]!</div>
+          <div><span class="dot filled"></span></div>
+          <div><span class="dot empty"></span></div>
         </div>
       </div>
     </div>
@@ -78,9 +76,6 @@
   </div>
 
   <script>
-    var lineChart;
-    var donutChart;
-    var barChart;
 
     function carregarDashboard() {
       carregarNome();
@@ -129,7 +124,7 @@
             comentarios.push(data[i].comentarios);
           }
 
-          lineChart = new Chart(document.getElementById('lineChart'), {
+        new Chart(document.getElementById('lineChart'), {
             type: 'line',
             data: {
               labels: meses,
@@ -177,7 +172,8 @@
           <div><span class="dot empty"></span>Os outros ${restante}% possuem raças diferentes</div>
         `;
           document.getElementById('tituloRaca').innerHTML = `Porcentagem de usuários que também possuem ${data.racaUsuario} como pet!`;
-          donutChart = new Chart(document.getElementById('donutChart'), {
+          
+          new Chart(document.getElementById('donutChart'), {
             type: 'doughnut',
             data: {
               datasets: [{
@@ -215,7 +211,7 @@
             quantidades.push(data[i].quantidade);
           }
 
-          barChart = new Chart(document.getElementById('barChart'), {
+             new Chart(document.getElementById('barChart'), {
             type: 'bar',
             data: {
               labels: emocoes,

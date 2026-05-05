@@ -17,10 +17,12 @@
         <nav class="navbar">
             <div class="left">
                 <a href="forum.html">FORUM</a>
-                <a href="diarioEmocoes.html" class="ativ" >EMOÇÕES</a>
+                <a href="diarioEmocoes.html" class="ativo">EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
-                <a href="index.html">SAIR</a>
+                <a href="index.html">
+                    <button class="botao">SAIR</button>
+                </a>
 
             </div>
         </nav>
@@ -40,6 +42,7 @@
                 <option value="animado">Animado</option>
             </select>
             <button onclick="publicar()" class="botao-registro">+ REGISTRAR EMOÇÃO</button>
+            <button class="botao-visualizar">VISUALIZAR REGISTROS ANTERIORES</button>
         </div>
         <div class="campo-emocao">
             <div class="rotulo-emocao" id="descricao">Descreva como está se sentindo</div>
@@ -51,6 +54,7 @@
 
 </html>
 <script>
+
     function iniciar() {
         let idUsuario = localStorage.getItem("idUsuario")
         fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
@@ -58,7 +62,7 @@
             headers: {
                 'Content-Type': 'application/json'
             }
-            
+
         })
             .then(res => res.json())
             .then(data => {
@@ -76,26 +80,31 @@
         let descrevaEmocao = txt_emocao.value
         let idUsuario = localStorage.getItem("idUsuario")
 
+        if (selectEmocoes == "" || descrevaEmocao == "") {
+            alert("Digite/selecione valores validos!")
+        } else {
 
-        let dados = {
-            descricao: descrevaEmocao,
-            selecionar: selectEmocoes
-        }
+            let dados = {
+                descricao: descrevaEmocao,
+                selecionar: selectEmocoes
+            }
 
-        fetch(`http://localhost:3333/diario/publicar/${idUsuario}`, {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json'
-            },
-            body: JSON.stringify(dados)
-        })
-            .then(res => res.json())
-            .then(data => {
-                // localStorage.setItem("idUsuario", data[0].idUsuario)
-                // alert(`Olá ${data[0].nomeUsuario}`)
-                // window.location.href = "/public/dashboard.html"
+            fetch(`http://localhost:3333/diario/publicar/${idUsuario}`, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(dados)
             })
-            .catch(error => console.error('Erro:', error));
+                .then(res => res.json())
+                .then(data => {
+                    // localStorage.setItem("idUsuario", data[0].idUsuario)
+                    alert(`Emoção registrada!`)
+                    txt_emocao.innerHTML = ""
+                    // window.location.href = "/public/dashboard.html"
+                })
+                .catch(error => console.error('Erro:', error));
 
+        }
     }
 </script>
