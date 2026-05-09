@@ -8,10 +8,10 @@ function autenticar(req, res) {
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
-        res.status(400).send("Sua senha está indefinida!");
+        res.status(400).send("Sua senha está undefined!");
     } else {
 
-        usuarioModel.autenticar(email, senha)
+        usuarioModel.autenticar(nomeUsuario, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);
@@ -40,9 +40,11 @@ function autenticar(req, res) {
 function cadastrar(req, res) {
     // Crie uma variável que vá recuperar os valores do arquivo cadastro.html
     var nome = req.body.nome;
+    var nomeUsuario = req.body.nomeUsuario;
     var email = req.body.email;
     var senha = req.body.senha;
     var cpf = req.body.cpf;
+    var imagemPerfil = req.file.filename;
 
     console.log(nome)
     console.log(email)
@@ -56,12 +58,14 @@ function cadastrar(req, res) {
         res.status(400).send("Seu email está undefined!");
     } else if (cpf == undefined) {
         res.status(400).send("Seu cpf está undefined!");
-    }else if (senha == undefined) {
+    }else if (nomeUsuario == undefined) {
+        res.status(400).send("Sua senha está undefined!");}
+    else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, email, senha, cpf)
+        usuarioModel.cadastrar(nome,nomeUsuario, email, senha, cpf, imagemPerfil)
                 .then(
                     function (resultado) {
                         res.json(resultado);

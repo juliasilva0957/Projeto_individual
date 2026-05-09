@@ -8,8 +8,9 @@ function buscarForuns() {
   return database.executar(instrucaoSql);
 }
 
-function buscarPost(idPost) {
-  var instrucaoSql = `SELECT * FROM postagem WHERE idPostagem = ${idPost};`
+function buscarPost(idPost, idUsuario) {
+  var instrucaoSql = `SELECT * FROM postagem WHERE idPostagem = ${idPost}
+  JOIN usuario ON fkUsuario = ${idUsuario};`
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

@@ -1,6 +1,6 @@
 var database = require("../database/config");
 
-function buscarKpis(idUsuario) {
+function buscarKpi(idUsuario) {
     var instrucaoSql = `
         SELECT 
             COUNT(CASE 
@@ -75,7 +75,7 @@ function buscarEmocoes(idUsuario) {
 }
 
 module.exports = {
-    buscarKpis,
+    buscarKpi,
     buscarAtividade,
     buscarRaca,
     buscarEmocoes

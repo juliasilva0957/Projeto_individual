@@ -79,7 +79,7 @@
 
     function carregarDashboard() {
       carregarNome();
-      carregarKpis();
+      carregarKpi();
       carregarAtividadeForum();
       carregarPorcentagemRaca();
       carregarEmocoes();
@@ -96,7 +96,7 @@
         .catch(erro => console.error(erro));
     }
 
-    function carregarKpis() {
+    function carregarKpi() {
       let idUsuario = localStorage.getItem("idUsuario");
 
       fetch(`/dashboard/kpis/${idUsuario}`)

@@ -1,9 +1,9 @@
 var dashboardModel = require("../models/dashboardModel");
 
-function buscarKpis(req, res) {
+function buscarKpi(req, res) {
   var idUsuario = req.params.idUsuario;
 
-  dashboardModel.buscarKpis(idUsuario)
+  dashboardModel.buscarKpi(idUsuario)
     .then(function (resultado) {
     res.status(200).json(resultado[0]);
   }).catch(function (erro) {
@@ -48,7 +48,7 @@ function buscarEmocoes(req, res) {
 }
 
 module.exports = {
-  buscarKpis,
+  buscarKpi,
   buscarAtividade,
   buscarRaca,
   buscarEmocoes

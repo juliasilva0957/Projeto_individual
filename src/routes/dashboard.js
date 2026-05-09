@@ -5,7 +5,7 @@ var dashboardController = require("../controllers/dashboardController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.get("/kpis/:idUsuario", function (req, res) {
-    dashboardController.buscarKpis(req, res);
+    dashboardController.buscarKpi(req, res);
 });
 
 router.get("/atividade/:idUsuario", function (req, res) {

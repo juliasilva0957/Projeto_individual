@@ -27,15 +27,15 @@
                 <h2>Estamos felizes em <br>ter você por aqui!</h2>
                 <form>
                     <div class="input-group">
-                        <label>Email</label>
-                        <input type="email" id="ipt_email" placeholder="Insira seu email">
+                        <label>Nome de usuario</label>
+                        <input type="text" id="ipt_nome" placeholder="Insira seu nome de usuário">
                     </div>
 
                     <div class="input-group">
                         <label>Senha</label>
                         <input type="password" id="ipt_senha" >
                         <span onclick="visualizar()" style="cursor: pointer;">
-                                <img id="olhoDnv" src="/assets/icons/eye.png"></span> 
+                        <img id="olhoDnv" src="/assets/icons/eye.png"></span> 
                     </div>
 
                     <p class="signup-text">Esqueceu a senha?</p>
@@ -58,7 +58,7 @@
         }
     }
     function login() {
-        let email = ipt_email.value;
+        let nomeUsuario = ipt_nome.value;
         let senha = ipt_senha.value;
 
         if(email == "" || senha == ""){
@@ -66,7 +66,7 @@
         } else {
 
         let dados = {
-            email: email,
+            nomeUsuario: nomeUsuario,
             senha: senha
         }
 
