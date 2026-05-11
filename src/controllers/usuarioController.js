@@ -2,10 +2,10 @@ var usuarioModel = require("../models/usuarioModel");
 var forumoModel = require("../models/forumModel");
 
 function autenticar(req, res) {
-    var email = req.body.email;
+    var nomeUsuario = req.body.nomeUsuario;
     var senha = req.body.senha;
 
-    if (email == undefined) {
+    if (nomeUsuario == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
@@ -21,7 +21,7 @@ function autenticar(req, res) {
                         console.log(resultadoAutenticar);
                         res.status(200).json(resultadoAutenticar)
                     } else if (resultadoAutenticar.length == 0) {
-                        res.status(403).send("Email e/ou senha inválido(s)");
+                        res.status(403).send("Usuario e/ou senha inválido(s)");
                     } else {
                         res.status(403).send("Mais de um usuário com o mesmo login e senha!");
                     }
@@ -65,7 +65,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome,nomeUsuario, email, senha, cpf, imagemPerfil)
+        usuarioModel.cadastrar(nome, nomeUsuario, email, cpf, senha, imagemPerfil)
                 .then(
                     function (resultado) {
                         res.json(resultado);

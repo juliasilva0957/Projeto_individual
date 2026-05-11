@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="input-group">
-                        <label>Insira sua foto de perfil!</label>
-                        <input name="foto" id="ipt_foto" type="file" />
+                        <label>Insira sua foto de perfil:</label>
+                        <input name="imagemPerfil" id="ipt_foto" type="file" />
                     </div>
 
                     <div class="input-group">
@@ -51,13 +51,15 @@
 
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" id="ipt_senha" oninput="validar()">
-                        <span onclick="visualizar()" style="cursor: pointer;">
-                            <img id="olho" src="/assets/icons/eye.png"></span>
-                        <p style="color: tomato;" id="caractereEspecial">Não possui caractere especial</p>
-                        <p style="color: tomato;" id="letraMaiuscula">Não possui letra maiúscula</p>
-                        <p style="color: tomato;" id="letraMinuscula">Não possui letra minúscula</p>
-                        <p style="color: tomato;" id="tamanho">Não possui mais de 8 caracteres</p>
+                        <div class="password-wrapper">
+                            <input type="password" id="ipt_senha" oninput="validar()">
+                            <span onclick="visualizar()" style="cursor: pointer;">
+                                <img id="olho" src="/assets/icons/eye.png"></span>
+                            </div>
+                            <p style="color: tomato;" id="caractereEspecial">Não possui caractere especial</p>
+                            <p style="color: tomato;" id="letraMaiuscula">Não possui letra maiúscula</p>
+                            <p style="color: tomato;" id="letraMinuscula">Não possui letra minúscula</p>
+                            <p style="color: tomato;" id="tamanho">Não possui mais de 8 caracteres</p>
 
                     </div>
 
@@ -85,160 +87,160 @@
             </div>
         </section>
     </div>
-</body>
-
-<script>
-    function confirmar() {
-        let senha = ipt_senha.value;
-        let confirmarSenha = ipt_senhaDnv.value;
-        let mensagem = ""
-
-        if (senha === confirmarSenha) {
-            mensagem += `<span style="color: green;">As senhas coincidem</span>`
-        } else {
-            mensagem += `<span style="color: tomato;">As senhas não coincidem</span>`
-        }
-        div_erro.innerHTML = mensagem
-    }
-
-    function visualizar() {
-        if (ipt_senha.type == 'password') {
-            ipt_senha.type = 'text'
-            olho.src = "/assets/icons/hidden (1).png"
-        } else {
-            ipt_senha.type = 'password'
-            olho.src = "/assets/icons/eye.png"
-        }
-    }
-
-    function visualizarDnv() {
-
-        if (ipt_senhaDnv.type == 'password') {
-            ipt_senhaDnv.type = 'text'
-            olhoDnv.src = "/assets/icons/hidden (1).png"
-        } else {
-            ipt_senhaDnv.type = 'password'
-            olhoDnv.src = "/assets/icons/eye.png"
-        }
-    }
-
-
-    function validar() {
-        let senha = ipt_senha.value;
-
-        let especiais = ["!", "@", "#", "$", "%", "&", "*"];
-
-        let temEspecial = false;
-        let temMaiuscula = false;
-        let temMinuscula = false;
-
-        for (let i = 0; i < senha.length; i++) {
-            let letra = senha[i];
-
-            if (letra >= 'A' && letra <= 'Z') {
-                temMaiuscula = true;
+    <script>
+        function confirmar() {
+            let senha = ipt_senha.value;
+            let confirmarSenha = ipt_senhaDnv.value;
+            let mensagem = ""
+    
+            if (senha === confirmarSenha) {
+                mensagem += `<span style="color: green;">As senhas coincidem</span>`
+            } else {
+                mensagem += `<span style="color: tomato;">As senhas não coincidem</span>`
             }
-
-            if (letra >= 'a' && letra <= 'z') {
-                temMinuscula = true;
+            div_erro.innerHTML = mensagem
+        }
+    
+        function visualizar() {
+            if (ipt_senha.type == 'password') {
+                ipt_senha.type = 'text'
+                olho.src = "/assets/icons/hidden (1).png"
+            } else {
+                ipt_senha.type = 'password'
+                olho.src = "/assets/icons/eye.png"
             }
-
-            for (let j = 0; j < especiais.length; j++) {
-                if (letra == especiais[j]) {
-                    temEspecial = true;
+        }
+    
+        function visualizarDnv() {
+    
+            if (ipt_senhaDnv.type == 'password') {
+                ipt_senhaDnv.type = 'text'
+                olhoDnv.src = "/assets/icons/hidden (1).png"
+            } else {
+                ipt_senhaDnv.type = 'password'
+                olhoDnv.src = "/assets/icons/eye.png"
+            }
+        }
+    
+    
+        function validar() {
+            let senha = ipt_senha.value;
+    
+            let especiais = ["!", "@", "#", "$", "%", "&", "*"];
+    
+            let temEspecial = false;
+            let temMaiuscula = false;
+            let temMinuscula = false;
+    
+            for (let i = 0; i < senha.length; i++) {
+                let letra = senha[i];
+    
+                if (letra >= 'A' && letra <= 'Z') {
+                    temMaiuscula = true;
+                }
+    
+                if (letra >= 'a' && letra <= 'z') {
+                    temMinuscula = true;
+                }
+    
+                for (let j = 0; j < especiais.length; j++) {
+                    if (letra == especiais[j]) {
+                        temEspecial = true;
+                    }
                 }
             }
+    
+            if (senha.length > 8) {
+                tamanho.innerHTML = "Possui mais de 8 caracteres";
+                tamanho.style.color = "yellowgreen";
+            } else {
+                tamanho.innerHTML = "Não possui mais de 8 caracteres";
+                tamanho.style.color = "tomato";
+            }
+    
+            if (temEspecial) {
+                caractereEspecial.innerHTML = "Possui caractere especial";
+                caractereEspecial.style.color = "yellowgreen";
+            } else {
+                caractereEspecial.innerHTML = "Não possui caractere especial";
+                caractereEspecial.style.color = "tomato";
+            }
+    
+            if (temMaiuscula) {
+                letraMaiuscula.innerHTML = "Possui letra maiúscula";
+                letraMaiuscula.style.color = "yellowgreen";
+            } else {
+                letraMaiuscula.innerHTML = "Não possui letra maiúscula";
+                letraMaiuscula.style.color = "tomato";
+            }
+    
+            if (temMinuscula) {
+                letraMinuscula.innerHTML = "Possui letra minúscula";
+                letraMinuscula.style.color = "yellowgreen";
+            } else {
+                letraMinuscula.innerHTML = "Não possui letra minúscula";
+                letraMinuscula.style.color = "tomato";
+            }
         }
-
-        if (senha.length > 8) {
-            tamanho.innerHTML = "Possui mais de 8 caracteres";
-            tamanho.style.color = "yellowgreen";
-        } else {
-            tamanho.innerHTML = "Não possui mais de 8 caracteres";
-            tamanho.style.color = "tomato";
+    
+    
+        function tamanhoNome() {
+            let nome = ipt_nome.value;
+            let mensagem = ""
+    
+            if (nome.length < 1) {
+                mensagem += `  <span style="color: tomato;">Nome invalido</span>`
+            }
+            div_nome.innerHTML = mensagem
+    
         }
-
-        if (temEspecial) {
-            caractereEspecial.innerHTML = "Possui caractere especial";
-            caractereEspecial.style.color = "yellowgreen";
-        } else {
-            caractereEspecial.innerHTML = "Não possui caractere especial";
-            caractereEspecial.style.color = "tomato";
+    
+        function tamanhoCpf() {
+            let cpf = ipt_cpf.value;
+            let mensagem = ""
+    
+            if (cpf.length < 11) {
+                mensagem += `  <span style="color: tomato;">CPF inválido</span>`
+            }
+            div_cpf.innerHTML = mensagem
         }
-
-        if (temMaiuscula) {
-            letraMaiuscula.innerHTML = "Possui letra maiúscula";
-            letraMaiuscula.style.color = "yellowgreen";
-        } else {
-            letraMaiuscula.innerHTML = "Não possui letra maiúscula";
-            letraMaiuscula.style.color = "tomato";
-        }
-
-        if (temMinuscula) {
-            letraMinuscula.innerHTML = "Possui letra minúscula";
-            letraMinuscula.style.color = "yellowgreen";
-        } else {
-            letraMinuscula.innerHTML = "Não possui letra minúscula";
-            letraMinuscula.style.color = "tomato";
-        }
-    }
-
-
-    function tamanhoNome() {
-        let nome = ipt_nome.value;
-        let mensagem = ""
-
-        if (nome.length < 1) {
-            mensagem += `  <span style="color: tomato;">Nome invalido</span>`
-        }
-        div_nome.innerHTML = mensagem
-
-    }
-
-    function tamanhoCpf() {
-        let cpf = ipt_cpf.value;
-        let mensagem = ""
-
-        if (cpf.length < 11) {
-            mensagem += `  <span style="color: tomato;">CPF inválido</span>`
-        }
-        div_cpf.innerHTML = mensagem
-    }
-
-    function dadosVazios() {
-        let email = ipt_email.value;
-        let nomeCompleto = ipt_nome.value;
-        let nomeUsuario = ipt_nomeUsuario.value
-        let cpf = ipt_cpf.value;
-        let senha = ipt_senha.value;
-        let imagemPerfil = ipt_foto.files[0];
-
-        if (email == "" || nomeUsuario == "" || nomeCompleto == "" || cpf == "" || senha == "") {
-            alert("Preencha os campos corretamente")
-        } else {
-            let formData = new FormData();
-            formData.append("nome", nomeCompleto);
-            formData.append("nomeUsuario", nomeUsuario);
-            formData.append("email", email);
-            formData.append("cpf", cpf);
-            formData.append("senha", senha);
-            formData.append("imagemPerfil", imagemPerfil);
-
-            fetch('http://localhost:3333/usuarios/cadastrar', {
-                method: 'POST',
-                body: formData
-            })
-                .then(res => {
-                    if (res.ok)
-                        return res.json()
-                }).then(resultado => {
-                    console.log(resultado)
-                    localStorage.setItem("fkUsuario", resultado.insertId)
-                    window.location.href = "formCadastro.html"
+    
+        function dadosVazios() {
+            let email = ipt_email.value;
+            let nomeCompleto = ipt_nome.value;
+            let nomeUsuario = ipt_nomeUsuario.value
+            let cpf = ipt_cpf.value;
+            let senha = ipt_senha.value;
+            let imagemPerfil = ipt_foto.files[0];
+    
+            if (email == "" || nomeUsuario == "" || nomeCompleto == "" || cpf == "" || senha == "") {
+                alert("Preencha os campos corretamente")
+            } else {
+                let formData = new FormData();
+                formData.append("nome", nomeCompleto);
+                formData.append("nomeUsuario", nomeUsuario);
+                formData.append("email", email);
+                formData.append("cpf", cpf);
+                formData.append("senha", senha);
+                formData.append("imagemPerfil", imagemPerfil);
+    
+                fetch('http://localhost:3333/usuarios/cadastrar', {
+                    method: 'POST',
+                    body: formData
                 })
-                .catch(error => console.error('Erro:', error));
+                    .then(res => {
+                        if (res.ok)
+                            return res.json()
+                    }).then(resultado => {
+                        console.log(resultado)
+                        localStorage.setItem("fkUsuario", resultado.insertId)
+                        window.location.href = "formCadastro.html"
+                    })
+                    .catch(error => console.error('Erro:', error));
+            }
         }
-    }
-</script>
+    </script>
+</body>
+
 
 </html>

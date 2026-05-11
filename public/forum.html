@@ -16,7 +16,7 @@
     <header>
         <nav class="navbar">
             <div class="left">
-                <a href="forum.html" class="ativo" >FORUM</a>
+                <a href="forum.html" class="ativo">FORUM</a>
                 <a href="diarioEmocoes.html">EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
@@ -37,7 +37,8 @@
         </div>
 
         <div class="filtros">
-            <input type="date" class="botao-filtro">FILTRAR POSTAGENS</input>
+            <input type="date" class="botao-filtro" id="ipt_filtro">
+            <button class="botao" onclick="filtrarPosts()">FILTRAR POSTAGENS</button>
         </div>
 
         <div class="container-postagens" id="container-postagens">
@@ -87,7 +88,6 @@
     }
 
     function carregarPosts() {
-        let idUsuario = localStorage.getItem("idUsuario") 
         fetch(`http://localhost:3333/forum`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
@@ -99,12 +99,53 @@
 
                 posts.forEach(post => {
                     container.innerHTML += `
-        <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
-          <div class="avatar-postagem"></div>
-          <span class="titulo-postagem">${post.titulo}</span>
-        </a>
+                <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
+                <div class="avatar-postagem"></div>
+                <span class="titulo-postagem">${post.titulo}</span>
+                </a>
       `
                 })
+            })
+            .catch(error => console.error('Erro:', error))
+    }
+
+    function filtrarPosts() {
+        let dtPostagem = ipt_filtro.value;
+
+        let dados = {
+            dtPostagem: dtPostagem
+        }
+
+        console.log(`dados: ${dados}`)
+
+        fetch(`http://localhost:3333/forum/filtrar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        })
+            .then(res => res.json())
+            .then(posts => {
+                let container = document.getElementById('container-postagens');
+                container.innerHTML = ''
+
+                if (posts.length == 1) {
+                    container.innerHTML += `
+                <a class="item-postagem" href="postagem.html?id=${posts[0].idPostagem}">
+                <div class="avatar-postagem"></div>
+                <span class="titulo-postagem">${posts[0].titulo}</span>
+                </a>`
+                } else {
+                    posts.forEach(post => {
+                        container.innerHTML += `
+                <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
+                <div class="avatar-postagem"></div>
+                <span class="titulo-postagem">${post.titulo}</span>
+                </a>
+      `
+                    })
+                }
+
+
             })
             .catch(error => console.error('Erro:', error))
     }

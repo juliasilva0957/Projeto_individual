@@ -138,21 +138,17 @@ input::placeholder{
     filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.3));
 }
 
-
-.signup-text {
-    margin-top: 20px;
-    text-align: center;
-    color: #4a1d00;
-    font-size: 14px;
-}
-
 .banner-content h1 {
     font-size: 32px;
     color: white;
     margin-bottom: 15px;
     line-height: 1.2;
 }
-
+.olho{
+    display: flex;
+    flex-direction: row;
+    
+}
 .btn-login:hover {
     background-color: #ff3c70;
 }

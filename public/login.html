@@ -33,12 +33,13 @@
 
                     <div class="input-group">
                         <label>Senha</label>
-                        <input type="password" id="ipt_senha" >
-                        <span onclick="visualizar()" style="cursor: pointer;">
-                        <img id="olhoDnv" src="/assets/icons/eye.png"></span> 
+                        <div class="olho">
+                                <input type="password" id="ipt_senha" >
+                                <span onclick="visualizar()" style="cursor: pointer;">
+                                <img id="olho" src="/assets/icons/eye.png"></span> 
+                            </div>
                     </div>
 
-                    <p class="signup-text">Esqueceu a senha?</p>
                     <button type="button" class="btn-login" onclick="login()">Entrar</button>
                 </form>
 
@@ -51,17 +52,15 @@
     function visualizar() {
         if (ipt_senha.type == 'password') {
             ipt_senha.type = 'text'
-            olho.src = "/public/assets/icons/hidden (1).png"
         } else {
             ipt_senha.type = 'password'
-            olho.src = "/public/assets/icons/eye.png"
         }
     }
     function login() {
         let nomeUsuario = ipt_nome.value;
         let senha = ipt_senha.value;
 
-        if(email == "" || senha == ""){
+        if(nomeUsuario == "" || senha == ""){
             alert("Insira dados nos campos")
         } else {
 

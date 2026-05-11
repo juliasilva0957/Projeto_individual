@@ -15,22 +15,42 @@ function buscarForuns(req, res) {
   });
 }
 
-function buscarPost(req, res){
+function buscarPost(req, res) {
   var idPost = req.params.idPost;
 
-  forumModel.buscarPost(idPost).then((resultado) =>{
-    if(resultado.length > 0){
+  forumModel.buscarPost(idPost).then((resultado) => {
+    if (resultado.length > 0) {
       res.status(200).json(resultado[0]);
-    } else{
+    } else {
       res.status(204).json([])
     }
-  }).catch(function(erro){
+  }).catch(function (erro) {
     console.log(erro);
     console.log("Houve um erro ao buscar o post:", erro.sqlMessage);
     res.status(500).json(erro.sqlMessage)
   });
 }
+
+function filtrarPosts(req, res) {
+  var dtPostagem = req.body.dtPostagem;
+  console.log(dtPostagem)
+
+
+  forumModel.filtrarPosts(dtPostagem).then((resultado) => {
+    if (resultado.length > 0) {
+      res.status(200).json(resultado);
+    } else {
+      res.status(204).json([])
+    }
+  }).catch(function (erro) {
+    console.log(erro);
+    console.log("Houve um erro ao filtrar os posts:", erro.sqlMessage);
+    res.status(500).json(erro.sqlMessage)
+  });
+
+}
 module.exports = {
   buscarForuns,
-  buscarPost
+  buscarPost,
+  filtrarPosts
 }

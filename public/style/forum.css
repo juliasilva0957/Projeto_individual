@@ -103,8 +103,6 @@ header {
  
 .botao:hover {
     background-color: #c4295a;
-    transform: scale(1.1);
-    transition: .2s all ease;
 }
  
 .botao-novo-post {
