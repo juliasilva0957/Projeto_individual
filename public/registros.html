@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SoulPaws - Registros Anteriores</title>
+    <link rel="stylesheet" href="/style/registro.css">
+    <link rel="icon" href="/assets/logo/Soul (1).png">
+</head>
+
+<body onload="buscarNome(), buscarRegistros()">
+    <div class="logo">
+        <img src="assets/logo/Soul.png" alt="Logo SoulPaws">
+    </div>
+    <header>
+        <nav class="navbar">
+            <div class="left">
+                <a href="forum.html">FORUM</a>
+                <a href="diarioEmocoes.html" class="ativo">EMOÇÕES</a>
+                <a href="perfil.html">PERFIL</a>
+                <a href="dashboard.html">DASHBOARD</a>
+                <a href="index.html">
+                    <button class="botao">SAIR</button>
+                </a>
+
+            </div>
+        </nav>
+    </header>
+    <main class="principal-emocoes">
+        <h2 class="titulo-emocoes" id="h2_saudacao"></h2>
+        <div class="linha-botoes-emocoes">
+            <input type="date" id="ipt_filtro" class="botao-filtro">
+            <button class="botao-registro" onclick="filtrarPosts()">FILTRAR REGISTROS</button>
+        </div>
+        <div class="campo-emocao">
+            <div class="rotulo-emocao" id="descricao">Historicos de registro</div>
+
+            <div class="container-postagens" id="container-postagens">
+            </div>
+        </div>
+    </main>
+
+    <div class="modal-overlay" id="modal-overlay">
+        <div class="modal-conteudo">
+            <button class="modal-fechar" onclick="fecharModal()">X</button>
+            <h3 id="modal-emocao">Emoção relatada</h3>
+            <p id="modal-descricao">Descrição do que sentiu</p>
+        </div>
+    </div>
+</body>
+<script>
+    function buscarNome() {
+        let idUsuario = localStorage.getItem("idUsuario")
+        fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+
+        })
+            .then(res => res.json())
+            .then(data => {
+                h2_saudacao.innerHTML = `Bem-vindo(a) ao seu historico de registros, ${data[0].nome}!`
+            })
+            .catch(error => console.error('Erro:', error));
+    }
+
+    function buscarRegistros() {
+        let idUsuario = localStorage.getItem("idUsuario")
+        fetch(`http://localhost:3333/registro/listar/registros/${idUsuario}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => res.json())
+            .then(posts => {
+                let container = document.getElementById('container-postagens');
+                container.innerHTML = ''
+
+                posts.forEach(post => {
+                    container.innerHTML += `
+                <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
+                    <span class="titulo-postagem">${post.emocao}</span>
+                    </div>
+                    `
+                })
+            })
+            .catch(error => console.error('Erro:', error))
+    }
+
+    let registroAtual = {}
+
+    function abrirModal(id, emocao, descricao) {
+        registroAtual = { id, emocao, descricao };
+
+        document.getElementById('modal-emocao').innerText = emocao;
+        document.getElementById('modal-descricao').innerText = descricao;
+        document.getElementById('modal-overlay').classList.add('ativo');
+    }
+
+    function fecharModal() {
+        document.getElementById('modal-overlay').classList.remove('ativo');
+    }
+
+    document.getElementById('modal-overlay').addEventListener('click', function (event) {
+        if (event.target === this) {
+            fecharModal();
+        }
+    });
+
+    function filtrarPosts() {
+        let dtPostagem = ipt_filtro.value;
+
+        let dados = {
+            dtPostagem: dtPostagem
+        }
+
+        fetch(`http://localhost:3333/registro/filtrar`, {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(dados)
+        })
+            .then(res => res.json())
+            .then(posts => {
+                let container = document.getElementById('container-postagens');
+                container.innerHTML = ''
+
+                if (posts.length == 1) {
+                    container.innerHTML += `
+                <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
+                <span class="titulo-postagem">${post.emocao}</span>
+                </div>`
+                } else {
+                    posts.forEach(post => {
+                        container.innerHTML += `
+                <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
+                <span class="titulo-postagem">${post.emocao}</span>
+                </div>
+      `
+                    })
+                }
+
+
+            })
+            .catch(error => console.error('Erro:', error))
+    }
+
+</script>
+
+</html>

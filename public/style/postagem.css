@@ -89,6 +89,41 @@ header {
     font-family: 'Gilker', sans-serif;
 }
 
+.cabecalho-postagem {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.avatar-postagem {
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ff1251;
+}
+
+.nome-autor {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ff1251;
+}
+
+.avatar-comentario {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    object-fit: cover;
+    background-color: #ff1251;
+}
+
+.nome-comentario {
+    display: block;
+    font-size: 0.78rem;
+    font-weight: 600;
+    color: #ff1251;
+}
+
 .caixa-titulo {
     border: 1.5px solid #4a1d00;
     border-radius: 30px;
@@ -143,12 +178,6 @@ header {
     min-height: 52px;
 }
 
-.avatar-comentario {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    background-color: #ff1251;
-}
 .container-comentarios {
     display: flex;
     flex-direction: column;

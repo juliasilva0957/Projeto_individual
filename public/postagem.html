@@ -29,7 +29,14 @@
     <main class="principal-postagem">
 
         <div class="container-postagem">
-            <div class="campo-postagem">
+
+            <div class="cabecalho-postagem">
+            <img id="avatar-post" class="avatar-postagem" src="" alt="">
+                <span class="nome-autor" id="nomeAutor"></span>
+            </div>
+        </div>
+        
+        <div class="campo-postagem">
                 <label class="rotulo-postagem">Titulo da postagem</label>
                 <input class="caixa-titulo" id="titulo"></input>
             </div>
@@ -41,7 +48,7 @@
 
             <div class="linha-comentarios">
                 <label class="rotulo-postagem">Comentarios</label>
-                    <button id="comentario" class="botao-comentario">POSTAR COMENTARIO</button>
+                    <button id="comentario" class="botao-comentario"> + POSTAR COMENTARIO</button>
             </div>
 
             <div id="container-comentarios">
@@ -75,6 +82,9 @@ function carregarPostagem() {
         botao.onclick = function() {
             window.location.href = `novoPost.html?idPost=${idPost}`;
         }
+
+         document.getElementById('nomeAutor').textContent = post.nomeUsuario;
+        document.getElementById('avatar-post').src = `http://localhost:3333/assets/uploads/${post.imagemPerfil}`;
     }
 })
         .catch(error => console.error('Erro:', error));
@@ -94,8 +104,11 @@ function carregarPostagem() {
             comentarios.forEach(comentario => {
                 container.innerHTML += `
                     <div class="item-comentario">
-                        <div class="avatar-comentario"></div>
-                        <span>${comentario.post}</span>
+                        <img class="avatar-comentario" src="http://localhost:3333/assets/uploads/${comentario.imagemPerfil}">
+                        <div class="info-comentario">
+                            <span class="nome-comentario">${comentario[0].nomeUsuario}</span>
+                            <span>${comentario.post}</span>
+                        </div>
                     </div>
                 `;
             });

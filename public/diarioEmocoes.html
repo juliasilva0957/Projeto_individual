@@ -32,17 +32,19 @@
         <div class="linha-botoes-emocoes">
             <select class="selecionar-emocao" id="select_emocoes">
                 <option value="" selected>SELECIONE A EMOÇÃO AQUI</option>
-                <option value="feliz">Feliz</option>
-                <option value="triste">Triste</option>
-                <option value="ansioso">Ansioso</option>
-                <option value="calmo">Calmo</option>
-                <option value="estressado">Estressado</option>
-                <option value="grato">Grato</option>
-                <option value="solitario">Solitário</option>
-                <option value="animado">Animado</option>
+                <option value="Feliz">Feliz</option>
+                <option value="Triste">Triste</option>
+                <option value="Ansioso">Ansioso</option>
+                <option value="Calmo">Calmo</option>
+                <option value="Estressado">Estressado</option>
+                <option value="Grato">Grato</option>
+                <option value="Solitario">Solitário</option>
+                <option value="Animado">Animado</option>
             </select>
             <button onclick="publicar()" class="botao-registro">+ REGISTRAR EMOÇÃO</button>
-            <button class="botao-visualizar">VISUALIZAR REGISTROS ANTERIORES</button>
+            <a href="/registros.html">
+                <button class="botao-visualizar" onclick="visualizarRegistro()">VISUALIZAR REGISTROS ANTERIORES</button>
+            </a>
         </div>
         <div class="campo-emocao">
             <div class="rotulo-emocao" id="descricao">Descreva como está se sentindo</div>

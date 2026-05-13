@@ -1,0 +1,61 @@
+CREATE DATABASE soulpaws;
+USE soulpaws;
+
+SELECT * FROM postagem WHERE DATE(dtPostagem) = "2026-05-10";
+
+INSERT INTO postagem VALUES (default, 1, 'Teste3', 'AAAAAAAAA', default,null);
+INSERT INTO postagem VALUES (default, 1, 'Teste3', 'AAAAAAAAA', "2026-05-09 23:03:11" ,null);
+
+CREATE TABLE usuario (
+idUsuario INT PRIMARY KEY AUTO_INCREMENT,
+nome VARCHAR(50),
+nomeUsuario VARCHAR(50) UNIQUE,
+email VARCHAR(45) UNIQUE,
+senha VARCHAR(255),
+CPF CHAR(11) UNIQUE,
+imagemPerfil VARCHAR (255)
+);
+
+CREATE TABLE formCadastro (
+idForm INT PRIMARY KEY AUTO_INCREMENT ,
+jaTeve BOOLEAN,
+transtornoMental VARCHAR(40),
+momentosDificeis BOOLEAN,
+comoAjudou VARCHAR(255),
+especie BOOLEAN,
+raça VARCHAR(50),
+fkUsuario INT,
+CONSTRAINT chFkUsuario
+FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario)
+);
+
+CREATE TABLE postagem(
+idPostagem INT PRIMARY KEY AUTO_INCREMENT,
+fkUsuario INT,
+CONSTRAINT chUsuario
+FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario),
+titulo VARCHAR (255),
+post VARCHAR(255),
+dtPostagem DATETIME DEFAULT CURRENT_TIMESTAMP,
+fkComentario INT,
+CONSTRAINT chFkComentario
+FOREIGN KEY (fkComentario) REFERENCES postagem(idPostagem)
+);
+
+CREATE TABLE emocao(
+idEmocao INT PRIMARY KEY AUTO_INCREMENT,
+emocao VARCHAR(45),
+descricao VARCHAR(255),
+fkUsuario INT,
+CONSTRAINT fkUsuario
+FOREIGN KEY (fkUsuario) REFERENCES usuario(idUsuario) 
+);
+
+SELECT * FROM usuario;
+
+desc formCadastro;
+
+SELECT * FROM formCadastro;
+SELECT * FROM usuario;
+
+select * from emocao;

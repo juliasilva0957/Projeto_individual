@@ -24,6 +24,8 @@ var perfilRouter = require("./src/routes/perfil");
 var novoPostRouter = require("./src/routes/novoPost");
 var postagemRouter = require("./src/routes/postagem");
 var dashboardRouter = require("./src/routes/dashboard");
+var registroRouter = require("./src/routes/registro");
+
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -40,6 +42,8 @@ app.use("/perfil", perfilRouter);
 app.use("/novoPost", novoPostRouter);
 app.use("/postagem", postagemRouter);
 app.use("/dashboard", dashboardRouter);
+app.use("/registro", registroRouter);
+
 
 
 app.listen(PORTA_APP, function () {

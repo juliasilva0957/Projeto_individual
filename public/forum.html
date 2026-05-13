@@ -42,30 +42,6 @@
         </div>
 
         <div class="container-postagens" id="container-postagens">
-            <a class="item-postagem" href="postagem.html">
-                <div class="avatar-postagem"></div>
-                <span class="titulo-postagem carregando"></span>
-            </a>
-            <a class="item-postagem" href="postagem.html">
-                <div class="avatar-postagem"></div>
-                <span class="titulo-postagem carregando"></span>
-            </a>
-            <a class="item-postagem" href="postagem.html">
-                <div class="avatar-postagem"></div>
-                <span class="titulo-postagem carregando"></span>
-            </a>
-            <a class="item-postagem" href="postagem.html">
-                <div class="avatar-postagem"></div>
-                <span class="titulo-postagem carregando"></span>
-            </a>
-            <a class="item-postagem" href="postagem.html">
-                <div class="avatar-postagem"></div>
-                <span class="titulo-postagem carregando"></span>
-            </a>
-            <a class="item-postagem" href="postagem.html">
-                <div class="avatar-postagem"></div>
-                <span class="titulo-postagem carregando"></span>
-            </a>
         </div>
 
     </main>
@@ -131,14 +107,16 @@
                 if (posts.length == 1) {
                     container.innerHTML += `
                 <a class="item-postagem" href="postagem.html?id=${posts[0].idPostagem}">
-                <div class="avatar-postagem"></div>
+                <img class="avatar-postagem" src="http://localhost:3333/assets/uploads/${post.imagemPerfil}">
+                 <span class="nome-autor-post">${post.nomeUsuario}</span>
                 <span class="titulo-postagem">${posts[0].titulo}</span>
                 </a>`
                 } else {
                     posts.forEach(post => {
                         container.innerHTML += `
                 <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
-                <div class="avatar-postagem"></div>
+                <img class="avatar-postagem" src="http://localhost:3333/assets/uploads/${post.imagemPerfil}">
+                 <span class="nome-autor-post">${post.nomeUsuario}</span>
                 <span class="titulo-postagem">${post.titulo}</span>
                 </a>
       `

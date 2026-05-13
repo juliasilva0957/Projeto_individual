@@ -192,4 +192,17 @@ header {
     border-radius: 6px;
     width: 70%;
 }
+
+.info-postagem {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    flex: 1;
+}
+
+.nome-autor-post {
+    font-size: 0.75rem;
+    font-weight: 600;
+    color: #ff1251;
+}
  
