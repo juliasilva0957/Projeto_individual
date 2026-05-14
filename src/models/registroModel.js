@@ -24,7 +24,7 @@ function filtrarPosts(dtPostagem){
   console.log(dtPostagem)
   var instrucaoSql =  `SELECT * FROM emocao
     JOIN usuario ON emocao.fkUsuario = usuario.idUsuario
-    WHERE DATE(emocao.dtRegistro) = "${dtPostagem}";`
+    WHERE DATE(emocao.dtRegsitro) = "${dtPostagem}";`
   console.log("Executando a instrução SQL: \n" + instrucaoSql);
   return database.executar(instrucaoSql);
 }

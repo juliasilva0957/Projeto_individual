@@ -80,7 +80,7 @@
                 posts.forEach(post => {
                     container.innerHTML += `
                 <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
-                    <span class="titulo-postagem">${post.emocao}</span>
+                    <span class="titulo-postagem">${post.idEmocao} - ${post.emocao} </span>
                     </div>
                     `
                 })
@@ -127,14 +127,14 @@
 
                 if (posts.length == 1) {
                     container.innerHTML += `
-                <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
-                <span class="titulo-postagem">${post.emocao}</span>
+                <div class="item-postagem" onclick="abrirModal(${posts[0].idEmocao}, '${posts[0].emocao}', '${posts[0].descricao}')">
+                <span class="titulo-postagem">${posts[0].emocao}</span>
                 </div>`
                 } else {
                     posts.forEach(post => {
                         container.innerHTML += `
                 <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
-                <span class="titulo-postagem">${post.emocao}</span>
+                <span class="titulo-postagem">Emoção relatada - ${post.emocao}</span>
                 </div>
       `
                     })
