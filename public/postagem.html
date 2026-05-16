@@ -31,27 +31,27 @@
         <div class="container-postagem">
 
             <div class="cabecalho-postagem">
-            <img id="avatar-post" class="avatar-postagem" src="" alt="">
+            <label class="rotulo-postagem">Nome do usuário</label>
                 <span class="nome-autor" id="nomeAutor"></span>
             </div>
         </div>
-        
+
         <div class="campo-postagem">
-                <label class="rotulo-postagem">Titulo da postagem</label>
-                <input class="caixa-titulo" id="titulo"></input>
-            </div>
+            <label class="rotulo-postagem">Titulo da postagem</label>
+            <input class="caixa-titulo" id="titulo"></input>
+        </div>
 
-            <div class="campo-postagem">
-                <label class="rotulo-postagem">Descrição da postagem</label>
-                <input class="caixa-descricao" id="descricao"></input>
-            </div>
+        <div class="campo-postagem">
+            <label class="rotulo-postagem">Descrição da postagem</label>
+            <input class="caixa-descricao" id="descricao"></input>
+        </div>
 
-            <div class="linha-comentarios">
-                <label class="rotulo-postagem">Comentarios</label>
-                    <button id="comentario" class="botao-comentario"> + POSTAR COMENTARIO</button>
-            </div>
+        <div class="linha-comentarios">
+            <label class="rotulo-postagem">Comentarios</label>
+            <button id="comentario" class="botao-comentario"> + POSTAR COMENTARIO</button>
+        </div>
 
-            <div id="container-comentarios">
+        <div id="container-comentarios">
         </div>
 
         </div>
@@ -59,61 +59,62 @@
     </main>
 </body>
 <script>
-function carregarPostagem() {
-    let url = window.location.search;
-    let idPost = url.split('=')[1];
+    function carregarPostagem() {
+        let url = window.location.search;
+        let idPost = url.split('=')[1];
 
-    fetch(`http://localhost:3333/postagem/${idPost}`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then(res => {
-            if (res.status === 204);
-            return res.json();
+        fetch(`http://localhost:3333/postagem/${idPost}`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
         })
-        .then(post => {
-            if (post) {
-        let titulo = document.getElementById('titulo');
-        let descricao = document.getElementById('descricao');
-        let botao = document.getElementById('comentario');
+            .then(res => {
+                if (res.status === 204);
+                return res.json();
+            })
+            .then(post => {
+                if (post) {
+                    let titulo = document.getElementById('titulo');
+                    let descricao = document.getElementById('descricao');
+                    let botao = document.getElementById('comentario');
 
-        titulo.value = post.titulo;
-        descricao.value = post.post;
-        botao.onclick = function() {
-            window.location.href = `novoPost.html?idPost=${idPost}`;
-        }
+                    titulo.value = post.titulo;
+                    descricao.value = post.post;
+                    botao.onclick = function () {
+                        window.location.href = `novoPost.html?idPost=${idPost}`;
+                    }
 
-         document.getElementById('nomeAutor').textContent = post.nomeUsuario;
-        document.getElementById('avatar-post').src = `http://localhost:3333/assets/uploads/${post.imagemPerfil}`;
+                    document.getElementById('nomeAutor').textContent = post.nomeUsuario;
+                }
+            })
+            .catch(error => console.error('Erro:', error));
+
+        fetch(`http://localhost:3333/postagem/${idPost}/comentarios`, {
+            method: 'GET',
+            headers: { 'Content-Type': 'application/json' }
+        })
+            .then(res => {
+                if (res.status === 204) return [];
+                return res.json();
+            })
+            .then(comentarios => {
+                let container = document.getElementById('container-comentarios');
+                container.innerHTML = '';
+
+                for (let i = 0; i < comentarios.length; i++) {
+                    let comentario = comentarios[i];
+
+                    container.innerHTML += `
+        <div class="item-comentario">
+            <div class="info-comentario">
+                <span class="nome-comentario">${comentario.nomeUsuario}</span>
+                <span>${comentario.post}</span>
+            </div>
+        </div>
+    `;
+                }
+            })
+            .catch(error => console.error('Erro:', error));
     }
-})
-        .catch(error => console.error('Erro:', error));
-
-    fetch(`http://localhost:3333/postagem/${idPost}/comentarios`, {
-        method: 'GET',
-        headers: { 'Content-Type': 'application/json' }
-    })
-        .then(res => {
-            if (res.status === 204) return [];
-            return res.json();
-        })
-        .then(comentarios => {
-            let container = document.getElementById('container-comentarios');
-            container.innerHTML = '';
-
-            comentarios.forEach(comentario => {
-                container.innerHTML += `
-                    <div class="item-comentario">
-                        <img class="avatar-comentario" src="http://localhost:3333/assets/uploads/${comentario.imagemPerfil}">
-                        <div class="info-comentario">
-                            <span class="nome-comentario">${comentario[0].nomeUsuario}</span>
-                            <span>${comentario.post}</span>
-                        </div>
-                    </div>
-                `;
-            });
-        })
-        .catch(error => console.error('Erro:', error));
-}
 </script>
+
 </html>

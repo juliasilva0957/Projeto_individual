@@ -77,13 +77,15 @@
                 let container = document.getElementById('container-postagens');
                 container.innerHTML = ''
 
-                posts.forEach(post => {
+                for (let i = 0; i < posts.length; i++) {
+                    let post = posts[i];
+
                     container.innerHTML += `
-                <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
-                    <span class="titulo-postagem">${post.idEmocao} - ${post.emocao} </span>
-                    </div>
-                    `
-                })
+                 <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
+                 <span class="titulo-postagem">${post.idEmocao} - ${post.emocao}</span>
+                </div>
+    `;
+                }
             })
             .catch(error => console.error('Erro:', error))
     }
@@ -129,17 +131,18 @@
                     container.innerHTML += `
                 <div class="item-postagem" onclick="abrirModal(${posts[0].idEmocao}, '${posts[0].emocao}', '${posts[0].descricao}')">
                 <span class="titulo-postagem">${posts[0].emocao}</span>
-                </div>`
+                </div>`;
                 } else {
-                    posts.forEach(post => {
-                        container.innerHTML += `
-                <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
-                <span class="titulo-postagem">Emoção relatada - ${post.emocao}</span>
-                </div>
-      `
-                    })
-                }
+                    for (let i = 0; i < posts.length; i++) {
+                        let post = posts[i];
 
+                        container.innerHTML += `
+            <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
+                <span class="titulo-postagem">Emoção relatada - ${post.emocao}</span>
+            </div>
+        `;
+                    }
+                }
 
             })
             .catch(error => console.error('Erro:', error))

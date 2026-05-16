@@ -64,7 +64,7 @@
         })
             .then(res => res.json())
             .then(data => {
-                h2_saudacao.innerHTML = `Olá, ${data[0].nome}!<br>bem-vindo ao seu<br>perfil!`
+                h2_saudacao.innerHTML = `Olá, ${data[0].nome}!<br>Bem-vindo(a) ao seu<br>perfil!`
                 p_nome.innerHTML = `Nome completo: ${data[0].nome}`
                 p_email.innerHTML = `Email: ${data[0].email}`
                 p_transtorno.innerHTML = `Transtorno mental cadastrado: ${data[0].transtornoMental}`

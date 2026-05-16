@@ -1,5 +1,4 @@
 var usuarioModel = require("../models/usuarioModel");
-var forumoModel = require("../models/forumModel");
 
 function autenticar(req, res) {
     var nomeUsuario = req.body.nomeUsuario;
@@ -44,7 +43,6 @@ function cadastrar(req, res) {
     var email = req.body.email;
     var senha = req.body.senha;
     var cpf = req.body.cpf;
-    var imagemPerfil = req.file.filename;
 
     console.log(nome)
     console.log(email)
@@ -65,7 +63,7 @@ function cadastrar(req, res) {
     } else {
 
         // Passe os valores como parâmetro e vá para o arquivo usuarioModel.js
-        usuarioModel.cadastrar(nome, nomeUsuario, email, cpf, senha, imagemPerfil)
+        usuarioModel.cadastrar(nome, nomeUsuario, email, cpf, senha)
                 .then(
                     function (resultado) {
                         res.json(resultado);

@@ -100,10 +100,8 @@
             })
                 .then(res => res.json())
                 .then(data => {
-                    // localStorage.setItem("idUsuario", data[0].idUsuario)
                     alert(`Emoção registrada!`)
                     txt_emocao.innerHTML = ""
-                    // window.location.href = "/public/dashboard.html"
                 })
                 .catch(error => console.error('Erro:', error));
 
