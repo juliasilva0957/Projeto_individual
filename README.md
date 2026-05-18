@@ -16,7 +16,7 @@ A partir disso, nasceu o interesse  de compartilhar mais sobre o tema.
 
 ## 🚧 Status do Projeto
 
-🔨 Em desenvolvimento  
+✅ Finalizado 
 
 ---
 
