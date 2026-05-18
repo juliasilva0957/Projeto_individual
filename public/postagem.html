@@ -38,12 +38,12 @@
 
         <div class="campo-postagem">
             <label class="rotulo-postagem">Titulo da postagem</label>
-            <input class="caixa-titulo" id="titulo"></input>
+            <div class="caixa-titulo" id="titulo"></div>
         </div>
 
         <div class="campo-postagem">
             <label class="rotulo-postagem">Descrição da postagem</label>
-            <input class="caixa-descricao" id="descricao"></input>
+            <div class="caixa-descricao" id="descricao"></div>
         </div>
 
         <div class="linha-comentarios">
@@ -106,8 +106,8 @@
                     container.innerHTML += `
         <div class="item-comentario">
             <div class="info-comentario">
-                <span class="nome-comentario">${comentario.nomeUsuario}</span>
-                <span>${comentario.post}</span>
+                <div class="nome-comentario">${comentario.nomeUsuario}</div>
+                <div>${comentario.post}</div>
             </div>
         </div>
     `;
