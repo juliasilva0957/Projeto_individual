@@ -81,7 +81,7 @@
                     let post = posts[i];
 
                     container.innerHTML += `
-                 <div class="item-postagem" onclick="abrirModal(${post.idEmocao}, '${post.emocao}', '${post.descricao}')">
+                 <div class="item-postagem" onclick="abrirModal(${i}, '${post.emocao}', '${post.descricao}')">
                  <span class="titulo-postagem">${post.idEmocao} - ${post.emocao}</span>
                 </div>
     `;

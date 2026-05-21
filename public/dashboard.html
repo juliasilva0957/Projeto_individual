@@ -32,7 +32,7 @@
     <p class="saudacao" id="p_saudacao"></p>
     <div class="col-left">
       <div class="line-card">
-        <div class="card-title">Seu nível de atividade no fórum durante os meses</div>
+        <div class="card-title">Seu nível de atividade no fórum no mês</div>
         <div class="chart-wrapper">
           <canvas id="lineChart"></canvas>
         </div>
@@ -47,7 +47,7 @@
           <span class="stat-value" id="totalPost"></span>
         </div>
         <div class="stat-card orange">
-          <span class="stat-label">Total de dias consecutivos que você interagiu no fórum</span>
+          <span class="stat-label">Total de dias você interagiu no fórum durante o mês</span>
           <span class="stat-value" id="diasConsecutivos"></span>
         </div>
       </div>
@@ -67,7 +67,7 @@
     </div>
 
     <div class="card bar-card">
-      <div class="card-title">Emoções que você mais relatou</div>
+      <div class="card-title">Emoções que você mais relatou no mês</div>
       <div class="bar-wrapper">
         <canvas id="barChart"></canvas>
       </div>
@@ -124,7 +124,7 @@
             comentarios.push(data[i].comentarios);
           }
 
-        new Chart(document.getElementById('lineChart'), {
+          new Chart(document.getElementById('lineChart'), {
             type: 'line',
             data: {
               labels: meses,
@@ -172,7 +172,7 @@
           <div><span class="dot empty"></span>Os outros ${restante}% possuem raças diferentes</div>
         `;
           document.getElementById('tituloRaca').innerHTML = `Porcentagem de usuários que também possuem ${data.racaUsuario} como pet!`;
-          
+
           new Chart(document.getElementById('donutChart'), {
             type: 'doughnut',
             data: {
@@ -211,7 +211,7 @@
             quantidades.push(data[i].quantidade);
           }
 
-             new Chart(document.getElementById('barChart'), {
+          new Chart(document.getElementById('barChart'), {
             type: 'bar',
             data: {
               labels: emocoes,
@@ -227,9 +227,21 @@
               maintainAspectRatio: false,
               plugins: { legend: { display: false } },
               scales: {
-                x: { grid: { display: false } },
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Emoções relatadas',
+                    font: { size: 12, weight: 'bold' }
+                  },
+                  grid: { display: false }
+                },
                 y: {
                   beginAtZero: true,
+                  title: {
+                    display: true,
+                    text: 'Quantidade',
+                    font: { size: 12, weight: 'bold' }
+                  },
                   ticks: {
                     stepSize: 1
                   }
