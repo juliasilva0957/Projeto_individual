@@ -1,16 +1,16 @@
 var usuarioModel = require("../models/usuarioModel");
 
 function autenticar(req, res) {
-    var nomeUsuario = req.body.nomeUsuario;
+    var login = req.body.login;
     var senha = req.body.senha;
 
-    if (nomeUsuario == undefined) {
+    if (login == undefined) {
         res.status(400).send("Seu email está undefined!");
     } else if (senha == undefined) {
         res.status(400).send("Sua senha está undefined!");
     } else {
 
-        usuarioModel.autenticar(nomeUsuario, senha)
+        usuarioModel.autenticar(login, senha)
             .then(
                 function (resultadoAutenticar) {
                     console.log(`\nResultados encontrados: ${resultadoAutenticar.length}`);

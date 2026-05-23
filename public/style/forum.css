@@ -169,13 +169,6 @@ header {
 .item-postagem:hover {
     border-color: #e8336d;
     box-shadow: 0 2px 8px rgba(232, 51, 109, 0.1);
-} 
-.avatar-postagem {
-    width: 28px;
-    height: 28px;
-    border-radius: 50%;
-    background-color: #ff1251;
-    flex-shrink: 0;
 }
  
 .titulo-postagem {

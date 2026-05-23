@@ -114,12 +114,12 @@
       fetch(`/dashboard/atividade/${idUsuario}`)
         .then(res => res.json())
         .then(data => {
-          let meses = [];
+          let dias = [];
           let posts = [];
           let comentarios = [];
 
           for (let i = 0; i < data.length; i++) {
-            meses.push(data[i].mes);
+            dias.push(data[i].dia);
             posts.push(data[i].posts);
             comentarios.push(data[i].comentarios);
           }
@@ -127,7 +127,7 @@
           new Chart(document.getElementById('lineChart'), {
             type: 'line',
             data: {
-              labels: meses,
+              labels: dias,
               datasets: [
                 {
                   label: 'Post',
@@ -150,6 +150,64 @@
                   tension: 0.35
                 }
               ]
+            }, options: {
+              responsive: true,
+              maintainAspectRatio: false,
+
+              plugins: {
+                legend: {
+                  labels: {
+                    color: '#33333',
+                    font: {
+                      size: 13,
+                    }
+                  }
+                }
+              },
+
+              scales: {
+
+                x: {
+                  title: {
+                    display: true,
+                    text: 'Dias do mês',
+                    color: '#333333',
+
+                    font: {
+                      size: 14,
+                    }
+                  },
+
+                  ticks: {
+                    color: '#333333'
+                  },
+
+                  grid: {
+                    color: 'rgba(0,0,0,0.08)'
+                  }
+                },
+
+                y: {
+                  beginAtZero: true,
+
+                  title: {
+                    display: true,
+                    text: 'Quantidade',
+                    color: '#333333',
+
+                    font: {
+                      size: 14,
+                    }
+                  },
+                  ticks: {
+                    stepSize: 1,
+                    color: '#333333'
+                  },
+                  grid: {
+                    color: 'rgba(255,255,255,0.08)'
+                  }
+                }
+              }
             }
           });
         })

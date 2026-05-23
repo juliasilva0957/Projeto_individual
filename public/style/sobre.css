@@ -119,15 +119,6 @@ header {
     overflow: visible;
 }
 
-.content .top .estrela-conheca{
-    width: 480px;
-    z-index: 10;
-    pointer-events: none;
-    position: absolute;
-    right: -160px;
-    top: 20px;
-}
-
 .content .top .content-oque{
     width: 480px;
     padding: 30px 30px;
@@ -279,7 +270,7 @@ header {
     border-radius: 50px;
 }
 
-ooter {
+footer {
   display: flex;
   justify-content: space-between;
   align-items: center;

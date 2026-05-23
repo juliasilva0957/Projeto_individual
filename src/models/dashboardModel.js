@@ -22,13 +22,15 @@ function buscarKpi(idUsuario) {
 function buscarAtividade(idUsuario) {
     var instrucaoSql = `
         SELECT 
-        MONTHNAME(dtPostagem) AS mes,
-        SUM(CASE WHEN fkComentario IS NULL THEN 1 ELSE 0 END) AS posts,
-        SUM(CASE WHEN fkComentario IS NOT NULL THEN 1 ELSE 0 END) AS comentarios
-    FROM postagem
-    WHERE fkUsuario = ${idUsuario}
-    GROUP BY MONTH(dtPostagem), MONTHNAME(dtPostagem)
-    ORDER BY MONTH(dtPostagem)
+            DAY(dtPostagem) AS dia,
+            COUNT(CASE WHEN fkComentario IS NULL THEN 1 END) AS posts,
+            COUNT(CASE WHEN fkComentario IS NOT NULL THEN 1 END) AS comentarios
+        FROM postagem
+        WHERE fkUsuario = ${idUsuario}
+        AND MONTH(dtPostagem) = MONTH(CURRENT_DATE())
+        AND YEAR(dtPostagem) = YEAR(CURRENT_DATE())
+        GROUP BY dia
+        ORDER BY dia;
     `;
 
     console.log(instrucaoSql);

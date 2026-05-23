@@ -34,7 +34,7 @@
             <button class="botao-registro" onclick="filtrarPosts()">FILTRAR REGISTROS</button>
         </div>
         <div class="campo-emocao">
-            <div class="rotulo-emocao" id="descricao">Historicos de registro</div>
+            <div class="rotulo-emocao" id="descricao">Histórico de registros</div>
 
             <div class="container-postagens" id="container-postagens">
             </div>
@@ -61,14 +61,14 @@
         })
             .then(res => res.json())
             .then(data => {
-                h2_saudacao.innerHTML = `Bem-vindo(a) ao seu historico de registros, ${data[0].nome}!`
+                h2_saudacao.innerHTML = `Bem-vindo(a) ao seu histórico de registros, ${data[0].nome}!`
             })
             .catch(error => console.error('Erro:', error));
     }
 
     function buscarRegistros() {
         let idUsuario = localStorage.getItem("idUsuario")
-        fetch(`http://localhost:3333/registro/listar/registros/${idUsuario}`, {
+        fetch(`/registro/listar/registros/${idUsuario}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
         })
@@ -77,16 +77,22 @@
                 let container = document.getElementById('container-postagens');
                 container.innerHTML = ''
 
+
                 for (let i = 0; i < posts.length; i++) {
                     let post = posts[i];
+                    if (posts.length === 0) {
+                        container.innerHTML = `<p style="text-align:center; color: #333;">Nenhum registro de emoção encontrado.</p>`
+                    } else {
+                        container.innerHTML += `
+                     <div class="item-postagem" onclick="abrirModal(${i}, '${post.emocao}', '${post.descricao}')">
+                     <span class="titulo-postagem">${post.idEmocao} - ${post.emocao}</span>
+                    </div>
 
-                    container.innerHTML += `
-                 <div class="item-postagem" onclick="abrirModal(${i}, '${post.emocao}', '${post.descricao}')">
-                 <span class="titulo-postagem">${post.idEmocao} - ${post.emocao}</span>
-                </div>
+
     `;
                 }
-            })
+                    }
+                })
             .catch(error => console.error('Erro:', error))
     }
 
@@ -117,7 +123,7 @@
             dtPostagem: dtPostagem
         }
 
-        fetch(`http://localhost:3333/registro/filtrar`, {
+        fetch(`/registro/filtrar`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify(dados)
@@ -125,7 +131,7 @@
             .then(res => res.json())
             .then(posts => {
                 let container = document.getElementById('container-postagens');
-                container.innerHTML = ''
+                container.innerHTML = `<p style="text-align:center; color: #333;">Nenhum registro de emoção encontrado para esta data.</p>`
 
                 if (posts.length == 1) {
                     container.innerHTML += `

@@ -18,8 +18,7 @@ function buscarPost(idPost, idUsuario) {
 
 function filtrarPosts(dtPostagem){
   console.log(dtPostagem)
-  var instrucaoSql =  `SELECT postagem.*, 
-    usuario.imagemPerfil, 
+  var instrucaoSql =  `SELECT postagem.*,  
     usuario.nome
     FROM postagem
     JOIN usuario ON postagem.fkUsuario = usuario.idUsuario

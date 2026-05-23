@@ -27,12 +27,12 @@
                 <h2>Estamos felizes em <br>ter você por aqui!</h2>
                 <form>
                     <div class="input-group">
-                        <label>Nome de usuario</label>
-                        <input type="text" id="ipt_nome" placeholder="Insira seu nome de usuário">
+                        <label for="ipt_login">Nome de usuario ou email</label>
+                        <input type="text" id="ipt_login" placeholder="Insira seu nome de usuário ou o email cadastrado">
                     </div>
 
                     <div class="input-group">
-                        <label>Senha</label>
+                        <label for="ipt_senha">Senha</label>
                         <div class="olho">
                                 <input type="password" id="ipt_senha" >
                                 <span onclick="visualizar()" style="cursor: pointer;">
@@ -47,8 +47,18 @@
         </section>
     </div>
 
+    <div id="modal_alerta" class="modal-container">
+        <div id="modal_caixa" class="modal-content">
+            <h3 id="modal_titulo"></h3>
+            <p id="modal_mensagem"></p>
+            <button id="modal_botao" class="modal-btn" onclick="fecharModal()">OK</button>
+        </div>
+    </div>
+
 </body>
 <script>
+
+    let redirecionar = false
     function visualizar() {
         if (ipt_senha.type == 'password') {
             ipt_senha.type = 'text'
@@ -56,16 +66,42 @@
             ipt_senha.type = 'password'
         }
     }
+
+    function exibirModal(titulo, mensagem, tipo) {
+        const modal = document.getElementById('modal_alerta');
+        const caixa = document.getElementById('modal_caixa');
+        
+        document.getElementById('modal_titulo').innerHTML = titulo;
+        document.getElementById('modal_mensagem').innerHTML = mensagem;
+        
+        if (tipo === 'sucesso') {
+            caixa.classList.add('sucesso');
+            redirecionar = true;
+        } else {
+            caixa.classList.add('erro');
+            redirecionar = false;
+        }
+
+        modal.style.display = 'flex';
+    }
+
+    function fecharModal() {
+        document.getElementById('modal_alerta').style.display = 'none';
+        if (redirecionar) {
+            window.location.href = "dashboard.html";
+        }
+    }
+
     function login() {
-        let nomeUsuario = ipt_nome.value;
+        let login = ipt_login.value;
         let senha = ipt_senha.value;
 
-        if(nomeUsuario == "" || senha == ""){
+        if(login == "" || senha == ""){
             alert("Insira dados nos campos")
         } else {
 
         let dados = {
-            nomeUsuario: nomeUsuario,
+            login: login,
             senha: senha
         }
 
@@ -76,13 +112,26 @@
             },
             body: JSON.stringify(dados)
         })
-            .then(res => res.json())
-            .then(data => {
-                localStorage.setItem("idUsuario", data[0].idUsuario)
-                alert(`Olá ${data[0].nomeUsuario}`)
-                window.location.href = "dashboard.html"
-            })
-            .catch(error => console.error('Erro:', error));
+           .then(res => {
+            if (res.ok) {
+                return res.json();
+            } else {
+                return null; 
+            }
+        })
+        .then(data => {
+            if (data != null && data.length > 0) {
+                localStorage.setItem("idUsuario", data[0].idUsuario);
+                exibirModal("Bem-vindo!", `Olá, ${data[0].nomeUsuario}! Login realizado com sucesso.`, "sucesso");
+            } else {
+                hou
+                exibirModal("Falha no Login", "Usuário/E-mail ou senha incorretos. Tente novamente.", "erro");
+            }
+        })
+        .catch(error => {
+            console.error("Erro de conexão:", error);
+            exibirModal("Erro de Conexão", "Não foi possível conectar ao servidor. Tente novamente mais tarde.", "erro");
+        });
     }
 }
 
