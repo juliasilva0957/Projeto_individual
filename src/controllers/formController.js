@@ -1,14 +1,14 @@
-var formModel = require("../models/formModel");
+let formModel = require("../models/formModel");
 
 function cadastrarInformacoes(req, res) {
     console.log(req.body)
-    var tipo = req.body.tipo;
-    var raca = req.body.raca;
-    var senteAjudou = req.body.senteAjudou
-    var tipoTranstorno = req.body.tipoTranstorno
-    var teve = req.body.teve
-    var descricao = req.body.descricao
-    var fkUsuario = req.body.fkUsuario
+    let tipo = req.body.tipo;
+    let raca = req.body.raca;
+    let senteAjudou = req.body.senteAjudou
+    let tipoTranstorno = req.body.tipoTranstorno
+    let teve = req.body.teve
+    let descricao = req.body.descricao
+    let fkUsuario = req.body.fkUsuario
 
     formModel.cadastrarInformacoes(tipo, raca, senteAjudou , tipoTranstorno , teve , descricao, fkUsuario)
         .then(

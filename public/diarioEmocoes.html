@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="left">
                 <a href="forum.html">FORUM</a>
-                <a href="diarioEmocoes.html" class="ativo">EMOÇÕES</a>
+                <a href="diarioEmocoes.html" class="ativo">DIARIO DE EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
                 <a href="index.html">
@@ -57,7 +57,7 @@
 </html>
 <script>
 
-    function iniciar() {
+    function iniciar() { /*essa função carrega o nome do usuário na pagina*/
         let idUsuario = localStorage.getItem("idUsuario")
         fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
             method: 'GET',
@@ -77,10 +77,10 @@
 
 
     }
-    function publicar() {
+    function publicar() { /*insere no banco o registro do fiario de emoções*/
         let selectEmocoes = select_emocoes.value;
         let descrevaEmocao = txt_emocao.value
-        let idUsuario = localStorage.getItem("idUsuario")
+        let idUsuario = localStorage.getItem("idUsuario") /*guarda o valor localmente até ser apagado*/
 
         if (selectEmocoes == "" || descrevaEmocao == "") {
             alert("Digite/selecione valores validos!")
@@ -91,7 +91,7 @@
                 selecionar: selectEmocoes
             }
 
-            fetch(`http://localhost:3333/diario/publicar/${idUsuario}`, {
+            fetch(`/diario/publicar/${idUsuario}`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'

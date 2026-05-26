@@ -1,8 +1,8 @@
-var registroModel = require("../models/registroModel");
+let registroModel = require("../models/registroModel");
 
 
 function buscarNome(req, res) {
-    var idUsuario = req.params.idUsuario;
+    let idUsuario = req.params.idUsuario;
 
     registroModel.buscarNome(idUsuario)
         .then(
@@ -27,7 +27,7 @@ function buscarNome(req, res) {
 }
 
 function buscarRegistros(req, res){
-    var idUsuario = req.params.idUsuario;
+    let idUsuario = req.params.idUsuario;
 
     registroModel.buscarRegistros(idUsuario)
         .then(
@@ -42,7 +42,7 @@ function buscarRegistros(req, res){
 }
 
 function filtrarPosts(req, res) {
-  var dtPostagem = req.body.dtPostagem;
+let dtPostagem = req.body.dtPostagem;
   console.log(dtPostagem)
 
 

@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="left">
                 <a href="forum.html">FORUM</a>
-                <a href="diarioEmocoes.html" class="ativo">EMOÇÕES</a>
+                <a href="diarioEmocoes.html" class="ativo">DIARIO DE EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
                 <a href="index.html">
@@ -52,7 +52,7 @@
 <script>
     function buscarNome() {
         let idUsuario = localStorage.getItem("idUsuario")
-        fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
+        fetch(`/diario/listar/${idUsuario}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -85,7 +85,7 @@
                     } else {
                         container.innerHTML += `
                      <div class="item-postagem" onclick="abrirModal(${i}, '${post.emocao}', '${post.descricao}')">
-                     <span class="titulo-postagem">${post.idEmocao} - ${post.emocao}</span>
+                     <span class="titulo-postagem">${i + 1} - ${post.emocao}</span>
                     </div>
 
 

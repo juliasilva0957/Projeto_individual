@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="left">
                 <a href="forum.html">FORUM</a>
-                <a href="diarioEmocoes.html">EMOÇÕES</a>
+                <a href="diarioEmocoes.html">DIARIO DE EMOÇÕES</a>
                 <a href="perfil.html" class="ativo">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
                 <a href="index.html">
@@ -30,32 +30,35 @@
 
     <main class="principal-perfil">
         <h2 class="titulo-perfil" id="h2_saudacao"></h2>
-
-        <a href="">
-            <button class="botao">Atualizar perfil</button>
-        </a>
+        <button class="botao" onclick="atualizarPerfil()">Atualizar perfil</button>
 
         <div class="linha-cards">
 
             <div class="card-perfil">
-                <p class="info-perfil" id="p_nome"></p>
-                <p class="info-perfil" id="p_email">:</p>
-                <p class="info-perfil" id="p_transtorno"></p>
+                <label>Nome completo:</label>
+                <input class="info-perfil" id="p_nome">
+                <label>Email:</label>
+                <input class="info-perfil" id="p_email">
+                <label>Transtorno mental cadastrado:</label>
+                <input class="info-perfil" id="p_transtorno" disabled>
             </div>
 
             <div class="card-perfil">
-                <p class="info-perfil" id="p_sente"></p>
-                <p class="info-perfil" id="p_como"></p>
+                <label>Você sente que seu pet te ajudou a passar por crises ou momentos difíceis?</label>
+                <input class="info-perfil" id="p_sente" disabled>
+                <label>Se sim, como?</label>
+                <input class="info-perfil" id="p_como" disabled>
             </div>
+
 
         </div>
 
     </main>
 </body>
 <script>
-        function carregarNome() {
+    function carregarNome() {
         let idUsuario = localStorage.getItem("idUsuario")
-        fetch(`http://localhost:3333/perfil/${idUsuario}`, {
+        fetch(`/perfil/${idUsuario}`, {
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json'
@@ -65,14 +68,40 @@
             .then(res => res.json())
             .then(data => {
                 h2_saudacao.innerHTML = `Olá, ${data[0].nome}!<br>Bem-vindo(a) ao seu<br>perfil!`
-                p_nome.innerHTML = `Nome completo: ${data[0].nome}`
-                p_email.innerHTML = `Email: ${data[0].email}`
-                p_transtorno.innerHTML = `Transtorno mental cadastrado: ${data[0].transtornoMental}`
-                p_sente.innerHTML = `Você sente que ele te ajudou a passar por crises ou momentos difíceis? <br>  ${data[0].momentosDificeis}`
-                p_como.innerHTML = `Se sim, como? ${data[0].comoAjudou}`
+                p_nome.value = `${data[0].nome}`
+                p_email.value = `${data[0].email}`
+                p_transtorno.value = ` ${data[0].transtornoMental}`
+                p_sente.value = `${data[0].momentosDificeis}`
+                p_como.value = `Se sim, como? ${data[0].comoAjudou}`
 
             })
             .catch(error => console.error('Erro:', error));
+    }
+
+    function atualizarPerfil() {
+        let idUsuario = localStorage.getItem("idUsuario");
+        let nome = document.getElementById('p_nome').value;
+        let email = document.getElementById('p_email').value;
+
+        let dados = {
+            nome: nome,
+            email: email,
+        }
+
+        fetch(`/usuarios/atualizar/${idUsuario}`, {
+            method: 'PUT',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ nome, email})
+        })
+            .then(function (res) {
+                if (res.ok) {
+                    alert("Perfil atualizado com sucesso!");
+                    carregarNome();
+                } else {
+                    alert("Erro ao atualizar perfil!");
+                }
+            })
+            .catch(function (erro) { console.error('Erro:', erro) });
     }
 </script>
 

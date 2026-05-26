@@ -1,8 +1,8 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function buscarNome(idUsuario) {
 
-  var instrucaoSql = `SELECT nome,email,transtornoMental,
+  let instrucaoSql = `SELECT nome,email,transtornoMental,
                         CASE
                         WHEN momentosDificeis = 0 THEN ('Sim')
                         ELSE ('Não')

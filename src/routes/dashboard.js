@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var dashboardController = require("../controllers/dashboardController");
+let dashboardController = require("../controllers/dashboardController");
 
 //Recebendo os dados do html e direcionando para a função cadastrar de usuarioController.js
 router.get("/kpis/:idUsuario", function (req, res) {
@@ -18,6 +18,10 @@ router.get("/raca/:idUsuario", function (req, res) {
 
 router.get("/emocoes/:idUsuario", function (req, res) {
     dashboardController.buscarEmocoes(req, res);
+});
+
+router.post("/filtrar/:idUsuario", function(req,res){
+    dashboardController.filtrarDashboard(req,res);
 });
 
 module.exports = router;

@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var diarioController = require("../controllers/diarioController");
+let diarioController = require("../controllers/diarioController");
 
 router.get("/listar/:idUsuario", function (req, res) {
     diarioController.pegarNome(req, res);

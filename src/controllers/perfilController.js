@@ -1,7 +1,7 @@
-var perfilModel = require("../models/perfilModel");
+let perfilModel = require("../models/perfilModel");
 
 function buscarNome(req, res) {
-  var idUsuario = req.params.idUsuario;
+  let idUsuario = req.params.idUsuario;
 
   perfilModel.buscarNome(idUsuario).then((resultado) => {
     if (resultado.length > 0) {

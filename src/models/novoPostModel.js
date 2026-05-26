@@ -1,7 +1,7 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function criarPost(titulo, post, fkUsuario, fkComentario) {
-  var instrucaoSql = `
+  let instrucaoSql = `
     INSERT INTO postagem (titulo, post, fkUsuario, fkComentario) 
     VALUES ('${titulo}', '${post}', ${fkUsuario}, ${fkComentario})
   `;

@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="left">
                 <a href="forum.html" class="ativo">FORUM</a>
-                <a href="diarioEmocoes.html">EMOÇÕES</a>
+                <a href="diarioEmocoes.html">DIARIO DE EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
                 <a href="index.html">SAIR</a>
@@ -50,9 +50,7 @@
     </main>
 </body>
 <script>
-    function criarPost() {
-        let url = window.location.search;
-        let idPost = url.split('=')[1];
+    function criarPost(idPost) {
         let idUsuario = localStorage.getItem("idUsuario");
         let titulo = document.getElementById('titulo').value;
         let post = document.getElementById('post').value;
@@ -60,7 +58,7 @@
         if (titulo == "" || post == "") {
             alert("Digite valores válidos nos campos")
         } else {
-            fetch('http://localhost:3333/novoPost', {
+            fetch('/novoPost', {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

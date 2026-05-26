@@ -66,8 +66,6 @@ header {
 }
 
 .navbar a .button-entrar:hover{
-    transform: scale(1.1); /*da movimento ao botao*/
-    transition: .5s all ease; /*tempo que ele demora para fazer a animaçãp*/
     background-color: #e5003d;
 }
 
@@ -125,13 +123,10 @@ header {
     background-color:#ff1251;
     color: #fff9f6;
     border-radius: 35px;
-
     padding: 18px 40px;
     align-items: center;
-
     font-size: smaller;
     border: none;
-
     cursor: pointer;
 
 }
@@ -148,25 +143,19 @@ header {
 }
 .cards-valores {
   position: relative;
-
   display: flex;
   justify-content: space-around;
   gap: 40px;
-
   margin-top: 120px;
 }
 .card-valor {
   background-color: #f0b300;
   color: white;
-
   width: 325px;
   min-height: 400px;
-
   padding: 0 25px;
   border-radius: 50px;
-
   text-align: justify;
-
   display: flex;
   flex-direction: column;
   justify-content: flex-start;

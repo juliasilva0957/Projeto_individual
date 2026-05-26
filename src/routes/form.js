@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var formController = require("../controllers/formController");
+let formController = require("../controllers/formController");
 
 router.post("/cadastrar", function (req, res) {
     formController.cadastrarInformacoes(req, res);

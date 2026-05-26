@@ -1,7 +1,7 @@
-var postagemModel = require("../models/postagemModel");
+let postagemModel = require("../models/postagemModel");
 
 function buscarPostagem(req, res) {
-    var idPost = req.params.idPost;
+    let idPost = req.params.idPost;
 
     postagemModel.buscarPostagem(idPost).then((resultado) => {
         if (resultado.length > 0) {
@@ -17,7 +17,7 @@ function buscarPostagem(req, res) {
 }
 
 function buscarComentarios(req, res) {
-    var idPost = req.params.idPost;
+    let idPost = req.params.idPost;
 
     postagemModel.buscarComentarios(idPost).then((resultado) => {
         if (resultado.length > 0) {

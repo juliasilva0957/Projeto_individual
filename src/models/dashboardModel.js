@@ -1,7 +1,7 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function buscarKpi(idUsuario) {
-    var instrucaoSql = `
+    let instrucaoSql = `
         SELECT 
             COUNT(CASE 
                 WHEN fkComentario IS NULL 
@@ -20,7 +20,7 @@ function buscarKpi(idUsuario) {
 }
 
 function buscarAtividade(idUsuario) {
-    var instrucaoSql = `
+    let instrucaoSql = `
         SELECT 
             DAY(dtPostagem) AS dia,
             COUNT(CASE WHEN fkComentario IS NULL THEN 1 END) AS posts,
@@ -38,7 +38,7 @@ function buscarAtividade(idUsuario) {
 }
 
 function buscarRaca(idUsuario) {
-    var instrucaoSql = `
+    let instrucaoSql = `
         SELECT 
             fc.raça AS racaUsuario,
             ROUND(
@@ -62,7 +62,7 @@ function buscarRaca(idUsuario) {
 }
 
 function buscarEmocoes(idUsuario) {
-    var instrucaoSql = `
+    let instrucaoSql = `
         SELECT 
             emocao AS nomeEmocao,
             COUNT(*) AS quantidade
@@ -76,9 +76,68 @@ function buscarEmocoes(idUsuario) {
     return database.executar(instrucaoSql);
 }
 
+function filtrarDashboard(idUsuario, mes) { /*para filtrar a dash, preciso fazer o model de cada KPI e grafico, que assim que o usuario filtrar em algum do select, entra aqui e faz os models(se der tempo vou implementar VIEW pra ficar mais facil) */
+    let instrucaoSqlKpi = `
+        SELECT 
+            COUNT(CASE 
+                WHEN fkComentario IS NULL 
+                AND MONTH(dtPostagem) = ${mes}
+                AND YEAR(dtPostagem) = YEAR(CURRENT_DATE())
+                THEN 1 
+            END) AS totalPostsMes,
+            COUNT(DISTINCT DATE(dtPostagem)) AS diasInteragidos
+        FROM postagem
+        WHERE fkUsuario = ${idUsuario}
+        AND MONTH(dtPostagem) = ${mes}
+        AND YEAR(dtPostagem) = YEAR(CURRENT_DATE());
+    `;
+
+    let instrucaoSqlAtividade = `
+        SELECT 
+            DAY(dtPostagem) AS dia,
+            COUNT(CASE WHEN fkComentario IS NULL THEN 1 END) AS posts,
+            COUNT(CASE WHEN fkComentario IS NOT NULL THEN 1 END) AS comentarios
+        FROM postagem
+        WHERE fkUsuario = ${idUsuario}
+        AND MONTH(dtPostagem) = ${mes}
+        AND YEAR(dtPostagem) = YEAR(CURRENT_DATE())
+        GROUP BY dia
+        ORDER BY dia;
+    `;
+
+    let instrucaoSqlEmocoes = `
+        SELECT 
+            emocao AS nomeEmocao,
+            COUNT(*) AS quantidade
+        FROM emocao
+        WHERE fkUsuario = ${idUsuario}
+        AND MONTH(dtRegsitro) = ${mes}
+        AND YEAR(dtRegsitro) = YEAR(CURRENT_DATE())
+        GROUP BY emocao
+        ORDER BY quantidade DESC;
+    `;
+
+    let resultado = {};
+
+    return database.executar(instrucaoSqlKpi)
+        .then(function(kpi) {
+            resultado.kpi = kpi[0];
+            return database.executar(instrucaoSqlAtividade);
+        })
+        .then(function(atividade) {
+            resultado.atividade = atividade;
+            return database.executar(instrucaoSqlEmocoes);
+        })
+        .then(function(emocoes) {
+            resultado.emocoes = emocoes;
+            return resultado;
+        });
+}
+
 module.exports = {
     buscarKpi,
     buscarAtividade,
     buscarRaca,
-    buscarEmocoes
+    buscarEmocoes,
+    filtrarDashboard
 };

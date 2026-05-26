@@ -17,7 +17,7 @@
         <nav class="navbar">
             <div class="left">
                 <a href="forum.html" class="ativo">FORUM</a>
-                <a href="diarioEmocoes.html">EMOÇÕES</a>
+                <a href="diarioEmocoes.html">DIARIO DE EMOÇÕES</a>
                 <a href="perfil.html">PERFIL</a>
                 <a href="dashboard.html">DASHBOARD</a>
                 <a href="index.html">
@@ -63,7 +63,12 @@
             .catch(error => console.error('Erro:', error));
     }
 
-    function carregarPosts() {
+    function abrirPostagem(idPost) {
+        sessionStorage.setItem("idPost", idPost);
+        window.location.href = "postagem.html";
+    }
+
+    function carregarPosts() { /*carrega os posts do forum*/
         fetch(`/forum`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
@@ -72,15 +77,15 @@
             .then(posts => {
                 let container = document.getElementById('container-postagens');
                 container.innerHTML = ''
-                if(posts.length == 0){
+                if (posts.length == 0) { /*se não houver nenhuma postagem no forum, essa mensagem irá aparecer*/
                     container.innerHTML = `<p style="text-align:center; color: #333;">Nenhuma postagem encontrada.</p>`
-                } else {
-                    
-                    for(let i = 0; i < posts.length; i++) {
-                    let post = posts[i];
+                } else { /*se não, roda até aparecer todos os pposts feitos*/
+
+                    for (let i = 0; i < posts.length; i++) {
+                        let post = posts[i];
                         container.innerHTML += `
-                    <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
-                    <span class="titulo-postagem">${post.titulo}</span>
+                    <a class="item-postagem" onclick="abrirPostagem(${post.idPostagem})">
+                    <span class="titulo-postagem">${post.titulo} -  ${post.dtPostagem}</span>
                     </a>
           `
                     }
@@ -89,7 +94,7 @@
             .catch(error => console.error('Erro:', error))
     }
 
-    function filtrarPosts() {
+    function filtrarPosts() { /*filtro por data*/
         let dtPostagem = ipt_filtro.value;
 
         let dados = {
@@ -107,20 +112,19 @@
             .then(posts => {
                 let container = document.getElementById('container-postagens');
                 container.innerHTML = ''
-                if (posts.length === 0) {
+                if (posts.length === 0) { /*se nenhuma postagem naquela data for encontrado*/
                     container.innerHTML = `<p style="text-align:center; color: #333;">Nenhuma postagem encontrada para esta data.</p>`
                 } else if (posts.length == 1) {
                     container.innerHTML += `
-                <a class="item-postagem" href="postagem.html?id=${posts[0].idPostagem}">
-                 <span class="nome-autor-post">${post.nomeUsuario}</span>
-                <span class="titulo-postagem">${posts[0].titulo}</span>
+                <a class="item-postagem" onclick="abrirPostagem(${posts[0].idPostagem})">
+                <span class="titulo-postagem">${posts[0].titulo}  - ${posts[0].dtPostagem}</span>
                 </a>`
                 } else {
                     for (let i = 0; i < posts.length; i++) {
                         let post = posts[i];
 
                         container.innerHTML += `
-                <a class="item-postagem" href="postagem.html?id=${post.idPostagem}">
+                <a class="item-postagem" onclick="abrirPostagem(${post.idPostagem})">
             <span class="nome-autor-post">${post.nomeUsuario}</span>
             <span class="titulo-postagem">${post.titulo} - ${post.dtPostagem}</span>
                  </a>

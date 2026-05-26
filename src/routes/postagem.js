@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var postagemController = require("../controllers/postagemController");
+let postagemController = require("../controllers/postagemController");
 
 router.get("/:idPost", function (req, res) {
     postagemController.buscarPostagem(req, res);

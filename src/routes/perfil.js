@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var perfilController = require("../controllers/perfilController");
+let perfilController = require("../controllers/perfilController");
 
 router.get("/:idUsuario", function (req, res) {
   perfilController.buscarNome(req, res);

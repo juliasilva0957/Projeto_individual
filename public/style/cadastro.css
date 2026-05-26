@@ -13,14 +13,14 @@ body {
 }
 
 
-.main-container {
+.container {
     display: flex;
     flex-direction: row;
     height: 100vh;
     width: 100%;
     overflow: hidden;
 }
-.banner-side {
+.banner {
     width: 50%;
     background-image: url('../assets/img/7\ Sem\ Título_20260417194918.png');
     background-size: cover;
@@ -31,26 +31,21 @@ body {
     color: #ffebdf;
     border-radius: 0 50px 50px 0;
 }
-.brand-name {
-    font-family:'Poppins',sans-serif; 
-    font-size: 28px;
-    font-weight: 700;
-}
 
-.banner-content{
+.banner-conteudo{
   height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.banner-content h1 {
+.banner-conteudo h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 95px; 
     font-weight: 7000;
     color: #ffebdf;
 }
-section .form-box{
+section .form-caixa{
     justify-content: left;
 }
 
@@ -58,7 +53,7 @@ section .banner-side{
     justify-content: right;
 }
 
-.form-side {
+.form {
     width: 50%;
     flex: 0 0 50%;
     background-color: #fff9f6;
@@ -69,7 +64,7 @@ section .banner-side{
     overflow-y: auto;
 }
 
-.form-box {
+.form-caixa {
     width: 100%;
     max-width: 420px;
     z-index: 9999;
@@ -83,7 +78,7 @@ section .banner-side{
     justify-content: center;
 }
 
-.subtitle {
+.subtitulo {
     color: #4a1d00;
     font-size: 25px;
     margin-bottom: 30px;
@@ -100,11 +95,11 @@ section .banner-side{
     margin-right: -560px;
 }
 
-.input-group {
+.input-grupo {
     margin-bottom: 18px; 
 }
 
-.input-group label {
+.input-grupo label {
     display: block;
     font-size: 14px;
     font-weight: 700;
@@ -127,7 +122,7 @@ input::placeholder{
     display: flex;
 }
 
-.password-wrapper {
+.senha {
     display: flex;
     align-items: center;
     gap: 8px;
@@ -137,7 +132,7 @@ input::placeholder{
     text-decoration: none;
 }
 
-.btn-primary {
+.btn-cadastrar {
     width: 100%;
     padding: 16px;
     background-color: #ff1251;
@@ -152,7 +147,6 @@ input::placeholder{
     justify-content: center;
     align-items: center;
     gap: 12px;
-    transition: 0.3s;
 }
 
 .btn-primary:hover {
@@ -197,7 +191,7 @@ input::placeholder{
     font-family: 'Poppins', sans-serif;
 }
 
-.banner-content h1 {
+.banner-conteudo h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 38px; 
     font-weight: 800;

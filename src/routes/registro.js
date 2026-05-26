@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var registroController = require("../controllers/registroController");
+let registroController = require("../controllers/registroController");
 
 router.get("/listar/:idUsuario", function (req, res) {
     registroController.buscarNome(req, res);

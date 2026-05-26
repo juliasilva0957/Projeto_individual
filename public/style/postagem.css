@@ -95,26 +95,10 @@ header {
     gap: 10px;
 }
 
-.avatar-postagem {
-    width: 48px;
-    height: 48px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #ff1251;
-}
-
 .nome-autor {
     font-size: 0.85rem;
     font-weight: 600;
     color: #ff1251;
-}
-
-.avatar-comentario {
-    width: 32px;
-    height: 32px;
-    border-radius: 50%;
-    object-fit: cover;
-    background-color: #ff1251;
 }
 
 .nome-comentario {

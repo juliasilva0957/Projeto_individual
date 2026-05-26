@@ -1,8 +1,8 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function buscarNome(idUsuario) {
     console.log("ACESSEI O AVISO MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listarPorUsuario()");
-    var instrucaoSql = `
+    let instrucaoSql = `
         SELECT nome FROM usuario 
         WHERE idUsuario = ${idUsuario} ;
     `;
@@ -13,7 +13,7 @@ function buscarNome(idUsuario) {
 function buscarRegistros(idUsuario){
     console.log("Acessei o registro de emoções");
 
-    var instrucaoSql = ` SELECT * from emocao
+    let instrucaoSql = ` SELECT * from emocao
     WHERE fkUsuario = ${idUsuario}`;
 
     console.log("Executando a instrução SQL: \n" + instrucaoSql )
@@ -22,7 +22,7 @@ function buscarRegistros(idUsuario){
 
 function filtrarPosts(dtPostagem){
   console.log(dtPostagem)
-  var instrucaoSql =  `SELECT * FROM emocao
+  let instrucaoSql =  `SELECT * FROM emocao
     JOIN usuario ON emocao.fkUsuario = usuario.idUsuario
     WHERE DATE(emocao.dtRegsitro) = "${dtPostagem}";`
   console.log("Executando a instrução SQL: \n" + instrucaoSql);

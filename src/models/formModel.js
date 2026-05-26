@@ -1,8 +1,8 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function cadastrarInformacoes(tipo, raca, senteAjudou , tipoTranstorno , teve , descricao, fkUsuario) {
 
-    var instrucaoSql = `INSERT INTO formCadastro(jateve,transtornoMental, momentosDificeis, comoAjudou, especie, raça, fkUsuario) VALUES(
+   let instrucaoSql = `INSERT INTO formCadastro(jateve,transtornoMental, momentosDificeis, comoAjudou, especie, raça, fkUsuario) VALUES(
         '${teve}',
        '${tipoTranstorno}', 
         ${senteAjudou},

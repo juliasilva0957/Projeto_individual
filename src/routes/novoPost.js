@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var novoPostController = require("../controllers/novoPostController");
+let novoPostController = require("../controllers/novoPostController");
 
 router.post("/", function (req, res) {
   novoPostController.criarPost(req, res);

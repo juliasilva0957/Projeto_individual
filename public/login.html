@@ -10,15 +10,15 @@
 </head>
 
 <body>
-    <div class="main-container">
-        <section class="banner-side">
-            <div class="banner-content">
+    <div class="container">
+        <section class="banner">
+            <div class="banner-conteudo">
                 <h1>Seja bem-vindo(a) <br> de volta!</h1>
             </div>
         </section>
 
-        <section class="form-side">
-            <div class="form-box">
+        <section class="form">
+            <div class="form-caixa">
                 <a href="index.html">
                     <div class="logo">
                         <img src="assets/logo/Soul (1).png" alt="">
@@ -26,12 +26,12 @@
                 </a>
                 <h2>Estamos felizes em <br>ter você por aqui!</h2>
                 <form>
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label for="ipt_login">Nome de usuario ou email</label>
                         <input type="text" id="ipt_login" placeholder="Insira seu nome de usuário ou o email cadastrado">
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label for="ipt_senha">Senha</label>
                         <div class="olho">
                                 <input type="password" id="ipt_senha" >
@@ -42,19 +42,18 @@
 
                     <button type="button" class="btn-login" onclick="login()">Entrar</button>
                 </form>
-
+                    
             </div>
         </section>
     </div>
 
-    <div id="modal_alerta" class="modal-container">
-        <div id="modal_caixa" class="modal-content">
+        <div id="modal_alerta" class="modal-container">
+        <div id="modal_caixa" class="modal-conteudo">
             <h3 id="modal_titulo"></h3>
             <p id="modal_mensagem"></p>
             <button id="modal_botao" class="modal-btn" onclick="fecharModal()">OK</button>
         </div>
     </div>
-
 </body>
 <script>
 
@@ -68,26 +67,26 @@
     }
 
     function exibirModal(titulo, mensagem, tipo) {
-        const modal = document.getElementById('modal_alerta');
-        const caixa = document.getElementById('modal_caixa');
+        let modal = document.getElementById('modal_alerta');
+        let caixa = document.getElementById('modal_caixa');
         
         document.getElementById('modal_titulo').innerHTML = titulo;
         document.getElementById('modal_mensagem').innerHTML = mensagem;
         
         if (tipo === 'sucesso') {
-            caixa.classList.add('sucesso');
+            caixa.classList.add('sucesso'); /*mostra o modal na tela*/
             redirecionar = true;
         } else {
             caixa.classList.add('erro');
             redirecionar = false;
         }
 
-        modal.style.display = 'flex';
+        modal.style.display = 'flex'; /*faz com que o modal apareça mesmo se o login for true ou false*/
     }
 
     function fecharModal() {
         document.getElementById('modal_alerta').style.display = 'none';
-        if (redirecionar) {
+        if (redirecionar) { /*se o redirecionar for true, manda o usuario para a dash*/
             window.location.href = "dashboard.html";
         }
     }
@@ -105,7 +104,7 @@
             senha: senha
         }
 
-        fetch('http://localhost:3333/usuarios/login', {
+        fetch('/usuarios/login', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'
@@ -124,7 +123,6 @@
                 localStorage.setItem("idUsuario", data[0].idUsuario);
                 exibirModal("Bem-vindo!", `Olá, ${data[0].nomeUsuario}! Login realizado com sucesso.`, "sucesso");
             } else {
-                hou
                 exibirModal("Falha no Login", "Usuário/E-mail ou senha incorretos. Tente novamente.", "erro");
             }
         })

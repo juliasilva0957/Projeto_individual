@@ -1,10 +1,10 @@
-var novoPostModel = require("../models/novoPostModel");
+let novoPostModel = require("../models/novoPostModel");
 
 function criarPost(req, res) {
-  var titulo = req.body.titulo;
-  var post = req.body.post;
-  var fkUsuario = req.body.fkUsuario;
-  var fkComentario = req.body.fkComentario || null
+  let titulo = req.body.titulo;
+  let post = req.body.post;
+  let fkUsuario = req.body.fkUsuario;
+  let fkComentario = req.body.fkComentario || null
 
   novoPostModel.criarPost(titulo, post, fkUsuario, fkComentario).then((resultado) => {
     res.status(201).json(resultado);

@@ -1,7 +1,7 @@
-var express = require("express");
-var router = express.Router();
+let express = require("express");
+let router = express.Router();
 
-var forumController = require("../controllers/forumController");
+let forumController = require("../controllers/forumController");
 
 router.get("/", function (req, res) {
   forumController.buscarForuns(req, res);

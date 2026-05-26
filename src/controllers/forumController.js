@@ -1,4 +1,4 @@
-var forumModel = require("../models/forumModel");
+let forumModel = require("../models/forumModel");
 
 function buscarForuns(req, res) {
 
@@ -16,7 +16,7 @@ function buscarForuns(req, res) {
 }
 
 function buscarPost(req, res) {
-  var idPost = req.params.idPost;
+  let idPost = req.params.idPost;
 
   forumModel.buscarPost(idPost).then((resultado) => {
     if (resultado.length > 0) {
@@ -32,7 +32,7 @@ function buscarPost(req, res) {
 }
 
 function filtrarPosts(req, res) {
-  var dtPostagem = req.body.dtPostagem;
+  let dtPostagem = req.body.dtPostagem;
   console.log(dtPostagem)
 
 

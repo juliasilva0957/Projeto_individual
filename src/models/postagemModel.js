@@ -1,7 +1,7 @@
-var database = require("../database/config");
+let database = require("../database/config");
 
 function buscarPostagem(idPost) {
-    var instrucaoSql = `SELECT p.*, u.nomeUsuario
+    let instrucaoSql = `SELECT p.*, u.nomeUsuario
         FROM postagem AS p
         JOIN usuario AS u ON p.fkUsuario = u.idUsuario
         WHERE p.idPostagem = ${idPost}`;
@@ -10,7 +10,7 @@ function buscarPostagem(idPost) {
 }
 
 function buscarComentarios(idPost) {
-    var instrucaoSql = `SELECT p.*, u.nomeUsuario
+    let instrucaoSql = `SELECT p.*, u.nomeUsuario
         FROM postagem AS p
         JOIN usuario AS u ON p.fkUsuario = u.idUsuario
         WHERE p.fkComentario = ${idPost}`;

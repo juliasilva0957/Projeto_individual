@@ -1,8 +1,8 @@
-var diarioModel = require("../models/diarioModel");
+let diarioModel = require("../models/diarioModel");
 
 
 function pegarNome(req, res) {
-    var idUsuario = req.params.idUsuario;
+    let idUsuario = req.params.idUsuario;
 
     diarioModel.pegarNome(idUsuario)
         .then(
@@ -27,9 +27,9 @@ function pegarNome(req, res) {
 }
 
 function publicar(req, res) {
-    var selecionarEmocao = req.body.selecionar;
-    var descricao = req.body.descricao;
-    var idUsuario = req.params.idUsuario;
+    let selecionarEmocao = req.body.selecionar;
+    let descricao = req.body.descricao;
+    let idUsuario = req.params.idUsuario;
     console.log(req.params)
     console.log(req.body)
 

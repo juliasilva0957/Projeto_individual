@@ -12,13 +12,13 @@ body {
     font-family: 'Poppins', sans-serif;
 }
 
-.main-container {
+.container {
     display: flex;
     height: 100vh;
     width: 100%;
 }
 
-.banner-side {
+.banner {
     width: 50%;
     background-image: url('../assets/img/7\ Sem\ Título_20260417194918.png');
     background-size: cover;
@@ -37,14 +37,14 @@ body {
     font-weight: 700;
 }
 
-.banner-content{
+.banner-conteudo{
   height: 80vh;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
 
-.banner-content h1 {
+.banner-conteudo h1 {
     font-family: 'Poppins', sans-serif;
     font-size: 90px; 
     font-weight: 7000;
@@ -58,7 +58,7 @@ body {
     justify-content: center;
 }
 
-.form-side {
+.form {
     width: 50%;
     flex: 0 0 50%;
     background-color: #fff9f6;
@@ -68,29 +68,29 @@ body {
     padding: 40px;
 }
 
-.form-box {
+.form-caixa {
     width: 100%;
     max-width: 400px;
 }
 
-.form-box .logo img{
+.form-caixa .logo img{
   width: 95px;
   margin-left: -580px;
   margin-top: -260px
 }
 
-.form-box h2 {
+.form-caixa h2 {
     color: #4a1d00;
     font-size: 32px;
      margin-bottom: 10px;
 }
 
-.input-group {
+.input-grupo {
     margin-top: 20px;
     margin-bottom: 20px;
 }
 
-.input-group label {
+.input-grupo label {
   font-family:'Poppins', sans-serif;
     display: block;
     font-size: 14px;
@@ -135,10 +135,9 @@ input::placeholder{
 .logo-img {
     width: 300px; 
     height: auto;
-    filter: drop-shadow(0px 4px 10px rgba(0,0,0,0.3));
 }
 
-.banner-content h1 {
+.banner-conteudo h1 {
     font-size: 32px;
     color: white;
     margin-bottom: 15px;
@@ -166,7 +165,7 @@ input::placeholder{
             align-items: center;
         }
 
-        .modal-content {
+        .modal-conteudo {
             background-color: #ffffff;
             padding: 30px;
             border-radius: 12px;
@@ -177,12 +176,12 @@ input::placeholder{
             animation: carregarModal 0.3s ease-out;
         }
 
-        .modal-content h3 {
+        .modal-conteudo h3 {
             margin-top: 0;
             font-size: 22px;
         }
 
-        .modal-content p {
+        .modal-conteudo p {
             color: #555;
             font-size: 16px;
             margin: 15px 0;
@@ -210,10 +209,6 @@ input::placeholder{
         .sucesso .modal-btn { 
             background-color: #2e7d32; 
         }
-
-        .sucesso .modal-btn:hover {
-             background-color: #1b5e20; 
-            }
         
         .erro h3 {
              color: #d32f2f;

@@ -10,22 +10,22 @@
 </head>
 
 <body>
-    <div class="main-container">
-        <section class="banner-side">
-            <div class="banner-content">
+    <div class="container">
+        <section class="banner">
+            <div class="banner-conteudo">
                 <h1>Nos conte mais sobre <span style="color: #ff1251;">você!</span></h1>
             </div>
         </section>
 
-        <section class="form-side">
-            <div class="form-box">
+        <section class="form">
+            <div class="form-caixa">
                 <div class="logo">
                     <a href="index.html">
                         <img src="assets/logo/Soul (1).png" alt="">
                     </a>
                 </div>
                 <form>
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Você tem ou já teve algum transtorno mental?</label>
                         <select name="" id="select_teve">
                             <option value="#">Selecione uma das opções</option>
@@ -34,7 +34,7 @@
                         </select>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Se sim, qual?</label>
                         <select name="" id="select_transtorno">
                             <option value="#">Selecione uma das opções</option>
@@ -46,7 +46,7 @@
                         </select>
                     </div>
                     <div>
-                        <label>Você sente que ele te ajudou a passar por crises ou momentos dificeis?</label>
+                        <label>Você sente que seu pet te ajudou a passar por crises ou momentos dificeis?</label>
                         <select name="" id="select_sente">
                             <option value="#">Selecione uma das opções</option>
                             <option value="0">Sim</option>
@@ -54,7 +54,7 @@
                         </select>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Se sim, como ele te ajudou?</label>
                         <input type="text" id="ipt_descricao" placeholder="Responda aqui!">
                     </div>
@@ -90,6 +90,11 @@
         "1": ["Ragdoll", "MaineCoon", "Persa", "Siamês", "AmericanBobtail", "BritishShorthair", "Outros"]
     }
 
+    /*onchange funciona assim:
+    o value guarda o valor que vai ser armazenado
+    o for vai rodando e mostrando todas as raças que foram armazenadas dentro do vetrp
+    */
+
     function filtrarRaça() {
         let tipo = document.getElementById("especie").value;
         let raca = document.getElementById("select_raca");
@@ -120,10 +125,10 @@
             descricao: descricao,
             tipo: tipo,
             raca: raca,
-            fkUsuario: localStorage.getItem("fkUsuario")
+            fkUsuario: localStorage.getItem("fkUsuario")/*guarda a fk do usuario*/
         }
 
-        fetch('http://localhost:3333/form/cadastrar', {
+        fetch('/form/cadastrar', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json'

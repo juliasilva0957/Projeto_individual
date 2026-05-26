@@ -10,64 +10,59 @@
 </head>
 
 <body>
-    <div class="main-container reversed">
+    <div class="container reversed">
 
-        <section class="form-side">
-            <div class="form-box">
-                <div class="logo">
-                    <a href="index.html">
-                        <img src="assets/logo/Soul (1).png" alt="">
-                    </a>
-                </div>
-                <p class="subtitle">Informe os seus dados abaixo</p>
+        <section class="form">
+            <div class="form-caixa">
+                <p class="subtitulo">Informe os seus dados abaixo</p>
 
                 <div action="formCadastro.html">
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Nome Completo</label>
                         <input oninput="tamanhoNome()" type="text" id="ipt_nome" placeholder="Nome completo">
                         <div id="div_nome"></div>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Nome de usuario</label>
                         <input type="text" id="ipt_nomeUsuario" placeholder="Nome de usuario">
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>E-mail</label>
                         <input type="email" id="ipt_email" placeholder="nome@email.com">
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>CPF</label>
                         <input oninput="tamanhoCpf()" type="number" id="ipt_cpf" placeholder="ex:999999999-70">
                         <div id="div_cpf"></div>
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Senha</label>
-                        <div class="password-wrapper">
+                        <div class="senha">
                             <input type="password" id="ipt_senha" oninput="validar()">
                             <span onclick="visualizar()" style="cursor: pointer;">
                                 <img id="olho" src="/assets/icons/eye.png"></span>
                         </div>
-                        <p style="color: tomato;" id="caractereEspecial">Não possui caractere especial</p>
-                        <p style="color: tomato;" id="letraMaiuscula">Não possui letra maiúscula</p>
-                        <p style="color: tomato;" id="letraMinuscula">Não possui letra minúscula</p>
-                        <p style="color: tomato;" id="tamanho">Não possui mais de 8 caracteres</p>
+                        <p style="color: tomato;" id="caractereEspecial">X Não possui caractere especial</p>
+                        <p style="color: tomato;" id="letraMaiuscula">X Não possui letra maiúscula</p>
+                        <p style="color: tomato;" id="letraMinuscula">X Não possui letra minúscula</p>
+                        <p style="color: tomato;" id="tamanho">X Não possui mais de 8 caracteres</p>
 
                     </div>
 
-                    <div class="input-group">
+                    <div class="input-grupo">
                         <label>Confirmar Senha</label>
-                        <div class="password-wrapper">
+                        <div class="senha">
                             <input type="password" id="ipt_senhaDnv" oninput="confirmar()">
                             <span onclick="visualizarDnv()" style="cursor: pointer;">
                                 <img id="olhoDnv" src="/assets/icons/eye.png"></span>
                         </div>
                         <div id="div_erro"></div>
                     </div>
-                    <button class="btn-primary" onclick="dadosVazios()">
+                    <button class="btn-cadastrar" onclick="dadosVazios()">
                         Proximo
                         <img src="/assets/icons/seta.png" alt="" width="20">
                     </button>
@@ -75,9 +70,8 @@
             </div>
         </section>
 
-        <section class="banner-side">
-            <div class="overlay"></div>
-            <div class="banner-content">
+        <section class="banner">
+            <div class="banner-conteudo">
                 <h1><b>Será um prazer te <br> ter em nossa <br> <span style="color: #ff1251;">comunidade</b></span></h1>
             </div>
         </section>
@@ -146,34 +140,34 @@
             }
 
             if (senha.length > 8) {
-                tamanho.innerHTML = "Possui mais de 8 caracteres";
+                tamanho.innerHTML = " ✓ Possui mais de 8 caracteres";
                 tamanho.style.color = "yellowgreen";
             } else {
-                tamanho.innerHTML = "Não possui mais de 8 caracteres";
+                tamanho.innerHTML = "X Não possui mais de 8 caracteres";
                 tamanho.style.color = "tomato";
             }
 
             if (temEspecial) {
-                caractereEspecial.innerHTML = "Possui caractere especial";
+                caractereEspecial.innerHTML = " ✓ Possui caractere especial";
                 caractereEspecial.style.color = "yellowgreen";
             } else {
-                caractereEspecial.innerHTML = "Não possui caractere especial";
+                caractereEspecial.innerHTML = "X Não possui caractere especial";
                 caractereEspecial.style.color = "tomato";
             }
 
             if (temMaiuscula) {
-                letraMaiuscula.innerHTML = "Possui letra maiúscula";
+                letraMaiuscula.innerHTML = " ✓ Possui letra maiúscula";
                 letraMaiuscula.style.color = "yellowgreen";
             } else {
-                letraMaiuscula.innerHTML = "Não possui letra maiúscula";
+                letraMaiuscula.innerHTML = "X Não possui letra maiúscula";
                 letraMaiuscula.style.color = "tomato";
             }
 
             if (temMinuscula) {
-                letraMinuscula.innerHTML = "Possui letra minúscula";
+                letraMinuscula.innerHTML = " ✓ Possui letra minúscula";
                 letraMinuscula.style.color = "yellowgreen";
             } else {
-                letraMinuscula.innerHTML = "Não possui letra minúscula";
+                letraMinuscula.innerHTML = "X Não possui letra minúscula";
                 letraMinuscula.style.color = "tomato";
             }
         }

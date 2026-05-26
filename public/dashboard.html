@@ -18,7 +18,7 @@
     <nav class="navbar">
       <div class="left">
         <a href="forum.html">FORUM</a>
-        <a href="diarioEmocoes.html">EMOÇÕES</a>
+        <a href="diarioEmocoes.html">DIARIO DE EMOÇÕES</a>
         <a href="perfil.html">PERFIL</a>
         <a href="dashboard.html" class="ativo">DASHBOARD</a>
         <a href="index.html">
@@ -77,6 +77,10 @@
 
   <script>
 
+    let graficoDeLinha = null;
+    let graficoDeBarras = null
+
+
     function carregarDashboard() {
       carregarNome();
       carregarKpi();
@@ -124,7 +128,7 @@
             comentarios.push(data[i].comentarios);
           }
 
-          new Chart(document.getElementById('lineChart'), {
+          graficoDeLinha = new Chart(document.getElementById('lineChart'), {
             type: 'line',
             data: {
               labels: dias,
@@ -269,7 +273,7 @@
             quantidades.push(data[i].quantidade);
           }
 
-          new Chart(document.getElementById('barChart'), {
+          graficoDeBarras = new Chart(document.getElementById('barChart'), {
             type: 'bar',
             data: {
               labels: emocoes,
@@ -283,13 +287,20 @@
             options: {
               responsive: true,
               maintainAspectRatio: false,
-              plugins: { legend: { display: false } },
+              plugins: {
+                legend: {
+                  display: false
+                }
+              },
               scales: {
                 x: {
                   title: {
                     display: true,
                     text: 'Emoções relatadas',
-                    font: { size: 12, weight: 'bold' }
+                    font: {
+                      size: 12,
+                      weight: 'bold'
+                    }
                   },
                   grid: { display: false }
                 },
@@ -298,7 +309,10 @@
                   title: {
                     display: true,
                     text: 'Quantidade',
-                    font: { size: 12, weight: 'bold' }
+                    font: {
+                      size: 12,
+                      weight: 'bold'
+                    }
                   },
                   ticks: {
                     stepSize: 1

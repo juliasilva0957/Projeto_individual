@@ -1,7 +1,7 @@
-var dashboardModel = require("../models/dashboardModel");
+let dashboardModel = require("../models/dashboardModel");
 
 function buscarKpi(req, res) {
-  var idUsuario = req.params.idUsuario;
+  let idUsuario = req.params.idUsuario;
 
   dashboardModel.buscarKpi(idUsuario)
     .then(function (resultado) {
@@ -13,7 +13,7 @@ function buscarKpi(req, res) {
 }
 
 function buscarAtividade(req, res) {
-  var idUsuario = req.params.idUsuario;
+  let idUsuario = req.params.idUsuario;
 
   dashboardModel.buscarAtividade(idUsuario)
     .then(function (resultado) {
@@ -25,7 +25,7 @@ function buscarAtividade(req, res) {
 }
 
 function buscarRaca(req, res) {
-  var idUsuario = req.params.idUsuario;
+  let idUsuario = req.params.idUsuario;
 
   dashboardModel.buscarRaca(idUsuario)
     .then(function (resultado) {
@@ -37,7 +37,7 @@ function buscarRaca(req, res) {
 }
 
 function buscarEmocoes(req, res) {
-  var idUsuario = req.params.idUsuario;
+  let idUsuario = req.params.idUsuario;
 
   dashboardModel.buscarEmocoes(idUsuario).then(function (resultado) {
     res.status(200).json(resultado);
@@ -47,9 +47,23 @@ function buscarEmocoes(req, res) {
   });
 }
 
+function filtrarDashboard(req, res) {
+  let idUsuario = req.params.idUsuario;
+  let mes = req.body.mes
+  
+  dashboardModel.filtrarDashboard(idUsuario, mes)
+    .then(function(resultado) {
+      res.status(200).json(resultado);
+    }).catch(function(erro) {
+      console.log(erro);
+      res.status(500).json(erro.sqlMessage);
+    });
+}
+
 module.exports = {
   buscarKpi,
   buscarAtividade,
   buscarRaca,
-  buscarEmocoes
+  buscarEmocoes,
+  filtrarDashboard
 };
