@@ -90,7 +90,7 @@
     }
 
     function carregarNome() {
-      let idUsuario = localStorage.getItem("idUsuario");
+      let idUsuario = sessionStorage.getItem("idUsuario");
 
       fetch(`/diario/listar/${idUsuario}`)
         .then(res => res.json())
@@ -101,7 +101,7 @@
     }
 
     function carregarKpi() {
-      let idUsuario = localStorage.getItem("idUsuario");
+      let idUsuario = sessionStorage.getItem("idUsuario");
 
       fetch(`/dashboard/kpis/${idUsuario}`)
         .then(res => res.json())
@@ -113,7 +113,7 @@
     }
 
     function carregarAtividadeForum() {
-      let idUsuario = localStorage.getItem("idUsuario");
+      let idUsuario = sessionStorage.getItem("idUsuario");
 
       fetch(`/dashboard/atividade/${idUsuario}`)
         .then(res => res.json())
@@ -219,7 +219,7 @@
     }
 
     function carregarPorcentagemRaca() {
-      let idUsuario = localStorage.getItem("idUsuario");
+      let idUsuario = sessionStorage.getItem("idUsuario");
 
       fetch(`/dashboard/raca/${idUsuario}`)
         .then(res => res.json())
@@ -260,7 +260,7 @@
     }
 
     function carregarEmocoes() {
-      let idUsuario = localStorage.getItem("idUsuario");
+      let idUsuario = sessionStorage.getItem("idUsuario");
 
       fetch(`/dashboard/emocoes/${idUsuario}`)
         .then(res => res.json())

@@ -58,7 +58,7 @@
 <script>
 
     function iniciar() { /*essa função carrega o nome do usuário na pagina*/
-        let idUsuario = localStorage.getItem("idUsuario")
+        let idUsuario = sessionStorage.getItem("idUsuario")
         fetch(`http://localhost:3333/diario/listar/${idUsuario}`, {
             method: 'GET',
             headers: {
@@ -80,7 +80,7 @@
     function publicar() { /*insere no banco o registro do fiario de emoções*/
         let selectEmocoes = select_emocoes.value;
         let descrevaEmocao = txt_emocao.value
-        let idUsuario = localStorage.getItem("idUsuario") /*guarda o valor localmente até ser apagado*/
+        let idUsuario = sessionStorage.getItem("idUsuario") /*guarda o valor localmente até ser apagado*/
 
         if (selectEmocoes == "" || descrevaEmocao == "") {
             alert("Digite/selecione valores validos!")

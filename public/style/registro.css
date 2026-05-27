@@ -246,10 +246,6 @@ header {
     align-items: center;
 }
 
-.modal-overlay.ativo {
-    display: flex;
-}
-
 .modal-conteudo {
     background: #fff;
     border-radius: 16px;

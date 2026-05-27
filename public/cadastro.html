@@ -224,7 +224,7 @@
                             return res.json()
                     }).then(resultado => {
                         console.log(resultado)
-                        localStorage.setItem("fkUsuario", resultado.insertId)
+                        sessionStorage.setItem("fkUsuario", resultado.insertId)
                         window.location.href = "formCadastro.html"
                     })
                     .catch(error => console.error('Erro:', error));

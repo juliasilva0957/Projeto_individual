@@ -202,14 +202,3 @@ input::placeholder{
         .modal-btn:hover {
             background-color: #d60e42;
         }
-
-        .sucesso h3 { 
-            color: #2e7d32;
-         }
-        .sucesso .modal-btn { 
-            background-color: #2e7d32; 
-        }
-        
-        .erro h3 {
-             color: #d32f2f;
-             }

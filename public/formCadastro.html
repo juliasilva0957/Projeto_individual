@@ -125,7 +125,7 @@
             descricao: descricao,
             tipo: tipo,
             raca: raca,
-            fkUsuario: localStorage.getItem("fkUsuario")/*guarda a fk do usuario*/
+            fkUsuario: sessionStorage.getItem("fkUsuario")/*guarda a fk do usuario*/
         }
 
         fetch('/form/cadastrar', {
@@ -137,7 +137,7 @@
         })
             .then(res => res.json())
             .then(data => {
-                localStorage.removeItem("fkUsuario")
+                sessionStorage.removeItem("fkUsuario")
                 window.location.href = "/login.html"
             })
             .catch(error => console.error('Erro:', error));

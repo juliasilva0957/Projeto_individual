@@ -74,10 +74,12 @@
         document.getElementById('modal_mensagem').innerHTML = mensagem;
         
         if (tipo === 'sucesso') {
-            caixa.classList.add('sucesso'); /*mostra o modal na tela*/
+            caixa.style.display = 'flex'; /*mostra o modal na tela*/
+            caixa.style.backgroundColor = 'green'
             redirecionar = true;
         } else {
-            caixa.classList.add('erro');
+            caixa.style.display = 'flex';
+            caixa.style.backgroundColor = 'red'
             redirecionar = false;
         }
 
@@ -120,15 +122,15 @@
         })
         .then(data => {
             if (data != null && data.length > 0) {
-                localStorage.setItem("idUsuario", data[0].idUsuario);
-                exibirModal("Bem-vindo!", `Olá, ${data[0].nomeUsuario}! Login realizado com sucesso.`, "sucesso");
+                sessionStorage.setItem("idUsuario", data[0].idUsuario);
+                exibirModal("Bem-vindo!", `Olá, ${data[0].nomeUsuario}! Login realizado com sucesso.`, 'sucesso');
             } else {
-                exibirModal("Falha no Login", "Usuário/E-mail ou senha incorretos. Tente novamente.", "erro");
+                exibirModal("Falha no Login", "Usuário/E-mail ou senha incorretos. Tente novamente.", 'erro');
             }
         })
         .catch(error => {
             console.error("Erro de conexão:", error);
-            exibirModal("Erro de Conexão", "Não foi possível conectar ao servidor. Tente novamente mais tarde.", "erro");
+            exibirModal("Erro de Conexão", "Não foi possível conectar ao servidor. Tente novamente mais tarde.", 'erro');
         });
     }
 }

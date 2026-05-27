@@ -51,7 +51,7 @@
 </body>
 <script>
     function buscarNome() {
-        let idUsuario = localStorage.getItem("idUsuario")
+        let idUsuario = sessionStorage.getItem("idUsuario")
         fetch(`/diario/listar/${idUsuario}`, {
             method: 'GET',
             headers: {
@@ -67,7 +67,7 @@
     }
 
     function buscarRegistros() {
-        let idUsuario = localStorage.getItem("idUsuario")
+        let idUsuario = sessionStorage.getItem("idUsuario")
         fetch(`/registro/listar/registros/${idUsuario}`, {
             method: 'GET',
             headers: { 'Content-Type': 'application/json' }
@@ -99,22 +99,19 @@
     let registroAtual = {}
 
     function abrirModal(id, emocao, descricao) {
-        registroAtual = { id, emocao, descricao };
+        registroAtual = { 
+            id:id, 
+            emocao: emocao, 
+            descricao: descricao };
 
-        document.getElementById('modal-emocao').innerText = emocao;
-        document.getElementById('modal-descricao').innerText = descricao;
-        document.getElementById('modal-overlay').classList.add('ativo');
+        document.getElementById('modal-emocao').innerHTML = emocao;
+        document.getElementById('modal-descricao').innerHTML = descricao;
+        document.getElementById('modal-overlay').style.display = 'flex';
     }
 
     function fecharModal() {
-        document.getElementById('modal-overlay').classList.remove('ativo');
+        document.getElementById('modal-overlay').style.display = 'none';
     }
-
-    document.getElementById('modal-overlay').addEventListener('click', function (event) {
-        if (event.target === this) {
-            fecharModal();
-        }
-    });
 
     function filtrarPosts() {
         let dtPostagem = ipt_filtro.value;
@@ -131,9 +128,10 @@
             .then(res => res.json())
             .then(posts => {
                 let container = document.getElementById('container-postagens');
-                container.innerHTML = `<p style="text-align:center; color: #333;">Nenhum registro de emoção encontrado para esta data.</p>`
+                if(posts.length < 1){
+                    container.innerHTML = `<p style="text-align:center; color: #333;">Nenhum registro de emoção encontrado para esta data.</p>`
 
-                if (posts.length == 1) {
+                } else if (posts.length == 1) {
                     container.innerHTML += `
                 <div class="item-postagem" onclick="abrirModal(${posts[0].idEmocao}, '${posts[0].emocao}', '${posts[0].descricao}')">
                 <span class="titulo-postagem">${posts[0].emocao}</span>

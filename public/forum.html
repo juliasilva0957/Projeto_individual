@@ -48,7 +48,7 @@
 </body>
 <script>
     function carregarNome() {
-        let idUsuario = localStorage.getItem("idUsuario")
+        let idUsuario = sessionStorage.getItem("idUsuario")
         fetch(`/diario/listar/${idUsuario}`, {
             method: 'GET',
             headers: {

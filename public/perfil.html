@@ -57,7 +57,7 @@
 </body>
 <script>
     function carregarNome() {
-        let idUsuario = localStorage.getItem("idUsuario")
+        let idUsuario = sessionStorage.getItem("idUsuario")
         fetch(`/perfil/${idUsuario}`, {
             method: 'GET',
             headers: {
@@ -79,7 +79,7 @@
     }
 
     function atualizarPerfil() {
-        let idUsuario = localStorage.getItem("idUsuario");
+        let idUsuario = sessionStorage.getItem("idUsuario");
         let nome = document.getElementById('p_nome').value;
         let email = document.getElementById('p_email').value;
 

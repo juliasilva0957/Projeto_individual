@@ -51,22 +51,24 @@
 </body>
 <script>
     function criarPost(idPost) {
-        let idUsuario = localStorage.getItem("idUsuario");
+        let idUsuario = sessionStorage.getItem("idUsuario");
         let titulo = document.getElementById('titulo').value;
         let post = document.getElementById('post').value;
 
         if (titulo == "" || post == "") {
             alert("Digite valores válidos nos campos")
         } else {
-            fetch('/novoPost', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({
+
+            let dados = {
                     titulo: titulo,
                     post: post,
                     fkUsuario: idUsuario,
                     fkComentario: idPost
-                })
+            }
+            fetch('/novoPost', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify(dados)
             })
                 .then(res => res.json())
                 .then(data => {
